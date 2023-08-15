@@ -8,6 +8,6 @@ package ADT;
  *
  * @author CY
  */
-public interface ListInterface {
+public interface ListInterface<T> {
     
 }
