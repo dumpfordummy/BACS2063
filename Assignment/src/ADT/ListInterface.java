@@ -9,5 +9,6 @@ package ADT;
  * @author CY
  */
 public interface ListInterface<T> {
-    //wyman
+    //wyman v1.0 +abc -> v1.1
+    //cy v1.0 +xyz ->v1.2
 }
