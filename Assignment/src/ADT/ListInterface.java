@@ -9,6 +9,24 @@ package ADT;
  * @author CY
  */
 public interface ListInterface<T> {
-    //wyman v1.0 +abc -> v1.1
-    //cy v1.0 +xyz ->v1.2
+
+    boolean add(T element);
+
+    void add(int index, T element);
+
+    boolean remove(Object element);
+    
+    T remove(int index);
+
+    int size();
+    
+    boolean isEmpty();
+    
+    void clear();
+    
+    T get(int index);
+    
+    T replace(int index, T element);
+    
+    boolean contains(Object element);
 }
