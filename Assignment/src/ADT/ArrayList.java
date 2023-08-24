@@ -210,7 +210,11 @@ public class ArrayList<T> implements ListInterface<T> {
         }
     }
     
-    public class ArrayListIterator implements Iterator<T> {
+//    public ArrayListIterator getIterator() {
+//        return new ArrayListIterator();
+//    }
+    
+    private class ArrayListIterator implements Iterator<T> {
 
         @Override
         public boolean hasNext() {
