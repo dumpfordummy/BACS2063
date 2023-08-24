@@ -4,51 +4,228 @@
  */
 package ADT;
 
+import java.util.Iterator;
+
 /**
  *
  * @author CY
  */
 public class ArrayList<T> implements ListInterface<T> {
 
+    private static final int DEFAULT_CAPACITY = 10;
+
+    // -8 to prevent some jvm throws oom even though there is enough heap memory;
+    private static final int ARRAY_MAXLENGTH = Integer.MAX_VALUE - 8;
+
+    private T[] items;
+
+    private int size = 0;
+
+    public ArrayList() {
+        this(DEFAULT_CAPACITY);
+    }
+
+    public ArrayList(int initialCapacity) {
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException("Capacity for Array List cannot be negative");
+        } else {
+            items = (T[]) new Object[initialCapacity];
+        }
+    }
+    
+    public T[] toArray() {
+        T[] result = (T[]) new Object[size];
+
+        for (int i = 0; i < size; i++) {
+            result[i] = items[i];
+        }
+
+        return result;
+    }
+
+    private void grow() {
+        int newCapacity = size == 0 ? DEFAULT_CAPACITY : size * 2;
+
+        if (newCapacity > ARRAY_MAXLENGTH) {
+            newCapacity = ARRAY_MAXLENGTH;
+        }
+
+        T[] tempArr = (T[]) new Object[newCapacity];
+
+        for (int i = 0; i < size; i++) {
+            tempArr[i] = items[i];
+        }
+
+        items = tempArr;
+    }
+
+    private void addWithResize(T element) {
+        grow();
+        items[size] = element;
+        size++;
+    }
+
     @Override
     public boolean add(T element) {
-       return true; 
+        if (size < items.length) {
+            items[size] = element;
+            size++;
+        } else {
+            addWithResize(element);
+        }
+        return true;
+    }
+
+    private void rightShift(int startingIndex) {
+        for (int i = size - 1; i >= startingIndex; i--) {
+            items[i + 1] = items[i];
+        }
+
+        items[startingIndex] = null;
     }
 
     @Override
     public void add(int index, T element) {
+        indexCheck(index);
+
+        if (size == items.length) {
+            grow();
+        }
+
+        if (index < size) {
+            rightShift(index);
+        }
+
+        items[index] = element;
+        size++;
     }
 
     @Override
-    public boolean remove(Object element) {
+    public boolean remove(T element) {
+        int index = indexOf(element);
+
+        if (index >= 0) {
+            remove(index);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void leftShift(int startingIndex) {
+        for (int i = startingIndex; i < size - startingIndex; i++) {
+            items[i - 1] = items[i];
+        }
+
+        items[size - 1] = null;
     }
 
     @Override
     public T remove(int index) {
+        T result = null;
+        indexCheck(index);
+        result = items[index];
+        leftShift(index);
+        return result;
     }
 
     @Override
     public int size() {
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
+        return size == 0;
     }
 
     @Override
     public void clear() {
+        for (int i = 0; i < size; i++) {
+            items[i] = null;
+        }
     }
 
     @Override
     public T get(int index) {
+        indexCheck(index);
+        return items[index];
     }
 
     @Override
     public T replace(int index, T element) {
+        indexCheck(index);
+        T result = items[index];
+        items[index] = element;
+        return result;
     }
 
     @Override
-    public boolean contains(Object element) {
+    public boolean contains(T element) {
+        return indexOf(element) >= 0;
+    }
+
+    @Override
+    public int indexOf(T element) {
+        if (element == null) {
+            for (int i = 0; i < size; i++) {
+                if (items[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (element.equals(items[i])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
     
+    public boolean equals(ArrayList<T> arrayList) {
+        
+        if(arrayList == this) {
+            return true;
+        }
+        
+        if(arrayList.size != size){
+            return false;
+        }
+        
+        boolean isEquals = true;
+                    
+        for(int i = 0; i < size; i++) {
+            if(!arrayList.get(i).equals(items[i])) {
+                isEquals = false;
+                break;
+            }
+        }
+        return isEquals;
+    }
+
+    private void indexCheck(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index is invalid");
+        }
+    }
+    
+    public class ArrayListIterator implements Iterator<T> {
+
+        @Override
+        public boolean hasNext() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        @Override
+        public T next() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        @Override
+        public void remove() {
+            Iterator.super.remove(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        }
+        
+    }
 }

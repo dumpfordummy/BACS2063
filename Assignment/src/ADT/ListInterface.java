@@ -14,7 +14,7 @@ public interface ListInterface<T> {
 
     void add(int index, T element);
 
-    boolean remove(Object element);
+    boolean remove(T element);
     
     T remove(int index);
 
@@ -28,5 +28,7 @@ public interface ListInterface<T> {
     
     T replace(int index, T element);
     
-    boolean contains(Object element);
+    boolean contains(T element);
+    
+    public int indexOf(T element);
 }
