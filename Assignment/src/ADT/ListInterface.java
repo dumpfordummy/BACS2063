@@ -8,8 +8,13 @@ package ADT;
  *
  * @author CY
  */
+
 public interface ListInterface<T> {
 
+    /*
+    *  TODO: UPDATE ListInterface to make ArrayList consistent with ListInterface
+    */
+    
     boolean add(T element);
 
     void add(int index, T element);
