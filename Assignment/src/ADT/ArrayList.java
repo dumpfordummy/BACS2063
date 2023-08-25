@@ -146,6 +146,7 @@ public class ArrayList<T> implements ListInterface<T> {
         for (int i = 0; i < size; i++) {
             items[i] = null;
         }
+        size = 0;
     }
 
     @Override
@@ -226,13 +227,21 @@ public class ArrayList<T> implements ListInterface<T> {
     public String toString() {
         StringBuilder result = new StringBuilder();
 
-        for(int i = 0; i < size; i++) {
-            result.append(items[i].toString());
+        for(int i = 0; i < items.length; i++) {
+            if(items[i] == null) {
+                result.append("null");
+            } else {
+                result.append(items[i].toString());
+            }
+
+            if(i != items.length - 1){
+                result.append(", ");
+            }
         }
         return result.toString();
     }
     
-    public ArrayListIterator getIterator() {
+    public ArrayListIterator iterator() {
         return new ArrayListIterator();
     }
     
@@ -269,6 +278,4 @@ public class ArrayList<T> implements ListInterface<T> {
             canRemove = false;
         }
     }
-    
-    
 }
