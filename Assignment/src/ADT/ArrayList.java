@@ -5,6 +5,7 @@
 package ADT;
 
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 /**
  *
@@ -113,7 +114,7 @@ public class ArrayList<T> implements ListInterface<T> {
     }
 
     private void leftShift(int startingIndex) {
-        for (int i = startingIndex; i < size - startingIndex; i++) {
+        for (int i = startingIndex; i < size; i++) {
             items[i - 1] = items[i];
         }
 
@@ -125,7 +126,8 @@ public class ArrayList<T> implements ListInterface<T> {
         T result = null;
         indexCheck(index);
         result = items[index];
-        leftShift(index);
+        leftShift(index + 1);
+        size--;
         return result;
     }
 
@@ -210,26 +212,63 @@ public class ArrayList<T> implements ListInterface<T> {
         }
     }
     
-//    public ArrayListIterator getIterator() {
-//        return new ArrayListIterator();
-//    }
+    public void forEach(Consumer<? super T> action) {
+        if(action == null) {
+            throw new NullPointerException();
+        }
+        
+        for(int i = 0; i < size; i++) {
+            action.accept(items[i]);
+        }
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < size; i++) {
+            result.append(items[i].toString());
+        }
+        return result.toString();
+    }
+    
+    public ArrayListIterator getIterator() {
+        return new ArrayListIterator();
+    }
     
     private class ArrayListIterator implements Iterator<T> {
 
+        private int nextIndex;
+        private boolean canRemove = false;
+        
         @Override
         public boolean hasNext() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            return nextIndex != size;
         }
 
         @Override
         public T next() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            if(nextIndex >= size) {
+                throw new IllegalStateException();
+            }
+            
+            T result = items[nextIndex];
+            nextIndex++;
+            canRemove = true;
+            return result;
         }
 
         @Override
         public void remove() {
-            Iterator.super.remove(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+            if(!canRemove) {
+                throw new IllegalStateException();
+            }
+            
+            ArrayList.this.remove(nextIndex - 1);
+            nextIndex--;
+            canRemove = false;
         }
-        
     }
+    
+    
 }
