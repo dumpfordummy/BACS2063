@@ -4,6 +4,10 @@
  */
 package ADT;
 
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.function.Consumer;
+
 /**
  *
  * @author CY
@@ -13,6 +17,8 @@ public interface ListInterface<T> {
     /*
     *  TODO: UPDATE ListInterface to make ArrayList consistent with ListInterface
      */
+    public T[] toArray();
+
     boolean add(T element);
 
     void add(int index, T element);
@@ -35,5 +41,13 @@ public interface ListInterface<T> {
 
     int indexOf(T element);
 
+    boolean equals(ListInterface<T> arrayList);
+
+    void forEach(Consumer<? super T> action);
+
     ListInterface<T> subList(int fromIndex, int toIndex);
+
+    Iterator<T> iterator();
+
+    ListIterator<T> Listiterator();
 }

@@ -4,6 +4,10 @@
  */
 package ADT;
 
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.function.Consumer;
+
 /**
  *
  * @author CY
@@ -21,27 +25,37 @@ public interface SetUniqueListInterface<T> {
     *  TODO: UPDATE SetUniqueListInterface to make ArraySetUniqueList consistent with ListInterface
     */
     
+    public T[] toArray();
+
     boolean add(T element);
 
     boolean add(int index, T element);
 
     boolean remove(T element);
-    
+
     T remove(int index);
 
     int size();
-    
+
     boolean isEmpty();
-    
+
     void clear();
-    
+
     T get(int index);
-    
+
     T replace(int index, T element);
-    
+
     boolean contains(T element);
-    
-    public int indexOf(T element);
-    
+
+    int indexOf(T element);
+
+    boolean equals(SetUniqueListInterface<T> arrayList);
+
+    void forEach(Consumer<? super T> action);
+
     SetUniqueListInterface<T> subList(int fromIndex, int toIndex);
+
+    Iterator<T> iterator();
+
+    ListIterator<T> Listiterator();
 }

@@ -35,6 +35,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
         }
     }
 
+    @Override
     public T[] toArray() {
         T[] result = (T[]) new Object[size];
 
@@ -69,7 +70,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
 
     @Override
     public boolean add(T element) {
-        if (indexOf(element) >= 0) {
+        if (contains(element)) {
             return false;
         }
 
@@ -94,7 +95,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
     public boolean add(int index, T element) {
         indexCheck(index);
 
-        if (indexOf(element) >= 0) {
+        if (contains(element)) {
             return false;
         }
 
@@ -168,7 +169,14 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
     @Override
     public T replace(int index, T element) {
         indexCheck(index);
-        T result = items[index];
+        
+        T result = null;
+        
+        if(contains(element)) {
+            return result;
+        }
+        
+        result = items[index];
         items[index] = element;
         return result;
     }
@@ -196,13 +204,14 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
         return -1;
     }
 
-    public boolean equals(ArraySetUniqueList<T> arrayList) {
+    @Override
+    public boolean equals(SetUniqueListInterface<T> arrayList) {
 
         if (arrayList == this) {
             return true;
         }
 
-        if (arrayList.size != size) {
+        if (arrayList.size() != size) {
             return false;
         }
 
@@ -223,6 +232,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
         }
     }
 
+    @Override
     public void forEach(Consumer<? super T> action) {
         if (action == null) {
             throw new NullPointerException();
@@ -250,17 +260,40 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
         }
         return result.toString();
     }
+    
+    private void subListIndexCheck(int fromIndex, int toIndex) {
+        if (fromIndex < 0) {
+            throw new IndexOutOfBoundsException("fromIndex = " + fromIndex);
+        }
+        if (toIndex >= size) {
+            throw new IndexOutOfBoundsException("toIndex = " + toIndex);
+        }
+        if (fromIndex > toIndex) {
+            throw new IllegalArgumentException("fromIndex(" + fromIndex
+                    + ") > toIndex(" + toIndex + ")");
+        }
+    }
 
     @Override
     public SetUniqueListInterface<T> subList(int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        subListIndexCheck(fromIndex, toIndex);
+        
+        ArraySetUniqueList<T> result = new ArraySetUniqueList<>();
+        
+        for(int i = fromIndex; i <= toIndex; i++) {
+            result.add(items[i]);
+        }
+        
+        return result;
     }
 
-    public SetListIterator iterator() {
+    @Override
+    public Iterator<T> iterator() {
         return new SetListIterator();
     }
 
-    public SetListListIterator Listiterator() {
+    @Override
+    public ListIterator<T> Listiterator() {
         return new SetListListIterator();
     }
 
