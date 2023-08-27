@@ -8,32 +8,32 @@ package ADT;
  *
  * @author CY
  */
-
 public interface ListInterface<T> {
 
     /*
     *  TODO: UPDATE ListInterface to make ArrayList consistent with ListInterface
-    */
-    
+     */
     boolean add(T element);
 
     void add(int index, T element);
 
     boolean remove(T element);
-    
+
     T remove(int index);
 
     int size();
-    
+
     boolean isEmpty();
-    
+
     void clear();
-    
+
     T get(int index);
-    
+
     T replace(int index, T element);
-    
+
     boolean contains(T element);
-    
-    public int indexOf(T element);
+
+    int indexOf(T element);
+
+    ListInterface<T> subList(int fromIndex, int toIndex);
 }

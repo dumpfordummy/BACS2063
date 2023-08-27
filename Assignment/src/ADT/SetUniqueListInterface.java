@@ -1,0 +1,47 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package ADT;
+
+/**
+ *
+ * @author CY
+ */
+
+/**
+ * An ordered collection (also known as a sequence) that contains no
+ * duplicated elements. The user of this interface has precise control
+ * over where in the list each element is inserted. The user can access
+ * elements by their integer index (position in the list), and search for elements in the list.
+ */
+public interface SetUniqueListInterface<T> {
+    
+    /*
+    *  TODO: UPDATE SetUniqueListInterface to make ArraySetUniqueList consistent with ListInterface
+    */
+    
+    boolean add(T element);
+
+    boolean add(int index, T element);
+
+    boolean remove(T element);
+    
+    T remove(int index);
+
+    int size();
+    
+    boolean isEmpty();
+    
+    void clear();
+    
+    T get(int index);
+    
+    T replace(int index, T element);
+    
+    boolean contains(T element);
+    
+    public int indexOf(T element);
+    
+    SetUniqueListInterface<T> subList(int fromIndex, int toIndex);
+}

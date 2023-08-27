@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  *
  * @author CY
  */
-public class ArrayList<T> implements ListInterface<T> {
+public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
 
@@ -23,18 +23,18 @@ public class ArrayList<T> implements ListInterface<T> {
 
     private int size = 0;
 
-    public ArrayList() {
+    public ArraySetUniqueList() {
         this(DEFAULT_CAPACITY);
     }
 
-    public ArrayList(int initialCapacity) {
+    public ArraySetUniqueList(int initialCapacity) {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Capacity for Array List cannot be negative");
         } else {
             items = (T[]) new Object[initialCapacity];
         }
     }
-    
+
     public T[] toArray() {
         T[] result = (T[]) new Object[size];
 
@@ -69,6 +69,10 @@ public class ArrayList<T> implements ListInterface<T> {
 
     @Override
     public boolean add(T element) {
+        if (indexOf(element) >= 0) {
+            return false;
+        }
+
         if (size < items.length) {
             items[size] = element;
             size++;
@@ -87,8 +91,12 @@ public class ArrayList<T> implements ListInterface<T> {
     }
 
     @Override
-    public void add(int index, T element) {
+    public boolean add(int index, T element) {
         indexCheck(index);
+
+        if (indexOf(element) >= 0) {
+            return false;
+        }
 
         if (size == items.length) {
             grow();
@@ -100,6 +108,7 @@ public class ArrayList<T> implements ListInterface<T> {
 
         items[index] = element;
         size++;
+        return true;
     }
 
     @Override
@@ -186,21 +195,21 @@ public class ArrayList<T> implements ListInterface<T> {
         }
         return -1;
     }
-    
-    public boolean equals(ArrayList<T> arrayList) {
-        
-        if(arrayList == this) {
+
+    public boolean equals(ArraySetUniqueList<T> arrayList) {
+
+        if (arrayList == this) {
             return true;
         }
-        
-        if(arrayList.size != size){
+
+        if (arrayList.size != size) {
             return false;
         }
-        
+
         boolean isEquals = true;
-                    
-        for(int i = 0; i < size; i++) {
-            if(!arrayList.get(i).equals(items[i])) {
+
+        for (int i = 0; i < size; i++) {
+            if (!arrayList.get(i).equals(items[i])) {
                 isEquals = false;
                 break;
             }
@@ -213,53 +222,53 @@ public class ArrayList<T> implements ListInterface<T> {
             throw new IndexOutOfBoundsException("Index is invalid");
         }
     }
-    
+
     public void forEach(Consumer<? super T> action) {
-        if(action == null) {
+        if (action == null) {
             throw new NullPointerException();
         }
-        
-        for(int i = 0; i < size; i++) {
+
+        for (int i = 0; i < size; i++) {
             action.accept(items[i]);
         }
     }
-    
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
 
-        for(int i = 0; i < items.length; i++) {
-            if(items[i] == null) {
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] == null) {
                 result.append("null");
             } else {
                 result.append(items[i].toString());
             }
 
-            if(i != items.length - 1){
+            if (i != items.length - 1) {
                 result.append(", ");
             }
         }
         return result.toString();
     }
-    
+
     @Override
-    public ListInterface<T> subList(int fromIndex, int toIndex) {
+    public SetUniqueListInterface<T> subList(int fromIndex, int toIndex) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    public ArrayIterator iterator() {
-        return new ArrayIterator();
-    }
-    
-    public ArrayListIterator Listiterator() {
-        return new ArrayListIterator();
+
+    public SetListIterator iterator() {
+        return new SetListIterator();
     }
 
-    private class ArrayIterator implements Iterator<T> {
+    public SetListListIterator Listiterator() {
+        return new SetListListIterator();
+    }
+
+    private class SetListIterator implements Iterator<T> {
 
         int nextIndex;
         int previousReturned = -1;
-        
+
         @Override
         public boolean hasNext() {
             return nextIndex >= 0 && nextIndex < size;
@@ -267,10 +276,10 @@ public class ArrayList<T> implements ListInterface<T> {
 
         @Override
         public T next() {
-            if(!hasNext()) {
+            if (!hasNext()) {
                 throw new IllegalStateException();
             }
-            
+
             previousReturned = nextIndex;
             T result = items[previousReturned];
             nextIndex++;
@@ -279,18 +288,18 @@ public class ArrayList<T> implements ListInterface<T> {
 
         @Override
         public void remove() {
-            if(previousReturned == -1) {
+            if (previousReturned == -1) {
                 throw new IllegalStateException();
             }
-            
-            ArrayList.this.remove(previousReturned);
+
+            ArraySetUniqueList.this.remove(previousReturned);
             nextIndex--;
             previousReturned = -1;
         }
     }
-    
-    private class ArrayListIterator extends ArrayIterator implements ListIterator<T> {
-        
+
+    private class SetListListIterator extends SetListIterator implements ListIterator<T> {
+
         @Override
         public boolean hasPrevious() {
             return previousReturned > 0;
@@ -298,10 +307,10 @@ public class ArrayList<T> implements ListInterface<T> {
 
         @Override
         public T previous() {
-            if(!hasPrevious()) {
+            if (!hasPrevious()) {
                 throw new IllegalStateException();
             }
-            
+
             nextIndex--;
             T result = items[nextIndex];
             previousReturned = nextIndex;
@@ -324,17 +333,14 @@ public class ArrayList<T> implements ListInterface<T> {
                 throw new IllegalStateException();
             }
             
-            ArrayList.this.replace(previousReturned, e);
+            ArraySetUniqueList.this.replace(previousReturned, e);
         }
 
         @Override
         public void add(T e) {
-            ArrayList.this.add(nextIndex, e);
+            ArraySetUniqueList.this.add(nextIndex, e);
             nextIndex++;
             previousReturned = -1;
         }
-    
-}
-    
-    
+    }
 }
