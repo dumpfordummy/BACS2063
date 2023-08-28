@@ -4,7 +4,7 @@
  */
 package Boundary;
 
-import Boundary.Tutor.TutorManagement;
+import Boundary.Tutor.TutorManagementFrame;
 
 /**
  *
@@ -52,9 +52,6 @@ public class Main extends javax.swing.JFrame {
         });
 
         tutorialGroupBtn.setText("Tutorial Group");
-        tutorialGroupBtn.setMaximumSize(new java.awt.Dimension(106, 22));
-        tutorialGroupBtn.setMinimumSize(new java.awt.Dimension(106, 22));
-        tutorialGroupBtn.setPreferredSize(new java.awt.Dimension(106, 22));
         tutorialGroupBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tutorialGroupBtnActionPerformed(evt);
@@ -95,7 +92,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(programmeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(213, 213, 213)
-                        .addComponent(tutorialGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tutorialGroupBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(213, 213, 213)
                         .addComponent(tutorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -112,7 +109,7 @@ public class Main extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(programmeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(tutorialGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tutorialGroupBtn)
                 .addGap(36, 36, 36)
                 .addComponent(tutorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
@@ -132,7 +129,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_tutorialGroupBtnActionPerformed
 
     private void tutorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorBtnActionPerformed
-        TutorManagement tutorManagement = new TutorManagement();
+        TutorManagementFrame tutorManagement = new TutorManagementFrame();
         tutorManagement.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_tutorBtnActionPerformed
