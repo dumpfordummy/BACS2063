@@ -41,6 +41,7 @@ public class ViewDialog extends javax.swing.JDialog {
 
         tutorResultTextArea.setColumns(20);
         tutorResultTextArea.setRows(5);
+        tutorResultTextArea.setEnabled(false);
         jScrollPane1.setViewportView(tutorResultTextArea);
 
         cancelBtn.setText("Cancel");

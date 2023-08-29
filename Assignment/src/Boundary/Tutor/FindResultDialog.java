@@ -39,6 +39,7 @@ public class FindResultDialog extends javax.swing.JDialog {
 
         tutorResultTextArea.setColumns(20);
         tutorResultTextArea.setRows(5);
+        tutorResultTextArea.setEnabled(false);
         jScrollPane1.setViewportView(tutorResultTextArea);
 
         cancelBtn.setText("Cancel");
@@ -84,7 +85,11 @@ public class FindResultDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        this.dispose(); 
+        this.dispose();
+        /** This code simulate how data is displayed into the text area;
+         *  
+         *  tutorResultTextArea.append("---------------\ntutor details 1\n---------------\ntutor details 2\n---------------\n");
+         */
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     /**
