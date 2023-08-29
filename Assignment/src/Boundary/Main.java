@@ -35,7 +35,6 @@ public class Main extends javax.swing.JFrame {
         courseBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(550, 380));
         setResizable(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -118,6 +117,7 @@ public class Main extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void programmeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programmeBtnActionPerformed

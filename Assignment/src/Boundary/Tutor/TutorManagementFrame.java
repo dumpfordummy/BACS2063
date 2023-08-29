@@ -127,6 +127,7 @@ public class TutorManagementFrame extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addTutorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTutorBtnActionPerformed
@@ -140,15 +141,18 @@ public class TutorManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_removeTutorBtnActionPerformed
 
     private void findTutorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findTutorBtnActionPerformed
-        // TODO add your handling code here:
+        JDialog findDialog = new FindDialog(this, true);
+        findDialog.setVisible(true);
     }//GEN-LAST:event_findTutorBtnActionPerformed
 
     private void modifyTutorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTutorBtnActionPerformed
-        // TODO add your handling code here:
+        JDialog modifyDialog = new ModifyDialog(this, true);
+        modifyDialog.setVisible(true);
     }//GEN-LAST:event_modifyTutorBtnActionPerformed
 
     private void viewTutorsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTutorsBtnActionPerformed
-        // TODO add your handling code here:
+        JDialog viewDialog = new ViewDialog(this, true);
+        viewDialog.setVisible(true);
     }//GEN-LAST:event_viewTutorsBtnActionPerformed
 
     /**
