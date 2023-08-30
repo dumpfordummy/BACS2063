@@ -211,6 +211,10 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
             return true;
         }
 
+        if(!(arrayList instanceof ArraySetUniqueList)) {
+            return false;
+        }
+        
         if (arrayList.size() != size) {
             return false;
         }

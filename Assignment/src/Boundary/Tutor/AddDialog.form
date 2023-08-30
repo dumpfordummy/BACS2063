@@ -58,7 +58,7 @@
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="addressField" min="-2" pref="188" max="-2" attributes="0"/>
-                                  <Component id="ageField" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ageField" min="-2" pref="75" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
