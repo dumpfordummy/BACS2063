@@ -29,7 +29,7 @@ public class ArrayList<T> implements ListInterface<T> {
 
     public ArrayList(int initialCapacity) {
         if (initialCapacity < 0) {
-            throw new IllegalArgumentException("Capacity for Array List cannot be negative");
+            throw new IllegalArgumentException("Capacity for ArrayList cannot be negative");
         } else {
             items = (T[]) new Object[initialCapacity];
         }
@@ -47,7 +47,7 @@ public class ArrayList<T> implements ListInterface<T> {
     }
 
     private void grow() {
-        int newCapacity = size == 0 ? DEFAULT_CAPACITY : size * 2;
+        int newCapacity = size == 0 ? DEFAULT_CAPACITY : size + (size / 2);
 
         if (newCapacity > ARRAY_MAXLENGTH) {
             newCapacity = ARRAY_MAXLENGTH;
@@ -62,21 +62,14 @@ public class ArrayList<T> implements ListInterface<T> {
         items = tempArr;
     }
 
-    private void addWithResize(T element) {
-        grow();
+    @Override
+    public void add(T element) {
+        if (size >= items.length) {
+            grow();
+        }
+
         items[size] = element;
         size++;
-    }
-
-    @Override
-    public boolean add(T element) {
-        if (size < items.length) {
-            items[size] = element;
-            size++;
-        } else {
-            addWithResize(element);
-        }
-        return true;
     }
 
     private void rightShift(int startingIndex) {
@@ -119,8 +112,6 @@ public class ArrayList<T> implements ListInterface<T> {
         for (int i = startingIndex; i < size; i++) {
             items[i - 1] = items[i];
         }
-
-        items[size - 1] = null;
     }
 
     @Override
@@ -128,7 +119,10 @@ public class ArrayList<T> implements ListInterface<T> {
         indexCheck(index);
         T result = null;
         result = items[index];
-        leftShift(index + 1);
+        if (index != size - 1) { // if not remove last element
+            leftShift(index + 1);
+        }
+        items[size - 1] = null;
         size--;
         return result;
     }
@@ -202,6 +196,10 @@ public class ArrayList<T> implements ListInterface<T> {
             return true;
         }
 
+        if (!(arrayList instanceof ArrayList)) {
+            return false;
+        }
+
         if (arrayList.size() != size) {
             return false;
         }
@@ -268,13 +266,13 @@ public class ArrayList<T> implements ListInterface<T> {
     @Override
     public ListInterface<T> subList(int fromIndex, int toIndex) {
         subListIndexCheck(fromIndex, toIndex);
-        
+
         ArrayList<T> result = new ArrayList<>();
-        
-        for(int i = fromIndex; i <= toIndex; i++) {
+
+        for (int i = fromIndex; i <= toIndex; i++) {
             result.add(items[i]);
         }
-        
+
         return result;
     }
 

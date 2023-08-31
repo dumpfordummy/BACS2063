@@ -29,7 +29,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
 
     public ArraySetUniqueList(int initialCapacity) {
         if (initialCapacity < 0) {
-            throw new IllegalArgumentException("Capacity for Array List cannot be negative");
+            throw new IllegalArgumentException("Capacity for ArraySetUniqueList cannot be negative");
         } else {
             items = (T[]) new Object[initialCapacity];
         }
@@ -47,7 +47,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
     }
 
     private void grow() {
-        int newCapacity = size == 0 ? DEFAULT_CAPACITY : size * 2;
+        int newCapacity = size == 0 ? DEFAULT_CAPACITY : size + (size / 2);
 
         if (newCapacity > ARRAY_MAXLENGTH) {
             newCapacity = ARRAY_MAXLENGTH;
@@ -62,25 +62,9 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
         items = tempArr;
     }
 
-    private void addWithResize(T element) {
-        grow();
-        items[size] = element;
-        size++;
-    }
-
     @Override
     public boolean add(T element) {
-        if (contains(element)) {
-            return false;
-        }
-
-        if (size < items.length) {
-            items[size] = element;
-            size++;
-        } else {
-            addWithResize(element);
-        }
-        return true;
+        return add(size, element);
     }
 
     private void rightShift(int startingIndex) {
@@ -99,7 +83,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
             return false;
         }
 
-        if (size == items.length) {
+        if (size >= items.length) {
             grow();
         }
 
@@ -128,8 +112,6 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
         for (int i = startingIndex; i < size; i++) {
             items[i - 1] = items[i];
         }
-
-        items[size - 1] = null;
     }
 
     @Override
@@ -137,7 +119,10 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
         T result = null;
         indexCheck(index);
         result = items[index];
-        leftShift(index + 1);
+        if (index != size - 1) { // if not remove last element
+            leftShift(index + 1);
+        }
+        items[size - 1] = null;
         size--;
         return result;
     }
@@ -169,13 +154,13 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
     @Override
     public T replace(int index, T element) {
         indexCheck(index);
-        
+
         T result = null;
-        
-        if(contains(element)) {
+
+        if (contains(element)) {
             return result;
         }
-        
+
         result = items[index];
         items[index] = element;
         return result;
@@ -211,10 +196,10 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
             return true;
         }
 
-        if(!(arrayList instanceof ArraySetUniqueList)) {
+        if (!(arrayList instanceof ArraySetUniqueList)) {
             return false;
         }
-        
+
         if (arrayList.size() != size) {
             return false;
         }
@@ -264,7 +249,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
         }
         return result.toString();
     }
-    
+
     private void subListIndexCheck(int fromIndex, int toIndex) {
         if (fromIndex < 0) {
             throw new IndexOutOfBoundsException("fromIndex = " + fromIndex);
@@ -281,13 +266,13 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
     @Override
     public SetUniqueListInterface<T> subList(int fromIndex, int toIndex) {
         subListIndexCheck(fromIndex, toIndex);
-        
+
         ArraySetUniqueList<T> result = new ArraySetUniqueList<>();
-        
-        for(int i = fromIndex; i <= toIndex; i++) {
+
+        for (int i = fromIndex; i <= toIndex; i++) {
             result.add(items[i]);
         }
-        
+
         return result;
     }
 
@@ -366,10 +351,10 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T> {
 
         @Override
         public void set(T e) {
-            if(previousReturned < 0) {
+            if (previousReturned < 0) {
                 throw new IllegalStateException();
             }
-            
+
             ArraySetUniqueList.this.replace(previousReturned, e);
         }
 

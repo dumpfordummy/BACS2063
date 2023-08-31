@@ -19,7 +19,7 @@ public interface ListInterface<T> {
      */
     public T[] toArray();
 
-    boolean add(T element);
+    void add(T element);
 
     void add(int index, T element);
 
