@@ -13,6 +13,7 @@ import ADT.ListInterface;
  */
 public class Programme {
     private String programmeName;
+    private String programmeCode;
     private String duration;
     private double feesInTotal;
     private int totalSemesters;

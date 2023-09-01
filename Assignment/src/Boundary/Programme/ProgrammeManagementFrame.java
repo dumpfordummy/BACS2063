@@ -6,12 +6,12 @@ package Boundary.Programme;
 
 /**
  *
- * @author ASUS
+ * @author Wai Loc
  */
 public class ProgrammeManagementFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form ProgrammeManagementFrame
+     * Creates new form NewJFrame
      */
     public ProgrammeManagementFrame() {
         initComponents();
@@ -26,21 +26,129 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
+        addProgrammeBtn = new javax.swing.JButton();
+        removeProgrammeBtn = new javax.swing.JButton();
+        viewProgrammeBtn = new javax.swing.JButton();
+        findProgrammeBtn = new javax.swing.JButton();
+        modifyProgrammeBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Programme Management");
+
+        addProgrammeBtn.setText("Add Programme");
+        addProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
+        addProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
+        addProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        addProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProgrammeBtnActionPerformed(evt);
+            }
+        });
+
+        removeProgrammeBtn.setText("Remove Programme");
+        removeProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
+        removeProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
+        removeProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        removeProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeProgrammeBtnActionPerformed(evt);
+            }
+        });
+
+        viewProgrammeBtn.setText("View Programme");
+        viewProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
+        viewProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
+        viewProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        viewProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewProgrammeBtnActionPerformed(evt);
+            }
+        });
+
+        findProgrammeBtn.setText("Find Programme");
+        findProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
+        findProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
+        findProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        findProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findProgrammeBtnActionPerformed(evt);
+            }
+        });
+
+        modifyProgrammeBtn.setText("Modify Programme");
+        modifyProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
+        modifyProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
+        modifyProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        modifyProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyProgrammeBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(jLabel2)
+                .addGap(130, 130, 130))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(removeProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(findProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifyProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(204, 204, 204))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel2)
+                .addGap(29, 29, 29)
+                .addComponent(addProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(viewProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(findProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(modifyProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(removeProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProgrammeBtnActionPerformed
+        AddProgramme addProgramme = new AddProgramme();
+        addProgramme.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_addProgrammeBtnActionPerformed
+
+    private void removeProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProgrammeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeProgrammeBtnActionPerformed
+
+    private void viewProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProgrammeBtnActionPerformed
+        
+    }//GEN-LAST:event_viewProgrammeBtnActionPerformed
+
+    private void findProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findProgrammeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findProgrammeBtnActionPerformed
+
+    private void modifyProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProgrammeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifyProgrammeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -68,6 +176,7 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ProgrammeManagementFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -78,5 +187,11 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addProgrammeBtn;
+    private javax.swing.JButton findProgrammeBtn;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton modifyProgrammeBtn;
+    private javax.swing.JButton removeProgrammeBtn;
+    private javax.swing.JButton viewProgrammeBtn;
     // End of variables declaration//GEN-END:variables
 }
