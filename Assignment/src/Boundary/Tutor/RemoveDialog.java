@@ -134,15 +134,29 @@ public class RemoveDialog extends javax.swing.JDialog {
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         TutorController tutorController = TutorController.getInstance();
         String input = removeEntryField.getText();
-        String[] entries = input.split("[,\\s]+");
         ArraySetUniqueList<Integer> removeIndexList = new ArraySetUniqueList<>();
+        
+        processEntryInputs(input, removeIndexList);
+
+        Integer[] removeIndexArray = new Integer[tutorController.getListSize()];
+
+        tutorController.removeTutor(removeIndexList.toArray(removeIndexArray));
+        
+        clearInput();
+        clearDisplayList();
+        displayTutorList();
+    }//GEN-LAST:event_removeBtnActionPerformed
+
+    private void processEntryInputs(String input, ArraySetUniqueList<Integer> removeIndexList) {
+        TutorController tutorController = TutorController.getInstance();
+        String[] entries = input.split("[,\\s]+");
 
         for (String entry : entries) {
             if (entry.contains("-")) {
                 String[] range = entry.split("-");
                 int start = Integer.parseInt(range[0]);
                 int end = Integer.parseInt(range[1]);
-                for (int i = start; i <= end && i <= tutorController.getListSize(); i++) {
+                for (int i = start; i <= end; i++) {
                     removeIndexList.add(i - 1);
                 }
             } else {
@@ -152,15 +166,8 @@ public class RemoveDialog extends javax.swing.JDialog {
                 }
             }
         }
-
-        Integer[] removeIndexArray = new Integer[tutorController.getListSize()];
-
-        tutorController.removeTutor(removeIndexList.toArray(removeIndexArray));
-        clearInput();
-        clearDisplayList();
-        displayTutorList();
-    }//GEN-LAST:event_removeBtnActionPerformed
-
+    }
+    
     private void clearInput() {
         removeEntryField.setText("");
     }
