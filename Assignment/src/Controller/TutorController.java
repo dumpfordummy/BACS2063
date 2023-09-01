@@ -78,10 +78,38 @@ public class TutorController {
         for (int i = 0; i < index.length && index[i] != null; i++) {
             tempList.add(tutorList.get(index[i]));
         }
-        
-        for(Tutor tutor : tempList) {
+
+        for (Tutor tutor : tempList) {
             tutorList.remove(tutor);
         }
+    }
+
+    public Tutor findTutorById(String tutorId) {
+        for (Tutor tutor : tutorList) {
+            if (tutor.getTutorId().equals(tutorId)) {
+                return tutor;
+            }
+        }
+        return null;
+    }
+
+    public ArraySetUniqueList<Tutor> findTutorsByName(String tutorName) {
+        ArraySetUniqueList<Tutor> result = new ArraySetUniqueList<>();
+        for (Tutor tutor : tutorList) {
+            if (tutor.getName().equals(tutorName)) {
+                result.add(tutor);
+            }
+        }
+        return result;
+    }
+
+    public Tutor replaceTutor(Tutor oldTutor, Tutor newTutor) {
+        if (oldTutor == null || newTutor == null) {
+            return null;
+        }
+
+        int index = tutorList.indexOf(oldTutor);
+        return tutorList.replace(index, newTutor);
     }
 
     public int getListSize() {

@@ -4,6 +4,10 @@
  */
 package Boundary.Tutor;
 
+import ADT.ArraySetUniqueList;
+import Controller.TutorController;
+import Entity.Tutor;
+
 /**
  *
  * @author CY
@@ -17,7 +21,44 @@ public class FindResultDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    
+    public FindResultDialog(java.awt.Frame parent, boolean modal, ArraySetUniqueList<Tutor> tutorList) {
+        super(parent, modal);
+        initComponents();
+        displayTutorList(tutorList);
+    }
 
+    private void displayEmptyData() {
+        
+    }
+    
+    private void displayTutorList(ArraySetUniqueList<Tutor> tutorList) {
+        int i = 1;
+        for (Tutor tutor : tutorList) {
+            String tutorId = tutor.getTutorId();
+            String name = tutor.getName();
+            String contact = tutor.getContact();
+            String gender = tutor.getGender();
+            String qualification = tutor.getQualification();
+            int age = tutor.getAge();
+
+            tutorResultTextArea.append("===================================\n");
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Tutor Id", tutorId));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Name", name));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Contact", contact));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Gender", gender));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Qualification", qualification));
+            tutorResultTextArea.append(String.format(" %-15s: %d\n", "Age", age));
+            i++;
+        }
+        if (i != 1) {
+            tutorResultTextArea.append("===================================\n");
+        } else {
+            tutorResultTextArea.append("No entries found!\n");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,10 +76,11 @@ public class FindResultDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Tutor List:");
+        jLabel1.setText("Result:");
 
         tutorResultTextArea.setColumns(20);
         tutorResultTextArea.setRows(5);
+        tutorResultTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         tutorResultTextArea.setEnabled(false);
         jScrollPane1.setViewportView(tutorResultTextArea);
 
@@ -54,19 +96,16 @@ public class FindResultDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(342, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(cancelBtn)
-                        .addGap(160, 160, 160))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                        .addGap(160, 160, 160))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,6 +172,8 @@ public class FindResultDialog extends javax.swing.JDialog {
             }
         });
     }
+    
+    ArraySetUniqueList<Tutor> tutorList;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;

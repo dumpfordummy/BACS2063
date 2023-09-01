@@ -4,6 +4,9 @@
  */
 package Boundary.Tutor;
 
+import ADT.ArraySetUniqueList;
+import Controller.TutorController;
+import Entity.Tutor;
 import javax.swing.JDialog;
 
 /**
@@ -98,7 +101,13 @@ public class ModifyDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
-        JDialog modifyDetailsDialog = new ModifyDetailsDialog(parent, modal);
+        TutorController tutorController = TutorController.getInstance();
+        String input = tutorIdField.getText();
+        Tutor tutor;
+
+        tutor = tutorController.findTutorById(input);
+
+        JDialog modifyDetailsDialog = new ModifyDetailsDialog(parent, modal, tutor);
         modifyDetailsDialog.setVisible(true);
     }//GEN-LAST:event_confirmBtnActionPerformed
 
@@ -143,7 +152,7 @@ public class ModifyDialog extends javax.swing.JDialog {
             }
         });
     }
-    
+
     java.awt.Frame parent;
     boolean modal;
 

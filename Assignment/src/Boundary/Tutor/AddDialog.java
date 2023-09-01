@@ -25,6 +25,32 @@ public class AddDialog extends javax.swing.JDialog {
         initComponents();
     }
 
+    private void initializeGenderField() {
+        Field[] fields = Tutor.Genders.class.getDeclaredFields();
+        for (Field field : fields) {
+            if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
+                try {
+                    genderField.addItem((String) field.get(null));
+                } catch (IllegalAccessException ex) {
+                    resultMessage.setText("Failed to initialize gender options");
+                }
+            }
+        }
+    }
+
+    private void initializeQualificationField() {
+        Field[] fields = Tutor.Qualifications.class.getDeclaredFields();
+        for (Field field : fields) {
+            if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
+                try {
+                    qualificationField.addItem((String) field.get(null));
+                } catch (IllegalAccessException ex) {
+                    resultMessage.setText("Failed to initialize gender options");
+                }
+            }
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -266,31 +292,7 @@ public class AddDialog extends javax.swing.JDialog {
         });
     }
 
-    private void initializeGenderField() {
-        Field[] fields = Tutor.Genders.class.getDeclaredFields();
-        for (Field field : fields) {
-            if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
-                try {
-                    genderField.addItem((String) field.get(null));
-                } catch (IllegalAccessException ex) {
-                    resultMessage.setText("Failed to initialize gender options");
-                }
-            }
-        }
-    }
-
-    private void initializeQualificationField() {
-        Field[] fields = Tutor.Qualifications.class.getDeclaredFields();
-        for (Field field : fields) {
-            if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
-                try {
-                    qualificationField.addItem((String) field.get(null));
-                } catch (IllegalAccessException ex) {
-                    resultMessage.setText("Failed to initialize gender options");
-                }
-            }
-        }
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;

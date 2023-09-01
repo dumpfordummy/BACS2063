@@ -4,6 +4,11 @@
  */
 package Boundary.Tutor;
 
+import Controller.TutorController;
+import Entity.Tutor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 /**
  *
  * @author CY
@@ -17,7 +22,49 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    
+    public ModifyDetailsDialog(java.awt.Frame parent, boolean modal, Tutor tutor) {
+        super(parent, modal);
+        initComponents();
+        oldTutor = tutor;
+        initializeData();
+    }
 
+    private void initializeData() {
+        tutorIdField.setText(oldTutor.getTutorId());
+        nameField.setText(oldTutor.getName());
+        contactField.setText(oldTutor.getContact());
+        genderField.setSelectedItem(oldTutor.getGender());
+        qualificationField.setSelectedItem(oldTutor.getQualification());
+        ageField.setValue(oldTutor.getAge());
+    }
+    
+    private void initializeGenderField() {
+        Field[] fields = Tutor.Genders.class.getDeclaredFields();
+        for (Field field : fields) {
+            if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
+                try {
+                    genderField.addItem((String) field.get(null));
+                } catch (IllegalAccessException ex) {
+                    resultMessage.setText("Failed to initialize gender options");
+                }
+            }
+        }
+    }
+
+    private void initializeQualificationField() {
+        Field[] fields = Tutor.Qualifications.class.getDeclaredFields();
+        for (Field field : fields) {
+            if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
+                try {
+                    qualificationField.addItem((String) field.get(null));
+                } catch (IllegalAccessException ex) {
+                    resultMessage.setText("Failed to initialize gender options");
+                }
+            }
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,23 +76,25 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
 
         tutorIdField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        nameField = new javax.swing.JTextField();
-        genderField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        contactField = new javax.swing.JTextField();
-        addressField = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        ageField = new javax.swing.JSpinner();
         cancelBtn = new javax.swing.JButton();
         confirmModifyBtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        nameField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        genderField = new javax.swing.JComboBox<>();
+        initializeGenderField();
+        ageField = new javax.swing.JSpinner();
+        qualificationField = new javax.swing.JComboBox<>();
+        initializeQualificationField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        contactField = new javax.swing.JTextField();
+        resultMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(372, 362));
         setMinimumSize(new java.awt.Dimension(372, 362));
-        setPreferredSize(new java.awt.Dimension(372, 362));
         setResizable(false);
 
         tutorIdField.setEnabled(false);
@@ -59,40 +108,6 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         });
 
         jLabel2.setText("Tutor Id");
-
-        jLabel3.setText("Name");
-
-        nameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameFieldActionPerformed(evt);
-            }
-        });
-
-        genderField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genderFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Gender");
-
-        jLabel5.setText("Contact");
-
-        contactField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contactFieldActionPerformed(evt);
-            }
-        });
-
-        addressField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Address");
-
-        jLabel7.setText("Age");
 
         cancelBtn.setText("Cancel");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -111,42 +126,61 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
             }
         });
 
+        jLabel5.setText("Contact");
+
+        jLabel4.setText("Gender");
+
+        jLabel3.setText("Name");
+
+        jLabel7.setText("Age");
+
+        jLabel6.setText("Qualification");
+
+        resultMessage.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(contactField)
-                            .addComponent(genderField, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3))
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tutorIdField, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(nameField)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(confirmModifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(resultMessage)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(44, 44, 44)
+                            .addComponent(tutorIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(113, 113, 113))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(qualificationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(53, 53, 53)
+                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel4))
+                            .addGap(43, 43, 43)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(35, 35, 35)
+                            .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(confirmModifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -162,25 +196,27 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(qualificationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(resultMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn)
                     .addComponent(confirmModifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -191,30 +227,56 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tutorIdFieldActionPerformed
 
-    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameFieldActionPerformed
-
-    private void genderFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_genderFieldActionPerformed
-
-    private void contactFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_contactFieldActionPerformed
-
-    private void addressFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addressFieldActionPerformed
-
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void confirmModifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmModifyBtnActionPerformed
-        this.dispose();
+        Tutor newTutor = new Tutor();
+        TutorController tutorController = TutorController.getInstance();
+
+        if (nameField.getText().equals("")) {
+            resultMessage.setText("Name cannot be empty");
+            return;
+        }
+        if (contactField.getText().equals("")) {
+            resultMessage.setText("Contact cannot be empty");
+            return;
+        }
+        if (((int) ageField.getValue()) < 18 || ((int) ageField.getValue()) > 120) {
+            resultMessage.setText("Invalid Age");
+            return;
+        }
+
+        newTutor.setTutorId(tutorIdField.getText());
+        newTutor.setName(nameField.getText());
+        newTutor.setContact(contactField.getText());
+        newTutor.setGender((String) genderField.getSelectedItem());
+        newTutor.setQualification((String) qualificationField.getSelectedItem());
+        newTutor.setAge((int) ageField.getValue());
+        
+        try {
+            if(tutorController.replaceTutor(oldTutor, newTutor) != null) {
+                resultMessage.setText("Tutor " + oldTutor.getTutorId() + " modified successfully!");
+            } else {
+                resultMessage.setText("Modify failed");
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            resultMessage.setText("Index out of bound");
+        } finally {
+            clearInputField();
+        }
     }//GEN-LAST:event_confirmModifyBtnActionPerformed
 
+    private void clearInputField() {
+        tutorIdField.setText("");
+        nameField.setText("");
+        contactField.setText("");
+        genderField.setSelectedIndex(0);
+        qualificationField.setSelectedIndex(0);
+        ageField.setValue(0);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -256,14 +318,15 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
             }
         });
     }
+    
+    private Tutor oldTutor;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField addressField;
     private javax.swing.JSpinner ageField;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton confirmModifyBtn;
     private javax.swing.JTextField contactField;
-    private javax.swing.JTextField genderField;
+    private javax.swing.JComboBox<String> genderField;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -271,6 +334,8 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField nameField;
+    private javax.swing.JComboBox<String> qualificationField;
+    private javax.swing.JLabel resultMessage;
     private javax.swing.JTextField tutorIdField;
     // End of variables declaration//GEN-END:variables
 }
