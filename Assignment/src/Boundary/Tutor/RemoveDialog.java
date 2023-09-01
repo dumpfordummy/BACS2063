@@ -4,6 +4,9 @@
  */
 package Boundary.Tutor;
 
+import ADT.ArraySetUniqueList;
+import Controller.TutorController;
+import Entity.Tutor;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -20,6 +23,17 @@ public class RemoveDialog extends javax.swing.JDialog {
     public RemoveDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        displayTutorList();
+    }
+
+    private void displayTutorList() {
+        TutorController tutorController = TutorController.getInstance();
+        int i = 0;
+        for (Tutor tutor : tutorController.getTutorList()) {
+            i++;
+            dlm.addElement(String.format("%d. %-15s %s", i, tutor.getTutorId(), tutor.getName()));
+        }
+        totalEntryLabel.setText("Total entry: " + i);
     }
 
     /**
@@ -38,6 +52,7 @@ public class RemoveDialog extends javax.swing.JDialog {
         tutorList = new JList<>(dlm);
         removeBtn = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        totalEntryLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -47,6 +62,7 @@ public class RemoveDialog extends javax.swing.JDialog {
 
         jLabel2.setText("Entries no.");
 
+        tutorList.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(tutorList);
 
         removeBtn.setText("Remove");
@@ -62,6 +78,8 @@ public class RemoveDialog extends javax.swing.JDialog {
                 cancelActionPerformed(evt);
             }
         });
+
+        totalEntryLabel.setText("Total entry: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,15 +102,19 @@ public class RemoveDialog extends javax.swing.JDialog {
                                 .addComponent(removeEntryField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(totalEntryLabel)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(totalEntryLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -110,12 +132,49 @@ public class RemoveDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
+        TutorController tutorController = TutorController.getInstance();
+        String input = removeEntryField.getText();
+        ArraySetUniqueList<Integer> removeIndexList = new ArraySetUniqueList<>();
+        
+        processEntryInputs(input, removeIndexList);
 
-        //These code simulate data displaying. Should be removed
-        String tutor1 = String.format("1. %-5s %20s", "p1094", "HOO CHUN YUAN");
-        dlm.addElement(tutor1);
+        Integer[] removeIndexArray = new Integer[tutorController.getListSize()];
 
+        tutorController.removeTutor(removeIndexList.toArray(removeIndexArray));
+        
+        clearInput();
+        clearDisplayList();
+        displayTutorList();
     }//GEN-LAST:event_removeBtnActionPerformed
+
+    private void processEntryInputs(String input, ArraySetUniqueList<Integer> removeIndexList) {
+        TutorController tutorController = TutorController.getInstance();
+        String[] entries = input.split("[,\\s]+");
+
+        for (String entry : entries) {
+            if (entry.contains("-")) {
+                String[] range = entry.split("-");
+                int start = Integer.parseInt(range[0]);
+                int end = Integer.parseInt(range[1]);
+                for (int i = start; i <= end; i++) {
+                    removeIndexList.add(i - 1);
+                }
+            } else {
+                int index = Integer.parseInt(entry);
+                if (index <= tutorController.getListSize()) {
+                    removeIndexList.add(index - 1);
+                }
+            }
+        }
+    }
+    
+    private void clearInput() {
+        removeEntryField.setText("");
+    }
+    
+    private void clearDisplayList() {
+        dlm.clear();
+    }
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.dispose();
@@ -172,6 +231,7 @@ public class RemoveDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeBtn;
     private javax.swing.JTextField removeEntryField;
+    private javax.swing.JLabel totalEntryLabel;
     private javax.swing.JList<String> tutorList;
     // End of variables declaration//GEN-END:variables
 }

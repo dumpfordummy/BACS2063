@@ -82,7 +82,7 @@ public class ArrayList<T> implements ListInterface<T> {
 
     @Override
     public void add(int index, T element) {
-        indexCheck(index);
+        insertionIndexCheck(index);
 
         if (size == items.length) {
             grow();
@@ -116,7 +116,7 @@ public class ArrayList<T> implements ListInterface<T> {
 
     @Override
     public T remove(int index) {
-        indexCheck(index);
+        existingIndexCheck(index);
         T result = null;
         result = items[index];
         if (index != size - 1) { // if not remove last element
@@ -147,13 +147,13 @@ public class ArrayList<T> implements ListInterface<T> {
 
     @Override
     public T get(int index) {
-        indexCheck(index);
+        existingIndexCheck(index);
         return items[index];
     }
 
     @Override
     public T replace(int index, T element) {
-        indexCheck(index);
+        existingIndexCheck(index);
 
         T result = null;
 
@@ -215,7 +215,14 @@ public class ArrayList<T> implements ListInterface<T> {
         return isEquals;
     }
 
-    private void indexCheck(int index) {
+    private void insertionIndexCheck(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index is invalid");
+        }
+    }
+
+    
+    private void existingIndexCheck(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index is invalid");
         }
