@@ -24,8 +24,6 @@ public interface SetUniqueListInterface<T> {
     /*
     *  TODO: UPDATE SetUniqueListInterface to make ArraySetUniqueList consistent with ListInterface
     */
-    
-    T[] toArray();
 
     boolean add(T element);
 

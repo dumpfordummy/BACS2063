@@ -4,6 +4,10 @@
  */
 package Boundary.Tutor;
 
+import Controller.TutorController;
+import Entity.Tutor;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author CY
@@ -16,6 +20,37 @@ public class ViewDialog extends javax.swing.JDialog {
     public ViewDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        displayTutorList();
+    }
+
+    
+    // TODO: sort by id, name, age
+    private void displayTutorList() {
+        TutorController tutorController = TutorController.getInstance();
+        int i = 1;
+        for (Tutor tutor : tutorController.getTutorList()) {
+            String tutorId = tutor.getTutorId();
+            String name = tutor.getName();
+            String contact = tutor.getContact();
+            String gender = tutor.getGender();
+            String qualification = tutor.getQualification();
+            int age = tutor.getAge();
+
+            tutorResultTextArea.append("===================================\n");
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Tutor Id", tutorId));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Name", name));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Contact", contact));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Gender", gender));
+            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Qualification", qualification));
+            tutorResultTextArea.append(String.format(" %-15s: %d\n", "Age", age));
+            i++;
+        }
+        if (i != 1) {
+            tutorResultTextArea.append("===================================\n");
+        } else {
+            tutorResultTextArea.append("No entries found!\n");
+        }
     }
 
     /**
@@ -40,7 +75,11 @@ public class ViewDialog extends javax.swing.JDialog {
         jLabel1.setText("Tutor List:");
 
         tutorResultTextArea.setColumns(20);
+        tutorResultTextArea.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        tutorResultTextArea.setForeground(new java.awt.Color(0, 0, 0));
+        tutorResultTextArea.setLineWrap(true);
         tutorResultTextArea.setRows(5);
+        tutorResultTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         tutorResultTextArea.setEnabled(false);
         jScrollPane1.setViewportView(tutorResultTextArea);
 
@@ -145,6 +184,8 @@ public class ViewDialog extends javax.swing.JDialog {
             }
         });
     }
+
+    private DefaultListModel<String> dlm = new DefaultListModel<>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
