@@ -35,7 +35,7 @@
                           <Component id="addBtn" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="progNameLabel" max="32767" attributes="0"/>
-                              <Component id="progCodeLabel" max="32767" attributes="0"/>
+                              <Component id="progIDLabel" max="32767" attributes="0"/>
                               <Component id="durationLabel" alignment="0" max="32767" attributes="0"/>
                               <Component id="totalSemLabel" alignment="0" max="32767" attributes="0"/>
                               <Component id="feesLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -46,7 +46,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="progNameTxtField" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <Component id="progCodeTxtField" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <Component id="progIDTxtField" min="-2" pref="160" max="-2" attributes="0"/>
                                   <Component id="durationTxtField" min="-2" pref="160" max="-2" attributes="0"/>
                                   <Component id="feesTxtField" min="-2" pref="160" max="-2" attributes="0"/>
                                   <Component id="totalSemTxtField" min="-2" pref="160" max="-2" attributes="0"/>
@@ -75,8 +75,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="progCodeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="progCodeTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="progIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="progIDTxtField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -127,9 +127,9 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="progCodeLabel">
+    <Component class="javax.swing.JLabel" name="progIDLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Programme Code:"/>
+        <Property name="text" type="java.lang.String" value="Programme ID:"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[110, 20]"/>
         </Property>
@@ -185,7 +185,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="progNameTxtField">
     </Component>
-    <Component class="javax.swing.JTextField" name="progCodeTxtField">
+    <Component class="javax.swing.JTextField" name="progIDTxtField">
     </Component>
     <Component class="javax.swing.JTextField" name="durationTxtField">
     </Component>

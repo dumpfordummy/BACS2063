@@ -28,12 +28,12 @@ public class AddProgramme extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         progNameLabel = new javax.swing.JLabel();
-        progCodeLabel = new javax.swing.JLabel();
+        progIDLabel = new javax.swing.JLabel();
         durationLabel = new javax.swing.JLabel();
         totalSemLabel = new javax.swing.JLabel();
         feesLabel = new javax.swing.JLabel();
         progNameTxtField = new javax.swing.JTextField();
-        progCodeTxtField = new javax.swing.JTextField();
+        progIDTxtField = new javax.swing.JTextField();
         durationTxtField = new javax.swing.JTextField();
         feesTxtField = new javax.swing.JTextField();
         totalSemTxtField = new javax.swing.JTextField();
@@ -51,10 +51,10 @@ public class AddProgramme extends javax.swing.JFrame {
         progNameLabel.setMinimumSize(new java.awt.Dimension(110, 20));
         progNameLabel.setPreferredSize(new java.awt.Dimension(110, 20));
 
-        progCodeLabel.setText("Programme Code:");
-        progCodeLabel.setMaximumSize(new java.awt.Dimension(110, 20));
-        progCodeLabel.setMinimumSize(new java.awt.Dimension(110, 20));
-        progCodeLabel.setPreferredSize(new java.awt.Dimension(110, 20));
+        progIDLabel.setText("Programme ID:");
+        progIDLabel.setMaximumSize(new java.awt.Dimension(110, 20));
+        progIDLabel.setMinimumSize(new java.awt.Dimension(110, 20));
+        progIDLabel.setPreferredSize(new java.awt.Dimension(110, 20));
 
         durationLabel.setText("Duration (years):");
         durationLabel.setMaximumSize(new java.awt.Dimension(110, 20));
@@ -100,7 +100,7 @@ public class AddProgramme extends javax.swing.JFrame {
                             .addComponent(addBtn)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(progNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(progCodeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(progIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(durationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(totalSemLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(feesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -109,7 +109,7 @@ public class AddProgramme extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(progNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(progCodeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(progIDTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(durationTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(feesTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(totalSemTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -129,8 +129,8 @@ public class AddProgramme extends javax.swing.JFrame {
                     .addComponent(progNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(progCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(progCodeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(progIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(progIDTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(durationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,8 +206,8 @@ public class AddProgramme extends javax.swing.JFrame {
     private javax.swing.JLabel feesLabel;
     private javax.swing.JTextField feesTxtField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel progCodeLabel;
-    private javax.swing.JTextField progCodeTxtField;
+    private javax.swing.JLabel progIDLabel;
+    private javax.swing.JTextField progIDTxtField;
     private javax.swing.JLabel progNameLabel;
     private javax.swing.JTextField progNameTxtField;
     private javax.swing.JLabel totalSemLabel;
