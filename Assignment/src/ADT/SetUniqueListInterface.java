@@ -49,11 +49,5 @@ public interface SetUniqueListInterface<T> {
 
     boolean equals(SetUniqueListInterface<T> arrayList);
 
-    void forEach(Consumer<? super T> action);
-
-    SetUniqueListInterface<T> subList(int fromIndex, int toIndex);
-
     Iterator<T> iterator();
-
-    ListIterator<T> Listiterator();
 }
