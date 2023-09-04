@@ -31,28 +31,28 @@ public class TutorialGroupController {
         Student student2 = new Student("Hoh Jenn Wen", "12WMR21202", "2@gmail.com");
         Student student3 = new Student("Low Hau Shien", "13WMR21920", "3@gmail.com");
         Student student4 = new Student("Leong Wai Loc", "14WMR21412", "4@gmail.com");
-        
+
         ArrayList<Student> studentList1 = new ArrayList<>();
-        
+
         studentList1.add(student1);
         studentList1.add(student2);
         studentList1.add(student3);
         studentList1.add(student4);
-        
+
         TutorialGroup tutorialGroup1 = new TutorialGroup(studentList1);
-        
+
         Student student5 = new Student("Pua Jin Jian", "22WMR12345", "5@gmail.com");
         Student student6 = new Student("Tung Chen Chung", "22WMR21202", "6@gmail.com");
         Student student7 = new Student("Tan Zhi Hao", "23WMR21920", "7@gmail.com");
         Student student8 = new Student("Chook Zhen Yew", "24WMR21412", "8@gmail.com");
-        
+
         ArrayList<Student> studentList2 = new ArrayList<>();
-        
+
         studentList2.add(student5);
         studentList2.add(student6);
         studentList2.add(student7);
         studentList2.add(student8);
-        
+
         TutorialGroup tutorialGroup2 = new TutorialGroup(studentList2);
 
         tutorialGroupList.add(tutorialGroup1);
@@ -75,11 +75,19 @@ public class TutorialGroupController {
         tutorialGroupList.add(tutorialGroup);
     }
 
-    public TutorialGroup removeTutorialGroup(int index) {
-        return tutorialGroupList.remove(index);
+    public boolean removeStudent(Student student, TutorialGroup tutorialGroup) {
+        boolean result = false;
+        for (TutorialGroup tutGroup : tutorialGroupList) {
+            if (tutGroup.equals(tutorialGroup)) {
+                ArrayList<Student> studentList = (ArrayList<Student>) tutGroup.getStudentList();
+                result = studentList.remove(student);
+                break;
+            }
+        }
+        return result;
     }
 
-    public void removeTutorialGroups(Integer[] index) {
+    public void removeStudents(Integer[] index) {
         ArrayList<TutorialGroup> tempList = new ArrayList<>();
 
         for (int i = 0; i < index.length && index[i] != null; i++) {

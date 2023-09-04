@@ -4,10 +4,14 @@
  */
 package Boundary.TutorialGroup;
 
+import ADT.Impl.ArrayList;
 import Boundary.Tutor.*;
 import ADT.Impl.ArraySetUniqueList;
 import Controller.TutorController;
+import Controller.TutorialGroupController;
+import Entity.Student;
 import Entity.Tutor;
+import Entity.TutorialGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -23,18 +27,32 @@ public class RemoveDialog extends javax.swing.JDialog {
      */
     public RemoveDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        tutorialGroupController = TutorialGroupController.getInstance();
         initComponents();
-        displayTutorList();
+        displayTutorialGroupList();
     }
 
-    private void displayTutorList() {
-        TutorController tutorController = TutorController.getInstance();
-        int i = 0;
-        for (Tutor tutor : tutorController.getTutorList()) {
-            i++;
-            dlm.addElement(String.format("%d. %-15s %s", i, tutor.getTutorId(), tutor.getName()));
+    private void initializeTutorialGroupField() {
+        ArrayList<TutorialGroup> tutorialGroupList = tutorialGroupController.getTutorialGroupList();
+
+        for (TutorialGroup group : tutorialGroupList) {
+            tutorialGroupField.addItem(Integer.toString(group.getGroupNumber()));
         }
-        totalEntryLabel.setText("Total entry: " + i);
+    }
+
+    private void displayTutorialGroupList() {
+        clearDisplayList();
+        int i = 0;
+        ArrayList<TutorialGroup> tutGroupList = tutorialGroupController.getTutorialGroupList();
+        int selectedTutGroupIndex = tutorialGroupField.getSelectedIndex();
+        if (tutGroupList.size() != 0 && selectedTutGroupIndex != -1) {
+            TutorialGroup tutGroup = tutGroupList.get(selectedTutGroupIndex);
+            ArrayList<Student> studentList = (ArrayList<Student>) tutGroup.getStudentList();
+            for (Student student : studentList) {
+                i++;
+                dlm.addElement(String.format("%d. %-15s %s", i, student.getStudID(), student.getFullName()));
+            }
+        }
     }
 
     /**
@@ -54,14 +72,17 @@ public class RemoveDialog extends javax.swing.JDialog {
         removeBtn = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         totalEntryLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tutorialGroupField = new javax.swing.JComboBox<>();
+        initializeTutorialGroupField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jLabel1.setText("Enter entries no. to remove (e.g. 1,2 5-10)");
+        jLabel1.setText("Enter student id to remove ");
 
-        jLabel2.setText("Entries no.");
+        jLabel2.setText("Student id");
 
         tutorList.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(tutorList);
@@ -82,37 +103,54 @@ public class RemoveDialog extends javax.swing.JDialog {
 
         totalEntryLabel.setText("Total entry: ");
 
+        jLabel3.setText("Tutorial Group");
+
+        tutorialGroupField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tutorialGroupFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(totalEntryLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tutorialGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGap(93, 93, 93)
+                        .addComponent(cancel)
+                        .addGap(65, 65, 65)
+                        .addComponent(removeBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(cancel)
-                                .addGap(65, 65, 65)
-                                .addComponent(removeBtn))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(removeEntryField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totalEntryLabel)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(removeEntryField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(totalEntryLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalEntryLabel)
+                    .addComponent(jLabel3)
+                    .addComponent(tutorialGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -133,46 +171,39 @@ public class RemoveDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        TutorController tutorController = TutorController.getInstance();
-        String input = removeEntryField.getText();
-        ArraySetUniqueList<Integer> removeIndexList = new ArraySetUniqueList<>();
+        String inputStudentId = removeEntryField.getText();
+        int selectedTutGroupIndex = tutorialGroupField.getSelectedIndex();
+        TutorialGroup currentTutorialGroup = null;
+        for (TutorialGroup tutGroup : tutorialGroupController.getTutorialGroupList()) {
+            if (tutGroup.getGroupNumber() == selectedTutGroupIndex + 1) {
+                currentTutorialGroup = tutGroup;
+                break;
+            }
+        }
+
+        if(currentTutorialGroup == null) {
+            return;
+        }
         
-        processEntryInputs(input, removeIndexList);
+        ArrayList<Student> studentList = (ArrayList<Student>) currentTutorialGroup.getStudentList();
 
-        Integer[] removeIndexArray = new Integer[tutorController.getNumberOfTutors()];
-
-        tutorController.removeTutors(removeIndexList.toArray(removeIndexArray));
-        
-        clearInput();
-        clearDisplayList();
-        displayTutorList();
-    }//GEN-LAST:event_removeBtnActionPerformed
-
-    private void processEntryInputs(String input, ArraySetUniqueList<Integer> removeIndexList) {
-        TutorController tutorController = TutorController.getInstance();
-        String[] entries = input.split("[,\\s]+");
-
-        for (String entry : entries) {
-            if (entry.contains("-")) {
-                String[] range = entry.split("-");
-                int start = Integer.parseInt(range[0]);
-                int end = Integer.parseInt(range[1]);
-                for (int i = start; i <= end; i++) {
-                    removeIndexList.add(i - 1);
-                }
-            } else {
-                int index = Integer.parseInt(entry);
-                if (index <= tutorController.getNumberOfTutors()) {
-                    removeIndexList.add(index - 1);
+        if (studentList.size() != 0) {
+            for(Student student : studentList) {
+                if(student.getStudID().equals(inputStudentId)) {
+                    studentList.remove(student);
+                    break;
                 }
             }
         }
-    }
-    
+
+        clearInput();
+        displayTutorialGroupList();
+    }//GEN-LAST:event_removeBtnActionPerformed
+
     private void clearInput() {
         removeEntryField.setText("");
     }
-    
+
     private void clearDisplayList() {
         dlm.clear();
     }
@@ -180,6 +211,10 @@ public class RemoveDialog extends javax.swing.JDialog {
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void tutorialGroupFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialGroupFieldActionPerformed
+        displayTutorialGroupList();
+    }//GEN-LAST:event_tutorialGroupFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,14 +261,18 @@ public class RemoveDialog extends javax.swing.JDialog {
 
     private DefaultListModel<String> dlm = new DefaultListModel<>();
 
+    private TutorialGroupController tutorialGroupController;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeBtn;
     private javax.swing.JTextField removeEntryField;
     private javax.swing.JLabel totalEntryLabel;
     private javax.swing.JList<String> tutorList;
+    private javax.swing.JComboBox<String> tutorialGroupField;
     // End of variables declaration//GEN-END:variables
 }
