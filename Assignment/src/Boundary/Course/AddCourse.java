@@ -139,8 +139,8 @@ public class AddCourse extends javax.swing.JFrame {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
-        ProgrammeManagementFrame programmeManagementFrame = new ProgrammeManagementFrame();   //NEED TO BE UPDATEEEEEE
-        programmeManagementFrame.setVisible(true);                                            //NEED TO BE UPDATEEEEEE
+        //ProgrammeManagementFrame programmeManagementFrame = new ProgrammeManagementFrame();   //NEED TO BE UPDATEEEEEE
+        //programmeManagementFrame.setVisible(true);                                            //NEED TO BE UPDATEEEEEE
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void courseNameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseNameTxtFieldActionPerformed

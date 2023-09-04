@@ -31,7 +31,7 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
         removeProgrammeBtn = new javax.swing.JButton();
         viewProgrammeBtn = new javax.swing.JButton();
         findProgrammeBtn = new javax.swing.JButton();
-        modifyProgrammeBtn = new javax.swing.JButton();
+        editProgrammeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,9 +40,9 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
         jLabel2.setText("Programme Management");
 
         addProgrammeBtn.setText("Add Programme");
-        addProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
-        addProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
-        addProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        addProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 30));
+        addProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 30));
+        addProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 30));
         addProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addProgrammeBtnActionPerformed(evt);
@@ -50,9 +50,9 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
         });
 
         removeProgrammeBtn.setText("Remove Programme");
-        removeProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
-        removeProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
-        removeProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        removeProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 30));
+        removeProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 30));
+        removeProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 30));
         removeProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeProgrammeBtnActionPerformed(evt);
@@ -60,9 +60,9 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
         });
 
         viewProgrammeBtn.setText("View Programme");
-        viewProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
-        viewProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
-        viewProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        viewProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 30));
+        viewProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 30));
+        viewProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 30));
         viewProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewProgrammeBtnActionPerformed(evt);
@@ -70,22 +70,22 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
         });
 
         findProgrammeBtn.setText("Find Programme");
-        findProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
-        findProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
-        findProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        findProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 30));
+        findProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 30));
+        findProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 30));
         findProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 findProgrammeBtnActionPerformed(evt);
             }
         });
 
-        modifyProgrammeBtn.setText("Modify Programme");
-        modifyProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 22));
-        modifyProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 22));
-        modifyProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 22));
-        modifyProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
+        editProgrammeBtn.setText("Edit Programme");
+        editProgrammeBtn.setMaximumSize(new java.awt.Dimension(134, 30));
+        editProgrammeBtn.setMinimumSize(new java.awt.Dimension(134, 30));
+        editProgrammeBtn.setPreferredSize(new java.awt.Dimension(134, 30));
+        editProgrammeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyProgrammeBtnActionPerformed(evt);
+                editProgrammeBtnActionPerformed(evt);
             }
         });
 
@@ -104,7 +104,7 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
                     .addComponent(viewProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(findProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modifyProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(204, 204, 204))
         );
         layout.setVerticalGroup(
@@ -119,10 +119,10 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(findProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(modifyProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(removeProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,7 +131,6 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
     private void addProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProgrammeBtnActionPerformed
         AddProgramme addProgramme = new AddProgramme();
         addProgramme.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_addProgrammeBtnActionPerformed
 
     private void removeProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProgrammeBtnActionPerformed
@@ -139,16 +138,17 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_removeProgrammeBtnActionPerformed
 
     private void viewProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProgrammeBtnActionPerformed
-        
+        ViewProgramme viewProgramme = new ViewProgramme();
+        viewProgramme.setVisible(true);
     }//GEN-LAST:event_viewProgrammeBtnActionPerformed
 
     private void findProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findProgrammeBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_findProgrammeBtnActionPerformed
 
-    private void modifyProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyProgrammeBtnActionPerformed
+    private void editProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProgrammeBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_modifyProgrammeBtnActionPerformed
+    }//GEN-LAST:event_editProgrammeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,9 +188,9 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProgrammeBtn;
+    private javax.swing.JButton editProgrammeBtn;
     private javax.swing.JButton findProgrammeBtn;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton modifyProgrammeBtn;
     private javax.swing.JButton removeProgrammeBtn;
     private javax.swing.JButton viewProgrammeBtn;
     // End of variables declaration//GEN-END:variables

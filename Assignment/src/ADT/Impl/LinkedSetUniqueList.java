@@ -19,6 +19,10 @@ public class LinkedSetUniqueList<T> implements SetUniqueListInterface<T> {
     //add at the end of linkedlist
     @Override
     public boolean add(T element) {
+        if (contains(element)){
+            return false;
+        }
+        
         Node newNode = new Node(element);
 
         if (head == null) {
@@ -37,6 +41,10 @@ public class LinkedSetUniqueList<T> implements SetUniqueListInterface<T> {
 
     @Override
     public boolean add(int index, T element) {
+        if(contains(element)){
+            return false;
+        }
+        
         Node newNode = new Node(element);
         Node currentNode = head;
         Node prevNode = head;
@@ -249,7 +257,7 @@ public class LinkedSetUniqueList<T> implements SetUniqueListInterface<T> {
         String outputStr = "";
         Node currentNode = head;
         while (currentNode != null) {
-            outputStr += currentNode.data + "\n";
+            outputStr += currentNode.data.toString() + "\n";
             currentNode = currentNode.next;
         }
         return outputStr;
@@ -296,6 +304,11 @@ public class LinkedSetUniqueList<T> implements SetUniqueListInterface<T> {
         public Node(T data, Node nextNode) {
             this.data = data;
             this.next = nextNode;
+        }
+
+        @Override
+        public String toString() {
+            return data.toString();
         }
 
     }
