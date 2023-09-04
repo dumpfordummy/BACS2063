@@ -8,6 +8,7 @@ import ADT.Impl.ArrayList;
 import Boundary.Tutor.*;
 import Controller.TutorController;
 import Controller.TutorialGroupController;
+import Entity.Student;
 import Entity.Tutor;
 import Entity.TutorialGroup;
 import javax.swing.DefaultListModel;
@@ -25,6 +26,7 @@ public class ViewDialog extends javax.swing.JDialog {
         super(parent, modal);
         tutorialGroupController = TutorialGroupController.getInstance();
         initComponents();
+        displayStudentList();
     }
 
     private void initializeTutorialGroupField() {
@@ -32,6 +34,35 @@ public class ViewDialog extends javax.swing.JDialog {
 
         for (TutorialGroup group : tutorialGroupList) {
             tutorialGroupField.addItem(Integer.toString(group.getGroupNumber()));
+        }
+    }
+
+    private void displayStudentList() {
+        ArrayList<TutorialGroup> tutGroupList = tutorialGroupController.getTutorialGroupList();
+        int i = 1;
+        int selectedTutGroupIndex = tutorialGroupField.getSelectedIndex();
+        if (tutGroupList.size() != 0 && selectedTutGroupIndex != -1) {
+            TutorialGroup tutGroup = tutGroupList.get(selectedTutGroupIndex);
+            ArrayList<Student> studentList = (ArrayList<Student>) tutGroup.getStudentList();
+            for (Student student : studentList) {
+                String studentName = student.getFullName();
+                String studentId = student.getStudID();
+                String studentEmail = student.getEmail();
+
+                tutorResultTextArea.append("===================================\n");
+                tutorResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
+                tutorResultTextArea.append(String.format(" %-15s: %s\n", "Student Id", studentId));
+                tutorResultTextArea.append(String.format(" %-15s: %s\n", "Student Name", studentName));
+                tutorResultTextArea.append(String.format(" %-15s: %s\n", "Student Email", studentEmail));
+                i++;
+            }
+            if (i != 1) {
+                tutorResultTextArea.append("===================================\n");
+            } else {
+                tutorResultTextArea.append("No entries found!\n");
+            }
+        } else {
+            tutorResultTextArea.append("No tutorial group found!\n");
         }
     }
 
