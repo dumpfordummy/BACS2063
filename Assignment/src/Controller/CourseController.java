@@ -11,7 +11,7 @@ import Entity.TutorialGroup;
 
 /**
  *
- * @author CY
+ * @author Jenn Wen
  */
 public class CourseController {
     private static class CourseControllerHolder {
@@ -26,7 +26,7 @@ public class CourseController {
         seedData();
     }
     
-    private void seedData() {
+    private void seedData() {                   //hard code data
         Programme programme1 = new Programme("dwadwa", "dwadwa", 11.11, 1);
         Programme programme2 = new Programme("dwadwa", "dwadwa", 11.11, 1);
         Programme programme3 = new Programme("dwadwa", "dwadwa", 11.11, 1);
