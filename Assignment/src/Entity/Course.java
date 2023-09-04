@@ -5,6 +5,7 @@
 package Entity;
 
 import ADT.Impl.ArraySetUniqueList;
+import ADT.Impl.LinkedList;
 import ADT.Interface.SetUniqueListInterface;
 
 /**
@@ -15,7 +16,7 @@ public class Course {
     private String courseName;
     private String courseCode;
     private double creditHours;
-    private SetUniqueListInterface<TutorialGroup> tutorialGroupList = new ArraySetUniqueList<>();
+    private LinkedList<Programme> programmeList = new LinkedList<>();
 
     public Course() {
     }
@@ -50,12 +51,12 @@ public class Course {
         this.creditHours = creditHours;
     }
 
-    public SetUniqueListInterface<TutorialGroup> getTutorialGroupList() {
-        return tutorialGroupList;
+    public LinkedList<Programme> getProgrammeList() {
+        return programmeList;
     }
 
-    public void setTutorialGroupList(SetUniqueListInterface<TutorialGroup> tutorialGroupList) {
-        this.tutorialGroupList = tutorialGroupList;
+    public void setProgrammeList(LinkedList<Programme> programmeList) {
+        this.programmeList = programmeList;
     }
     
 }
