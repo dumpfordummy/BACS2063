@@ -29,9 +29,9 @@ public class RemoveDialog extends javax.swing.JDialog {
         super(parent, modal);
         tutorialGroupController = TutorialGroupController.getInstance();
         initComponents();
-        displayTutorList();
+        displayTutorialGroupList();
     }
-    
+
     private void initializeTutorialGroupField() {
         ArrayList<TutorialGroup> tutorialGroupList = tutorialGroupController.getTutorialGroupList();
 
@@ -40,7 +40,7 @@ public class RemoveDialog extends javax.swing.JDialog {
         }
     }
 
-    private void displayTutorList() {
+    private void displayTutorialGroupList() {
         clearDisplayList();
         int i = 0;
         ArrayList<TutorialGroup> tutGroupList = tutorialGroupController.getTutorialGroupList();
@@ -48,7 +48,7 @@ public class RemoveDialog extends javax.swing.JDialog {
         if (tutGroupList.size() != 0 && selectedTutGroupIndex != -1) {
             TutorialGroup tutGroup = tutGroupList.get(selectedTutGroupIndex);
             ArrayList<Student> studentList = (ArrayList<Student>) tutGroup.getStudentList();
-            for(Student student : studentList) {
+            for (Student student : studentList) {
                 i++;
                 dlm.addElement(String.format("%d. %-15s %s", i, student.getStudID(), student.getFullName()));
             }
@@ -80,9 +80,9 @@ public class RemoveDialog extends javax.swing.JDialog {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jLabel1.setText("Enter entry no. to remove ");
+        jLabel1.setText("Enter student id to remove ");
 
-        jLabel2.setText("Entry no.");
+        jLabel2.setText("Student id");
 
         tutorList.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(tutorList);
@@ -105,6 +105,12 @@ public class RemoveDialog extends javax.swing.JDialog {
 
         jLabel3.setText("Tutorial Group");
 
+        tutorialGroupField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tutorialGroupFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,18 +127,20 @@ public class RemoveDialog extends javax.swing.JDialog {
                         .addComponent(tutorialGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(93, 93, 93)
                         .addComponent(cancel)
                         .addGap(65, 65, 65)
                         .addComponent(removeBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(removeEntryField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(removeEntryField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -163,18 +171,39 @@ public class RemoveDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        Integer input = Integer.parseInt(removeEntryField.getText());
+        String inputStudentId = removeEntryField.getText();
+        int selectedTutGroupIndex = tutorialGroupField.getSelectedIndex();
+        TutorialGroup currentTutorialGroup = null;
+        for (TutorialGroup tutGroup : tutorialGroupController.getTutorialGroupList()) {
+            if (tutGroup.getGroupNumber() == selectedTutGroupIndex + 1) {
+                currentTutorialGroup = tutGroup;
+                break;
+            }
+        }
+
+        if(currentTutorialGroup == null) {
+            return;
+        }
         
-        
+        ArrayList<Student> studentList = (ArrayList<Student>) currentTutorialGroup.getStudentList();
+
+        if (studentList.size() != 0) {
+            for(Student student : studentList) {
+                if(student.getStudID().equals(inputStudentId)) {
+                    studentList.remove(student);
+                    break;
+                }
+            }
+        }
+
         clearInput();
-        clearDisplayList();
-        displayTutorList();
+        displayTutorialGroupList();
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void clearInput() {
         removeEntryField.setText("");
     }
-    
+
     private void clearDisplayList() {
         dlm.clear();
     }
@@ -182,6 +211,10 @@ public class RemoveDialog extends javax.swing.JDialog {
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelActionPerformed
+
+    private void tutorialGroupFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialGroupFieldActionPerformed
+        displayTutorialGroupList();
+    }//GEN-LAST:event_tutorialGroupFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,7 +262,7 @@ public class RemoveDialog extends javax.swing.JDialog {
     private DefaultListModel<String> dlm = new DefaultListModel<>();
 
     private TutorialGroupController tutorialGroupController;
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
     private javax.swing.JLabel jLabel1;
