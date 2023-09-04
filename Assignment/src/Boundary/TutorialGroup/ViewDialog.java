@@ -38,6 +38,7 @@ public class ViewDialog extends javax.swing.JDialog {
     }
 
     private void displayStudentList() {
+        clearTextArea();
         ArrayList<TutorialGroup> tutGroupList = tutorialGroupController.getTutorialGroupList();
         int i = 1;
         int selectedTutGroupIndex = tutorialGroupField.getSelectedIndex();
@@ -49,23 +50,27 @@ public class ViewDialog extends javax.swing.JDialog {
                 String studentId = student.getStudID();
                 String studentEmail = student.getEmail();
 
-                tutorResultTextArea.append("===================================\n");
-                tutorResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
-                tutorResultTextArea.append(String.format(" %-15s: %s\n", "Student Id", studentId));
-                tutorResultTextArea.append(String.format(" %-15s: %s\n", "Student Name", studentName));
-                tutorResultTextArea.append(String.format(" %-15s: %s\n", "Student Email", studentEmail));
+                tutorialGroupResultTextArea.append("===================================\n");
+                tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
+                tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Id", studentId));
+                tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Name", studentName));
+                tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Email", studentEmail));
                 i++;
             }
             if (i != 1) {
-                tutorResultTextArea.append("===================================\n");
+                tutorialGroupResultTextArea.append("===================================\n");
             } else {
-                tutorResultTextArea.append("No entries found!\n");
+                tutorialGroupResultTextArea.append("No entries found!\n");
             }
         } else {
-            tutorResultTextArea.append("No tutorial group found!\n");
+            tutorialGroupResultTextArea.append("No tutorial group found!\n");
         }
     }
 
+    private void clearTextArea() {
+        tutorialGroupResultTextArea.setText("");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,7 +82,7 @@ public class ViewDialog extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tutorResultTextArea = new javax.swing.JTextArea();
+        tutorialGroupResultTextArea = new javax.swing.JTextArea();
         cancelBtn = new javax.swing.JButton();
         tutorialGroupField = new javax.swing.JComboBox<>();
         initializeTutorialGroupField();
@@ -88,14 +93,14 @@ public class ViewDialog extends javax.swing.JDialog {
 
         jLabel1.setText("Student List:");
 
-        tutorResultTextArea.setColumns(20);
-        tutorResultTextArea.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        tutorResultTextArea.setForeground(new java.awt.Color(0, 0, 0));
-        tutorResultTextArea.setLineWrap(true);
-        tutorResultTextArea.setRows(5);
-        tutorResultTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        tutorResultTextArea.setEnabled(false);
-        jScrollPane1.setViewportView(tutorResultTextArea);
+        tutorialGroupResultTextArea.setColumns(20);
+        tutorialGroupResultTextArea.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        tutorialGroupResultTextArea.setForeground(new java.awt.Color(0, 0, 0));
+        tutorialGroupResultTextArea.setLineWrap(true);
+        tutorialGroupResultTextArea.setRows(5);
+        tutorialGroupResultTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        tutorialGroupResultTextArea.setEnabled(false);
+        jScrollPane1.setViewportView(tutorialGroupResultTextArea);
 
         cancelBtn.setText("Cancel");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +161,7 @@ public class ViewDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void tutorialGroupFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialGroupFieldActionPerformed
-        // TODO add your handling code here:
+        displayStudentList();
     }//GEN-LAST:event_tutorialGroupFieldActionPerformed
 
     /**
@@ -212,7 +217,7 @@ public class ViewDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea tutorResultTextArea;
     private javax.swing.JComboBox<String> tutorialGroupField;
+    private javax.swing.JTextArea tutorialGroupResultTextArea;
     // End of variables declaration//GEN-END:variables
 }
