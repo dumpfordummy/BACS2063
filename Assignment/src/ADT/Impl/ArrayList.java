@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ADT;
+package ADT.Impl;
 
+import ADT.Interface.ListInterface;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.function.Consumer;
@@ -12,57 +13,29 @@ import java.util.function.Consumer;
  *
  * @author CY
  */
-public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterable<T> {
+public class ArrayList<T> implements ListInterface<T>, Iterable<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
 
     // -8 to prevent some jvm throws oom even though there is enough heap memory;
     private static final int ARRAY_MAXLENGTH = Integer.MAX_VALUE - 8;
 
-    private Object[] items;
+    private T[] items;
 
     private int size = 0;
 
-    public ArraySetUniqueList() {
+    public ArrayList() {
         this(DEFAULT_CAPACITY);
     }
 
-    public ArraySetUniqueList(int initialCapacity) {
+    public ArrayList(int initialCapacity) {
         if (initialCapacity < 0) {
-            throw new IllegalArgumentException("Capacity for ArraySetUniqueList cannot be negative");
+            throw new IllegalArgumentException("Capacity for ArrayList cannot be negative");
         } else {
             items = (T[]) new Object[initialCapacity];
         }
     }
 
-    public Object[] toArray() {
-        Object[] result = new Object[size];
-
-        for (int i = 0; i < size; i++) {
-            result[i] = items[i];
-        }
-
-        return result;
-    }
-    
-    public <E> E[] toArray(E[] a) {
-    if (a.length < size) {
-        E[] newArray = (E[]) new Object[size];
-        for (int i = 0; i < size; i++) {
-            newArray[i] = (E) items[i];
-        }
-        return newArray;
-    }
-    for (int i = 0; i < size; i++) {
-        a[i] = (E) items[i];
-    }
-    if (a.length > size) {
-        a[size] = null;
-    }
-    return a;
-}
-
-    
     private void grow() {
         int newCapacity = size == 0 ? DEFAULT_CAPACITY : size + (size / 2);
 
@@ -70,7 +43,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
             newCapacity = ARRAY_MAXLENGTH;
         }
 
-        Object[] tempArr =  new Object[newCapacity];
+        T[] tempArr = (T[]) new Object[newCapacity];
 
         for (int i = 0; i < size; i++) {
             tempArr[i] = items[i];
@@ -80,8 +53,13 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
     }
 
     @Override
-    public boolean add(T element) {
-        return add(size, element);
+    public void add(T element) {
+        if (size >= items.length) {
+            grow();
+        }
+
+        items[size] = element;
+        size++;
     }
 
     private void rightShift(int startingIndex) {
@@ -93,14 +71,10 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
     }
 
     @Override
-    public boolean add(int index, T element) {
+    public void add(int index, T element) {
         insertionIndexCheck(index);
 
-        if (contains(element)) {
-            return false;
-        }
-
-        if (size >= items.length) {
+        if (size == items.length) {
             grow();
         }
 
@@ -110,7 +84,6 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
 
         items[index] = element;
         size++;
-        return true;
     }
 
     @Override
@@ -133,9 +106,9 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
 
     @Override
     public T remove(int index) {
-        T result = null;
         existingIndexCheck(index);
-        result = (T) items[index];
+        T result = null;
+        result = items[index];
         if (index != size - 1) { // if not remove last element
             leftShift(index + 1);
         }
@@ -165,7 +138,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
     @Override
     public T get(int index) {
         existingIndexCheck(index);
-        return (T)items[index];
+        return items[index];
     }
 
     @Override
@@ -178,7 +151,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
             return result;
         }
 
-        result = (T)items[index];
+        result = items[index];
         items[index] = element;
         return result;
     }
@@ -207,13 +180,13 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
     }
 
     @Override
-    public boolean equals(SetUniqueListInterface<T> arrayList) {
+    public boolean equals(ListInterface<T> arrayList) {
 
         if (arrayList == this) {
             return true;
         }
 
-        if (!(arrayList instanceof ArraySetUniqueList)) {
+        if (!(arrayList instanceof ArrayList)) {
             return false;
         }
 
@@ -245,13 +218,14 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
         }
     }
 
+    @Override
     public void forEach(Consumer<? super T> action) {
         if (action == null) {
             throw new NullPointerException();
         }
 
         for (int i = 0; i < size; i++) {
-            action.accept((T)items[i]);
+            action.accept(items[i]);
         }
     }
 
@@ -286,13 +260,13 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
         }
     }
 
-    public SetUniqueListInterface<T> subList(int fromIndex, int toIndex) {
+    public ListInterface<T> subList(int fromIndex, int toIndex) {
         subListIndexCheck(fromIndex, toIndex);
 
-        ArraySetUniqueList<T> result = new ArraySetUniqueList<>();
+        ArrayList<T> result = new ArrayList<>();
 
         for (int i = fromIndex; i <= toIndex; i++) {
-            result.add((T)items[i]);
+            result.add(items[i]);
         }
 
         return result;
@@ -300,14 +274,14 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
 
     @Override
     public Iterator<T> iterator() {
-        return new SetListIterator();
+        return new ArrayIterator();
     }
 
     public ListIterator<T> Listiterator() {
-        return new SetListListIterator();
+        return new ArrayListIterator();
     }
 
-    private class SetListIterator implements Iterator<T> {
+    private class ArrayIterator implements Iterator<T> {
 
         int nextIndex;
         int previousReturned = -1;
@@ -324,7 +298,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
             }
 
             previousReturned = nextIndex;
-            T result = (T)items[previousReturned];
+            T result = items[previousReturned];
             nextIndex++;
             return result;
         }
@@ -335,13 +309,13 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
                 throw new IllegalStateException();
             }
 
-            ArraySetUniqueList.this.remove(previousReturned);
+            ArrayList.this.remove(previousReturned);
             nextIndex--;
             previousReturned = -1;
         }
     }
 
-    private class SetListListIterator extends SetListIterator implements ListIterator<T> {
+    private class ArrayListIterator extends ArrayIterator implements ListIterator<T> {
 
         @Override
         public boolean hasPrevious() {
@@ -355,7 +329,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
             }
 
             nextIndex--;
-            T result = (T)items[nextIndex];
+            T result = items[nextIndex];
             previousReturned = nextIndex;
             return result;
         }
@@ -376,14 +350,16 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
                 throw new IllegalStateException();
             }
 
-            ArraySetUniqueList.this.replace(previousReturned, e);
+            ArrayList.this.replace(previousReturned, e);
         }
 
         @Override
         public void add(T e) {
-            ArraySetUniqueList.this.add(nextIndex, e);
+            ArrayList.this.add(nextIndex, e);
             nextIndex++;
             previousReturned = -1;
         }
+
     }
+
 }

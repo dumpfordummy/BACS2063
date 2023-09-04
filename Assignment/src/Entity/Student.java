@@ -21,5 +21,31 @@ public class Student {
         this.studID = studID;
         this.email = email;
     }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getStudID() {
+        return studID;
+    }
+
+    public void setStudID(String studID) {
+        this.studID = studID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
     
 }

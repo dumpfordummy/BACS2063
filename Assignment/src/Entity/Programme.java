@@ -4,8 +4,8 @@
  */
 package Entity;
 
-import ADT.ArrayList;
-import ADT.ListInterface;
+import ADT.Impl.ArrayList;
+import ADT.Interface.ListInterface;
 
 /**
  *

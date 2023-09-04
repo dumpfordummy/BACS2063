@@ -4,7 +4,8 @@
  */
 package Entity;
 
-import ADT.*;
+import ADT.Impl.ArraySetUniqueList;
+import ADT.Interface.SetUniqueListInterface;
 
 /**
  *
@@ -14,7 +15,7 @@ public class Course {
     private String courseName;
     private String courseCode;
     private double creditHours;
-    private SetUniqueListInterface<Tutorial> tutorialGroupList = new ArraySetUniqueList<>();
+    private SetUniqueListInterface<TutorialGroup> tutorialGroupList = new ArraySetUniqueList<>();
 
     public Course() {
     }
@@ -49,11 +50,11 @@ public class Course {
         this.creditHours = creditHours;
     }
 
-    public SetUniqueListInterface<Tutorial> getTutorialGroupList() {
+    public SetUniqueListInterface<TutorialGroup> getTutorialGroupList() {
         return tutorialGroupList;
     }
 
-    public void setTutorialGroupList(SetUniqueListInterface<Tutorial> tutorialGroupList) {
+    public void setTutorialGroupList(SetUniqueListInterface<TutorialGroup> tutorialGroupList) {
         this.tutorialGroupList = tutorialGroupList;
     }
     

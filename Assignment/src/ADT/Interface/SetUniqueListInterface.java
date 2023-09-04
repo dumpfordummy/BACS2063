@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package ADT;
+package ADT.Interface;
 
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -20,10 +20,6 @@ import java.util.function.Consumer;
  * elements by their integer index (position in the list), and search for elements in the list.
  */
 public interface SetUniqueListInterface<T> {
-    
-    /*
-    *  TODO: UPDATE SetUniqueListInterface to make ArraySetUniqueList consistent with ListInterface
-    */
 
     boolean add(T element);
 
@@ -47,7 +43,7 @@ public interface SetUniqueListInterface<T> {
 
     int indexOf(T element);
 
-    boolean equals(SetUniqueListInterface<T> arrayList);
+    boolean equals(SetUniqueListInterface<T> list);
 
     Iterator<T> iterator();
 }

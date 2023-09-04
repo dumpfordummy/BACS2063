@@ -4,30 +4,35 @@
  */
 package Entity;
 
-import ADT.*;
+import ADT.Impl.ArrayList;
+import ADT.Interface.ListInterface;
 
 /**
  *
  * @author Wai Loc
  */
-public class Tutorial {
-    private String groupNumber;
+public class TutorialGroup {
+    private static int currentGroupNumber = 1;
+    private int groupNumber;
     private int noOfStudents = 0;
-    private static final int maxStudents = 30;
-    private SetUniqueListInterface<Student> studentList = new ArraySetUniqueList<>();
+    public static final int MAXSTUDENTS = 30;
+    private ListInterface<Student> studentList = new ArrayList<>();
 
-    public Tutorial() {
+    public TutorialGroup() {
+        groupNumber = currentGroupNumber;
+        currentGroupNumber++;
     }
 
-    public Tutorial(String groupNumber){
-        this.groupNumber = groupNumber;
+    public TutorialGroup(ListInterface<Student> studentList){
+        this();
+        this.studentList = studentList;
     }    
 
-    public String getGroupNumber() {
+    public int getGroupNumber() {
         return groupNumber;
     }
 
-    public void setGroupNumber(String groupNumber) {
+    public void setGroupNumber(int groupNumber) {
         this.groupNumber = groupNumber;
     }
 
@@ -39,11 +44,11 @@ public class Tutorial {
         this.noOfStudents = noOfStudents;
     }
 
-    public SetUniqueListInterface<Student> getStudentList() {
+    public ListInterface<Student> getStudentList() {
         return studentList;
     }
 
-    public void setStudentList(SetUniqueListInterface<Student> studentList) {
+    public void setStudentList(ListInterface<Student> studentList) {
         this.studentList = studentList;
         for(int i = 0; i < studentList.size(); i++){
             this.noOfStudents++;

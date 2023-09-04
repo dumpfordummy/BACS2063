@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import ADT.ArraySetUniqueList;
+import ADT.Impl.ArraySetUniqueList;
 import Entity.Tutor;
 
 /**
@@ -72,7 +72,7 @@ public class TutorController {
         return tutorList.remove(index);
     }
 
-    public void removeTutor(Integer[] index) {
+    public void removeTutors(Integer[] index) {
         ArraySetUniqueList<Tutor> tempList = new ArraySetUniqueList<>();
 
         for (int i = 0; i < index.length && index[i] != null; i++) {
@@ -112,7 +112,7 @@ public class TutorController {
         return tutorList.replace(index, newTutor);
     }
 
-    public int getListSize() {
+    public int getNumberOfTutors() {
         return tutorList.size();
     }
 

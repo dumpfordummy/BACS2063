@@ -4,7 +4,7 @@
  */
 package Entity;
 
-import ADT.ArraySetUniqueList;
+import ADT.Impl.ArraySetUniqueList;
 
 /**
  *

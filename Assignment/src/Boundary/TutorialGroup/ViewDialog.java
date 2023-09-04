@@ -2,63 +2,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package Boundary.Tutor;
+package Boundary.TutorialGroup;
 
-import ADT.Impl.ArraySetUniqueList;
+import ADT.Impl.ArrayList;
+import Boundary.Tutor.*;
 import Controller.TutorController;
+import Controller.TutorialGroupController;
 import Entity.Tutor;
+import Entity.TutorialGroup;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author CY
  */
-public class FindResultDialog extends javax.swing.JDialog {
+public class ViewDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form FindResultDialog
+     * Creates new form JDialog
      */
-    public FindResultDialog(java.awt.Frame parent, boolean modal) {
+    public ViewDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        tutorialGroupController = TutorialGroupController.getInstance();
         initComponents();
     }
-    
-    public FindResultDialog(java.awt.Frame parent, boolean modal, ArraySetUniqueList<Tutor> tutorList) {
-        super(parent, modal);
-        initComponents();
-        displayTutorList(tutorList);
-    }
 
-    private void displayEmptyData() {
-        
-    }
-    
-    private void displayTutorList(ArraySetUniqueList<Tutor> tutorList) {
-        int i = 1;
-        for (Tutor tutor : tutorList) {
-            String tutorId = tutor.getTutorId();
-            String name = tutor.getName();
-            String contact = tutor.getContact();
-            String gender = tutor.getGender();
-            String qualification = tutor.getQualification();
-            int age = tutor.getAge();
+    private void initializeTutorialGroupField() {
+        ArrayList<TutorialGroup> tutorialGroupList = tutorialGroupController.getTutorialGroupList();
 
-            tutorResultTextArea.append("===================================\n");
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Tutor Id", tutorId));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Name", name));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Contact", contact));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Gender", gender));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Qualification", qualification));
-            tutorResultTextArea.append(String.format(" %-15s: %d\n", "Age", age));
-            i++;
-        }
-        if (i != 1) {
-            tutorResultTextArea.append("===================================\n");
-        } else {
-            tutorResultTextArea.append("No entries found!\n");
+        for (TutorialGroup group : tutorialGroupList) {
+            tutorialGroupField.addItem(Integer.toString(group.getGroupNumber()));
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,13 +48,19 @@ public class FindResultDialog extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tutorResultTextArea = new javax.swing.JTextArea();
         cancelBtn = new javax.swing.JButton();
+        tutorialGroupField = new javax.swing.JComboBox<>();
+        initializeTutorialGroupField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Result:");
+        jLabel1.setText("Student List:");
 
         tutorResultTextArea.setColumns(20);
+        tutorResultTextArea.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        tutorResultTextArea.setForeground(new java.awt.Color(0, 0, 0));
+        tutorResultTextArea.setLineWrap(true);
         tutorResultTextArea.setRows(5);
         tutorResultTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         tutorResultTextArea.setEnabled(false);
@@ -91,28 +73,43 @@ public class FindResultDialog extends javax.swing.JDialog {
             }
         });
 
+        tutorialGroupField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tutorialGroupFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Tutorial Group");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(cancelBtn)
-                        .addGap(160, 160, 160))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(146, 146, 146))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tutorialGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tutorialGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cancelBtn)
@@ -125,11 +122,11 @@ public class FindResultDialog extends javax.swing.JDialog {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
-        /** This code simulate how data is displayed into the text area;
-         *  
-         *  tutorResultTextArea.append("---------------\ntutor details 1\n---------------\ntutor details 2\n---------------\n");
-         */
     }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void tutorialGroupFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialGroupFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tutorialGroupFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,20 +145,23 @@ public class FindResultDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FindResultDialog dialog = new FindResultDialog(new javax.swing.JFrame(), true);
+                ViewDialog dialog = new ViewDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -172,13 +172,16 @@ public class FindResultDialog extends javax.swing.JDialog {
             }
         });
     }
-    
-    ArraySetUniqueList<Tutor> tutorList;
+
+    private DefaultListModel<String> dlm = new DefaultListModel<>();
+    TutorialGroupController tutorialGroupController;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea tutorResultTextArea;
+    private javax.swing.JComboBox<String> tutorialGroupField;
     // End of variables declaration//GEN-END:variables
 }

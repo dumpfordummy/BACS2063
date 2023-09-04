@@ -6,6 +6,7 @@ package Boundary;
 
 import Boundary.Tutor.TutorManagementFrame;
 import Boundary.Programme.*;
+import Boundary.TutorialGroup.TutorialGroupManagementFrame;
 
 /**
  *
@@ -128,7 +129,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_programmeBtnActionPerformed
 
     private void tutorialGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialGroupBtnActionPerformed
-        // TODO add your handling code here:
+        TutorialGroupManagementFrame tutorialGroupManagement = new TutorialGroupManagementFrame();
+        tutorialGroupManagement.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_tutorialGroupBtnActionPerformed
 
     private void tutorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorBtnActionPerformed

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package ADT;
+package ADT.Interface;
 
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -13,12 +13,7 @@ import java.util.function.Consumer;
  * @author CY
  */
 public interface ListInterface<T> {
-
-    /*
-    *  TODO: UPDATE ListInterface to make ArrayList consistent with ListInterface
-     */
-    public T[] toArray();
-
+    
     void add(T element);
 
     void add(int index, T element);
@@ -41,13 +36,7 @@ public interface ListInterface<T> {
 
     int indexOf(T element);
 
-    boolean equals(ListInterface<T> arrayList);
-
-    void forEach(Consumer<? super T> action);
-
-    ListInterface<T> subList(int fromIndex, int toIndex);
+    boolean equals(ListInterface<T> list);
 
     Iterator<T> iterator();
-
-    ListIterator<T> Listiterator();
 }

@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package Boundary.Tutor;
+package Boundary.TutorialGroup;
 
+import Boundary.Tutor.*;
 import ADT.Impl.ArraySetUniqueList;
 import Controller.TutorController;
 import Entity.Tutor;
@@ -156,6 +157,7 @@ public class FindResultDialog extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
