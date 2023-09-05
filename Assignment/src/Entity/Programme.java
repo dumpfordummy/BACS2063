@@ -91,5 +91,4 @@ public class Programme {
                 + String.format(" %-15s\t: %s\n", "Total Semesters", totalSemesters);
     }
     
-    
 }

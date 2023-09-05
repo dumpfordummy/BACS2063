@@ -100,27 +100,25 @@ public class LinkedSetUniqueList<T> implements SetUniqueListInterface<T>, Iterab
 
     @Override
     public T remove(int index) {
-        Node currentNode = head;
-        Node prevNode = head;
-        int count = 0;
-        T result = null;
-
-        if (index <= 0) {
-            throw new IndexOutOfBoundsException("Location given is invalid!");
-        } else {
-            while (currentNode != null) {
-                count++;
-                if (count == index) {
-                    result = currentNode.data;
-                    prevNode.next = currentNode.next;
-                    break;
-                } else {
-                    prevNode = currentNode;
-                    currentNode = currentNode.next;
-                }
-            }
+        if (index == 0){
+            Node node = nodeAt(index);
+            T result = node.data;
+            
+            head = node.next;
+            node.data = null;
+            node.next = null;
+            numberOfElements--;
+            return result;
         }
+        
+        Node prevNode = nodeAt(index - 1);
+        Node node = nodeAt(index);
+        T result = node.data;
 
+        prevNode.next = node.next;
+        node.data = null;
+        node.next = null;
+        
         numberOfElements--;
         return result;
     }
@@ -143,12 +141,14 @@ public class LinkedSetUniqueList<T> implements SetUniqueListInterface<T>, Iterab
 
     @Override
     public T get(int index) {
-        //existingIndexCheck(index);
-
+        if (index > numberOfElements){
+            throw new NullPointerException();
+        }
+        
         return nodeAt(index).data;
     }
 
-    private Node nodeAt(int index) {
+    private Node nodeAt(int index) {        
         Node currentNode = head;
         for (int i = 0; i < index; i++) {
             currentNode = currentNode.next;

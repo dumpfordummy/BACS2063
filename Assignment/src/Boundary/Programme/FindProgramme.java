@@ -29,13 +29,26 @@ public class FindProgramme extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         findProgInput = new javax.swing.JTextField();
         findBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
-        findProgResult = new javax.swing.JTextField();
         progSearchBy = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        findResultTextArea = new javax.swing.JTextArea();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,19 +78,16 @@ public class FindProgramme extends javax.swing.JFrame {
             }
         });
 
-        findProgResult.setEditable(false);
-        findProgResult.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                findProgResultActionPerformed(evt);
-            }
-        });
-
         progSearchBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Name" }));
         progSearchBy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 progSearchByActionPerformed(evt);
             }
         });
+
+        findResultTextArea.setColumns(20);
+        findResultTextArea.setRows(5);
+        jScrollPane1.setViewportView(findResultTextArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,18 +105,16 @@ public class FindProgramme extends javax.swing.JFrame {
                         .addComponent(cancelBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 21, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(14, 14, 14)
                         .addComponent(progSearchBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(findProgInput, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(findProgResult, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                        .addComponent(findProgInput, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,9 +126,9 @@ public class FindProgramme extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(findProgInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(progSearchBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(findProgResult, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn)
                     .addComponent(findBtn))
@@ -136,26 +144,31 @@ public class FindProgramme extends javax.swing.JFrame {
 
     private void findBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBtnActionPerformed
         ProgrammeController progController = new ProgrammeController();
-        
-        if (progSearchBy.getSelectedIndex() == FIND_BY_PROGID){
+
+        if (progSearchBy.getSelectedIndex() == FIND_BY_PROGID) {
             String progID = findProgInput.getText();
             Programme foundProg = progController.findProgrammeByID(progID);
-            findProgResult.setText(foundProg.toString());
-        }
-        else if (progSearchBy.getSelectedIndex() == FIND_BY_PROGNAME){
+            if (foundProg != null) {
+                String output = foundProg.toString();
+                findResultTextArea.setText(output);
+            } else {
+                findResultTextArea.setText("No relevant results found!");
+            }
+        } else if (progSearchBy.getSelectedIndex() == FIND_BY_PROGNAME) {
             String progName = findProgInput.getText();
             Programme foundProg = progController.findProgrammeByName(progName);
-            findProgResult.setText(foundProg.toString());
+            if (foundProg != null){            
+                String output = foundProg.toString();
+                findResultTextArea.setText(output);
+            } else {
+                findResultTextArea.setText("No relevant results found!");
+            }
         }
     }//GEN-LAST:event_findBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
-
-    private void findProgResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findProgResultActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_findProgResultActionPerformed
 
     private void progSearchByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_progSearchByActionPerformed
         // TODO add your handling code here:
@@ -198,15 +211,17 @@ public class FindProgramme extends javax.swing.JFrame {
 
     private static final int FIND_BY_PROGID = 0;
     private static final int FIND_BY_PROGNAME = 1;
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton findBtn;
     private javax.swing.JTextField findProgInput;
-    private javax.swing.JTextField findProgResult;
+    private javax.swing.JTextArea findResultTextArea;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> progSearchBy;
     // End of variables declaration//GEN-END:variables
 }
