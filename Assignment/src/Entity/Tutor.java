@@ -32,12 +32,12 @@ public class Tutor {
     private String gender;
     private String qualification;
     private String contact;
-    private int age;
+    private Integer age;
 
     public Tutor() {
     }
 
-    public Tutor(String tutorId, String name, String gender, String qualification, String contact, int age) {
+    public Tutor(String tutorId, String name, String gender, String qualification, String contact, Integer age) {
         this.tutorId = tutorId;
         this.name = name;
         this.gender = gender;
@@ -86,11 +86,11 @@ public class Tutor {
         this.contact = contact;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -118,7 +118,7 @@ public class Tutor {
             return false;
         }
         final Tutor other = (Tutor) obj;
-        if (this.age != other.age) {
+        if (!this.age.equals(other.age)) {
             return false;
         }
         if (!this.name.equals(other.name)) {

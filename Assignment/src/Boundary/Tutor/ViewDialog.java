@@ -4,8 +4,13 @@
  */
 package Boundary.Tutor;
 
+import ADT.Impl.ArraySetUniqueList;
 import Controller.TutorController;
 import Entity.Tutor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
 import javax.swing.DefaultListModel;
 
 /**
@@ -23,12 +28,29 @@ public class ViewDialog extends javax.swing.JDialog {
         displayTutorList();
     }
 
-    
-    // TODO: sort by id, name, age
+    private void initializeTutorField() {
+        Field[] fields = ViewDialog.class.getDeclaredFields();
+        for (Field field : fields) {
+            if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
+                try {
+                    tutorField.addItem((String) field.get(null));
+                } catch (IllegalAccessException ex) {
+                    tutorResultTextArea.setText("Failed to initialize tutor options");
+                }
+            }
+        }
+    }
+
+    private void clearTextField() {
+        tutorResultTextArea.setText("");
+    }
+
     private void displayTutorList() {
-        TutorController tutorController = TutorController.getInstance();
+        clearTextField();
+
         int i = 1;
-        for (Tutor tutor : tutorController.getTutorList()) {
+        ArraySetUniqueList<Tutor> tutorList = getSortedTutorList();
+        for (Tutor tutor : tutorList) {
             String tutorId = tutor.getTutorId();
             String name = tutor.getName();
             String contact = tutor.getContact();
@@ -53,6 +75,61 @@ public class ViewDialog extends javax.swing.JDialog {
         }
     }
 
+    private ArraySetUniqueList<Tutor> getSortedTutorList() {
+        TutorController tutorController = TutorController.getInstance();
+        ArraySetUniqueList<Tutor> result = tutorController.getTutorList();
+        BiFunction<Tutor, Tutor, Boolean> tutorSortCriteriaFunction;
+
+        if (((String) tutorField.getSelectedItem()).equals(TUTORID_ASC)) {
+            tutorSortCriteriaFunction = (a, b) -> a.getTutorId().compareTo(b.getTutorId()) < 0;
+
+        } else if (((String) tutorField.getSelectedItem()).equals(TUTORID_DESC)) {
+            tutorSortCriteriaFunction = (a, b) -> a.getTutorId().compareTo(b.getTutorId()) > 0;
+
+        } else if (((String) tutorField.getSelectedItem()).equals(TUTORNAME_ASC)) {
+            tutorSortCriteriaFunction = (a, b) -> a.getName().compareTo(b.getName()) < 0;
+
+        } else if (((String) tutorField.getSelectedItem()).equals(TUTORNAME_DESC)) {
+            tutorSortCriteriaFunction = (a, b) -> a.getName().compareTo(b.getName()) > 0;
+
+        } else if (((String) tutorField.getSelectedItem()).equals(TUTORAGE_ASC)) {
+            tutorSortCriteriaFunction = (a, b) -> a.getAge().compareTo(b.getAge()) < 0;
+
+        } else {
+            tutorSortCriteriaFunction = (a, b) -> a.getAge().compareTo(b.getAge()) > 0;
+
+        }
+        return sortTutor(result, tutorSortCriteriaFunction);
+    }
+
+    private ArraySetUniqueList<Tutor> sortTutor(ArraySetUniqueList<Tutor> tutorList, BiFunction<Tutor, Tutor, Boolean> compareFunction) {
+        int n = tutorList.size();
+        ArraySetUniqueList<Tutor> sortedList = new ArraySetUniqueList<>(n);
+
+        sortedList.add(tutorList.get(0));
+
+        boolean shouldInsertLast = true;
+
+        for (int scanIndex = 1; scanIndex < n; scanIndex++) {
+            Tutor tutor1 = tutorList.get(scanIndex);
+            shouldInsertLast = true;
+            for (int insertIndex = 0; insertIndex < sortedList.size(); insertIndex++) {
+                Tutor tutor2 = sortedList.get(insertIndex);
+
+                if (compareFunction.apply(tutor1, tutor2)) {
+                    sortedList.add(0, tutor1);
+                    shouldInsertLast = false;
+                    break;
+                }
+            }
+
+            if (shouldInsertLast) {
+                sortedList.add(tutor1);
+            }
+        }
+        return sortedList;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +143,8 @@ public class ViewDialog extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tutorResultTextArea = new javax.swing.JTextArea();
         cancelBtn = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tutorField = new javax.swing.JComboBox<>();
+        initializeTutorField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,7 +168,12 @@ public class ViewDialog extends javax.swing.JDialog {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tutor Id", "Tutor Name", "Tutor Age" }));
+        tutorField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tutor Id Asc", "Tutor Id Desc", "Tutor Name Asc", "Tutor Name Desc", "Tutor Age Asc", "Tutor Age Desc" }));
+        tutorField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tutorFieldActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Sort by");
 
@@ -112,7 +195,7 @@ public class ViewDialog extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tutorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 7, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -125,7 +208,7 @@ public class ViewDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tutorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,6 +224,10 @@ public class ViewDialog extends javax.swing.JDialog {
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void tutorFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorFieldActionPerformed
+        displayTutorList();
+    }//GEN-LAST:event_tutorFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,12 +274,19 @@ public class ViewDialog extends javax.swing.JDialog {
 
     private DefaultListModel<String> dlm = new DefaultListModel<>();
 
+    private static final String TUTORID_ASC = "Tutor Id Asc";
+    private static final String TUTORID_DESC = "Tutor Id Desc";
+    private static final String TUTORNAME_ASC = "Tutor Name Asc";
+    private static final String TUTORNAME_DESC = "Tutor Name Desc";
+    private static final String TUTORAGE_ASC = "Tutor Age Asc";
+    private static final String TUTORAGE_DESC = "Tutor Age Desc";
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> tutorField;
     private javax.swing.JTextArea tutorResultTextArea;
     // End of variables declaration//GEN-END:variables
 }

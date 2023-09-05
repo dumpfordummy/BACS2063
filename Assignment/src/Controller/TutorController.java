@@ -96,7 +96,7 @@ public class TutorController {
     public ArraySetUniqueList<Tutor> findTutorsByName(String tutorName) {
         ArraySetUniqueList<Tutor> result = new ArraySetUniqueList<>();
         for (Tutor tutor : tutorList) {
-            if (tutor.getName().equals(tutorName)) {
+            if (tutor.getName().toLowerCase().equals(tutorName.toLowerCase())) {
                 result.add(tutor);
             }
         }

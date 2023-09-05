@@ -113,6 +113,17 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
         size++;
         return true;
     }
+    
+    public boolean addAll(ArraySetUniqueList<T> itemList) {
+        if(itemList == null || itemList.size() == 0) {
+            return false;
+        }
+        
+        for(T item : itemList) {
+            add(item);
+        }
+        return true;
+    }
 
     @Override
     public boolean remove(T element) {
