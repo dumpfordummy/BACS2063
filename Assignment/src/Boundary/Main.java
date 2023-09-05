@@ -43,9 +43,9 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setText("TARUMT Management System");
 
         programmeBtn.setText("Programme");
-        programmeBtn.setMaximumSize(new java.awt.Dimension(106, 22));
-        programmeBtn.setMinimumSize(new java.awt.Dimension(106, 22));
-        programmeBtn.setPreferredSize(new java.awt.Dimension(106, 22));
+        programmeBtn.setMaximumSize(new java.awt.Dimension(120, 25));
+        programmeBtn.setMinimumSize(new java.awt.Dimension(120, 25));
+        programmeBtn.setPreferredSize(new java.awt.Dimension(120, 25));
         programmeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 programmeBtnActionPerformed(evt);
@@ -53,6 +53,9 @@ public class Main extends javax.swing.JFrame {
         });
 
         tutorialGroupBtn.setText("Tutorial Group");
+        tutorialGroupBtn.setMaximumSize(new java.awt.Dimension(120, 25));
+        tutorialGroupBtn.setMinimumSize(new java.awt.Dimension(120, 25));
+        tutorialGroupBtn.setPreferredSize(new java.awt.Dimension(120, 25));
         tutorialGroupBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tutorialGroupBtnActionPerformed(evt);
@@ -60,9 +63,9 @@ public class Main extends javax.swing.JFrame {
         });
 
         tutorBtn.setText("Tutor");
-        tutorBtn.setMaximumSize(new java.awt.Dimension(106, 22));
-        tutorBtn.setMinimumSize(new java.awt.Dimension(106, 22));
-        tutorBtn.setPreferredSize(new java.awt.Dimension(106, 22));
+        tutorBtn.setMaximumSize(new java.awt.Dimension(120, 25));
+        tutorBtn.setMinimumSize(new java.awt.Dimension(120, 25));
+        tutorBtn.setPreferredSize(new java.awt.Dimension(120, 25));
         tutorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tutorBtnActionPerformed(evt);
@@ -70,9 +73,9 @@ public class Main extends javax.swing.JFrame {
         });
 
         courseBtn.setText("Course");
-        courseBtn.setMaximumSize(new java.awt.Dimension(106, 22));
-        courseBtn.setMinimumSize(new java.awt.Dimension(106, 22));
-        courseBtn.setPreferredSize(new java.awt.Dimension(106, 22));
+        courseBtn.setMaximumSize(new java.awt.Dimension(120, 25));
+        courseBtn.setMinimumSize(new java.awt.Dimension(120, 25));
+        courseBtn.setPreferredSize(new java.awt.Dimension(120, 25));
         courseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 courseBtnActionPerformed(evt);
@@ -86,36 +89,36 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(programmeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(tutorialGroupBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
+                        .addGap(214, 214, 214)
                         .addComponent(tutorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(courseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(110, Short.MAX_VALUE))
+                        .addGap(214, 214, 214)
+                        .addComponent(courseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(214, 214, 214)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tutorialGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(programmeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 101, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel2)
                 .addGap(36, 36, 36)
                 .addComponent(programmeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(tutorialGroupBtn)
-                .addGap(36, 36, 36)
+                .addGap(35, 35, 35)
+                .addComponent(tutorialGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(tutorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(35, 35, 35)
                 .addComponent(courseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();

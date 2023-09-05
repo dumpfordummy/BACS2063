@@ -17,8 +17,8 @@ public class ViewProgramme extends javax.swing.JFrame {
      */
     public ViewProgramme() {
         initComponents();
-        ProgrammeController progController = new ProgrammeController();
-        String output = progController.getProgrammeList().toString();
+        ProgrammeController programmeController = new ProgrammeController();
+        String output = programmeController.displayProgrammeList(ProgrammeController.getProgrammeList());
         
         progListTxtArea.setText(output);
     }
@@ -40,10 +40,11 @@ public class ViewProgramme extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        viewProgLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        viewProgLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         viewProgLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         viewProgLabel.setText("View Programme");
 
+        progListTxtArea.setEditable(false);
         progListTxtArea.setColumns(20);
         progListTxtArea.setRows(5);
         jScrollPane1.setViewportView(progListTxtArea);
@@ -62,10 +63,6 @@ public class ViewProgramme extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewProgLabel)
-                .addGap(174, 174, 174))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -77,19 +74,23 @@ public class ViewProgramme extends javax.swing.JFrame {
                         .addGap(238, 238, 238)
                         .addComponent(cancelBtn)))
                 .addContainerGap(37, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addComponent(viewProgLabel)
+                .addGap(201, 201, 201))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(25, 25, 25)
                 .addComponent(viewProgLabel)
-                .addGap(12, 12, 12)
+                .addGap(15, 15, 15)
                 .addComponent(progListLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addComponent(cancelBtn)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         pack();

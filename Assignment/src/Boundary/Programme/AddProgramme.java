@@ -177,7 +177,7 @@ public class AddProgramme extends javax.swing.JFrame {
         
         if (progController.addProgramme(new Programme(programmeName, programmeID, duration, feesInTotal, totalSemesters))){
             feedbackMsgLabel.setText("Programme is added successfully!");
-            feedbackMsgLabel.setForeground(new Color(63,90,54));
+            feedbackMsgLabel.setForeground(new Color(56,118,29));
         } else {
             feedbackMsgLabel.setText("Failed to add programme!");
             feedbackMsgLabel.setForeground(Color.red);

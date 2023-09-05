@@ -18,7 +18,7 @@ public class ProgrammeController {
         
     }
 
-    public LinkedSetUniqueList<Programme> getProgrammeList() {
+    public static LinkedSetUniqueList<Programme> getProgrammeList() {
         return programmeList;
     }
     
@@ -41,27 +41,48 @@ public class ProgrammeController {
         return programmeList.add(programme);
     }
     
-    public Programme findProgrammeByID(String ID){
-        return programmeList.get(0);
-//        Programme resultProgramme = new Programme();
-//        for (Programme programme : programmeList) {
-//            if (programme.getProgrammeID().equals(ID)) {
-//                resultProgramme = programme;
-//            }
-//        }
-        
-        //return resultProgramme;
+    public boolean removeProgramme(int index){
+        return programmeList.remove(index) != null;
     }
     
-    public Programme findProgrammeByName(String name){
-        Programme resultProgramme = new Programme();
+    public boolean removeProgramme(Programme programme){
+        return programmeList.remove(programme);
+    }
+    
+    public Programme findProgrammeByID(String ID){
         for (Programme programme : programmeList) {
-            if (programme.getProgrammeName().equals(name)) {
-                resultProgramme = programme;
+            if (programme.getProgrammeID().equals(ID)) {
+                return programme;
             }
         }
         
-        return resultProgramme;
+        return null;
+    }
+    
+    public Programme findProgrammeByName(String name){
+        for (Programme programme : programmeList) {
+            if (programme.getProgrammeName().equals(name)) {
+                return programme;
+            }
+        }
+        
+        return null;
+    }
+    
+    public String displayProgrammeList(LinkedSetUniqueList<Programme> tempList){
+        String output = "===================================\n";
+        for (int i = 0; i < tempList.size(); i++){
+            Programme tempProgramme = tempList.get(i);
+                output += (i + 1) + ". \n"
+                + String.format(" %-15s\t: %s\n", "Programme Name", tempProgramme.getProgrammeName())
+                + String.format(" %-15s\t: %s\n", "Programme ID", tempProgramme.getProgrammeID())
+                + String.format(" %-15s\t: %s\n", "Duration (Years)", tempProgramme.getDuration())
+                + String.format(" %-15s\t: %s\n", "Total Fees (RM)", tempProgramme.getFeesInTotal())
+                + String.format(" %-15s\t: %s\n", "Total Semesters", tempProgramme.getTotalSemesters())
+                + "\n===================================\n";
+        }
+        
+        return output;
     }
 
 }
