@@ -11,7 +11,7 @@ import java.util.Iterator;
  *
  * @author Wai Loc
  */
-public class LinkedSetUniqueList<T> implements SetUniqueListInterface<T> {
+public class LinkedSetUniqueList<T> implements SetUniqueListInterface<T>, Iterable<T> {
 
     private Node head;
     private int numberOfElements;
@@ -143,27 +143,19 @@ public class LinkedSetUniqueList<T> implements SetUniqueListInterface<T> {
 
     @Override
     public T get(int index) {
-        Node currentNode = head;
-        int count = 0;
-        T result = null;
+        //existingIndexCheck(index);
 
-        if (index <= 0) {
-            throw new IndexOutOfBoundsException("Location given is invalid!");
-        } else {
-            while (currentNode != null) {
-                count++;
-                if (count == index) {
-                    result = currentNode.data;
-                    break;
-                } else {
-                    currentNode = currentNode.next;
-                }
-            }
-        }
-
-        return result;
+        return nodeAt(index).data;
     }
 
+    private Node nodeAt(int index) {
+        Node currentNode = head;
+        for (int i = 0; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+        return currentNode;
+    }
+    
     @Override
     public T replace(int index, T element) {
         Node currentNode = head;

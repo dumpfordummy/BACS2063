@@ -44,7 +44,7 @@ public class FindDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        findModeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tutor Id", "Tutor name" }));
+        findModeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student Id", "Student name" }));
         findModeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 findModeComboBoxActionPerformed(evt);
@@ -65,7 +65,7 @@ public class FindDialog extends javax.swing.JDialog {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Search for tutor");
+        jLabel1.setText("Search for student");
 
         cancelBtn.setText("Cancel");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class FindDialog extends javax.swing.JDialog {
                         .addComponent(cancelBtn)
                         .addGap(93, 93, 93)
                         .addComponent(findBtn)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

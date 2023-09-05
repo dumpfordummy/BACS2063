@@ -27,15 +27,15 @@ public class CourseController {
     }
     
     private void seedData() {                   //hard code data
-        Programme programme1 = new Programme("dwadwa", "dwadwa", 11.11, 1);
-        Programme programme2 = new Programme("dwadwa", "dwadwa", 11.11, 1);
-        Programme programme3 = new Programme("dwadwa", "dwadwa", 11.11, 1);
-        Programme programme4 = new Programme("dwadwa", "dwadwa", 11.11, 1);
-        
-        Course course = new Course();
-        course.getProgrammeList().add(programme1);
-        course.getProgrammeList().add(programme2);
-        course.getProgrammeList().add(programme3);
-        course.getProgrammeList().add(programme4);
+//        Programme programme1 = new Programme("dwadwa", "dwadwa", 11.11, 1);
+//        Programme programme2 = new Programme("dwadwa", "dwadwa", 11.11, 1);
+//        Programme programme3 = new Programme("dwadwa", "dwadwa", 11.11, 1);
+//        Programme programme4 = new Programme("dwadwa", "dwadwa", 11.11, 1);
+//        
+//        Course course = new Course();
+//        course.getProgrammeList().add(programme1);
+//        course.getProgrammeList().add(programme2);
+//        course.getProgrammeList().add(programme3);
+//        course.getProgrammeList().add(programme4);
     }
 }

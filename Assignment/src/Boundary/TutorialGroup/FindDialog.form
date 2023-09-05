@@ -43,7 +43,7 @@
                       <Component id="findBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="51" max="32767" attributes="0"/>
+              <EmptySpace pref="38" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -72,8 +72,8 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
-            <StringItem index="0" value="Tutor Id"/>
-            <StringItem index="1" value="Tutor name"/>
+            <StringItem index="0" value="Student Id"/>
+            <StringItem index="1" value="Student name"/>
           </StringArray>
         </Property>
       </Properties>
@@ -102,7 +102,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Search for tutor"/>
+        <Property name="text" type="java.lang.String" value="Search for student"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="cancelBtn">
