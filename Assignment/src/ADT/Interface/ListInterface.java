@@ -12,7 +12,7 @@ import java.util.function.Consumer;
  *
  * @author CY
  */
-public interface ListInterface<T> {
+public interface ListInterface<T> extends Iterable<T> {
     
     void add(T element);
 

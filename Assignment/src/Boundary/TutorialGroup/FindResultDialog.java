@@ -4,10 +4,8 @@
  */
 package Boundary.TutorialGroup;
 
-import Boundary.Tutor.*;
-import ADT.Impl.ArraySetUniqueList;
-import Controller.TutorController;
-import Entity.Tutor;
+import ADT.Impl.ArrayList;
+import Entity.Student;
 
 /**
  *
@@ -22,44 +20,40 @@ public class FindResultDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
-    public FindResultDialog(java.awt.Frame parent, boolean modal, ArraySetUniqueList<Tutor> tutorList) {
+
+    public FindResultDialog(java.awt.Frame parent, boolean modal, ArrayList<Student> tutorList) {
         super(parent, modal);
         initComponents();
-        displayTutorList(tutorList);
+        displayStudentList(tutorList);
     }
 
-    private void displayEmptyData() {
-        
-    }
-    
-    private void displayTutorList(ArraySetUniqueList<Tutor> tutorList) {
+    private void displayStudentList(ArrayList<Student> studentList) {
         int i = 1;
-        for (Tutor tutor : tutorList) {
-            String tutorId = tutor.getTutorId();
-            String name = tutor.getName();
-            String contact = tutor.getContact();
-            String gender = tutor.getGender();
-            String qualification = tutor.getQualification();
-            int age = tutor.getAge();
+        
+        if(studentList == null || studentList.isEmpty()) {
+            tutorialGroupResultTextArea.append("No entries found!\n");
+            return;
+        }
+        
+        for (Student student : studentList) {
+            String studentName = student.getFullName();
+            String studentId = student.getStudID();
+            String studentEmail = student.getEmail();
 
-            tutorResultTextArea.append("===================================\n");
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Tutor Id", tutorId));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Name", name));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Contact", contact));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Gender", gender));
-            tutorResultTextArea.append(String.format(" %-15s: %s\n", "Qualification", qualification));
-            tutorResultTextArea.append(String.format(" %-15s: %d\n", "Age", age));
+            tutorialGroupResultTextArea.append("===================================\n");
+            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
+            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Id", studentId));
+            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Name", studentName));
+            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Email", studentEmail));
             i++;
         }
         if (i != 1) {
-            tutorResultTextArea.append("===================================\n");
+            tutorialGroupResultTextArea.append("===================================\n");
         } else {
-            tutorResultTextArea.append("No entries found!\n");
+            tutorialGroupResultTextArea.append("No entries found!\n");
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,7 +65,7 @@ public class FindResultDialog extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tutorResultTextArea = new javax.swing.JTextArea();
+        tutorialGroupResultTextArea = new javax.swing.JTextArea();
         cancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -79,11 +73,11 @@ public class FindResultDialog extends javax.swing.JDialog {
 
         jLabel1.setText("Result:");
 
-        tutorResultTextArea.setColumns(20);
-        tutorResultTextArea.setRows(5);
-        tutorResultTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        tutorResultTextArea.setEnabled(false);
-        jScrollPane1.setViewportView(tutorResultTextArea);
+        tutorialGroupResultTextArea.setColumns(20);
+        tutorialGroupResultTextArea.setRows(5);
+        tutorialGroupResultTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        tutorialGroupResultTextArea.setEnabled(false);
+        jScrollPane1.setViewportView(tutorialGroupResultTextArea);
 
         cancelBtn.setText("Cancel");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -126,10 +120,6 @@ public class FindResultDialog extends javax.swing.JDialog {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
-        /** This code simulate how data is displayed into the text area;
-         *  
-         *  tutorResultTextArea.append("---------------\ntutor details 1\n---------------\ntutor details 2\n---------------\n");
-         */
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     /**
@@ -174,13 +164,11 @@ public class FindResultDialog extends javax.swing.JDialog {
             }
         });
     }
-    
-    ArraySetUniqueList<Tutor> tutorList;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea tutorResultTextArea;
+    private javax.swing.JTextArea tutorialGroupResultTextArea;
     // End of variables declaration//GEN-END:variables
 }

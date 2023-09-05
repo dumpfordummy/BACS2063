@@ -99,6 +99,29 @@ public class TutorialGroupController {
         }
     }
 
+    public Student findStudentByStudentId(String studentId) {
+        for (TutorialGroup tutGroup : tutorialGroupList) {
+            for (Student student : tutGroup.getStudentList()) {
+                if (student.getStudID().equals(studentId)) {
+                    return student;
+                }
+            }
+        }
+        return null;
+    }
+    
+    public ArrayList<Student> findStudentsByStudentName(String studentName) {
+        ArrayList<Student> result = new ArrayList<>();
+        for (TutorialGroup tutGroup : tutorialGroupList) {
+            for (Student student : tutGroup.getStudentList()) {
+                if (student.getFullName().toUpperCase().equals(studentName.toUpperCase())) {
+                    result.add(student);
+                }
+            }
+        }
+        return result.isEmpty() ? null : result;
+    }
+
     public TutorialGroup findTutorialGroupByGroupNumber(int groupNumber) {
         for (TutorialGroup tutorialGroup : tutorialGroupList) {
             if (tutorialGroup.getGroupNumber() == groupNumber) {
@@ -108,13 +131,50 @@ public class TutorialGroupController {
         return null;
     }
 
-    public TutorialGroup replaceTutor(TutorialGroup oldTutorialGroup, TutorialGroup newTutorialGroup) {
-        if (oldTutorialGroup == null || newTutorialGroup == null) {
-            return null;
+    public boolean replaceStudent(Student oldStudent, Student newStudent, TutorialGroup targetTutorialGroup) {
+        if (oldStudent == null || newStudent == null) {
+            return false;
         }
 
-        int index = tutorialGroupList.indexOf(oldTutorialGroup);
-        return tutorialGroupList.replace(index, newTutorialGroup);
+        boolean result = false;
+
+        if (targetTutorialGroup.getStudentList().contains(oldStudent)) { // if didnt change tutorial group
+            for (TutorialGroup tutGroup : tutorialGroupList) {
+                ArrayList<Student> studentList = (ArrayList<Student>) tutGroup.getStudentList();
+                for (Student student : studentList) {
+                    if (student.equals(oldStudent)) {
+                        studentList.replace(studentList.indexOf(student), newStudent);
+                        result = true;
+                    }
+                }
+            }
+        } else { // if change tutorial group
+            boolean isRemoved = false;
+            boolean isInserted = false;
+            
+            for (TutorialGroup tutGroup : tutorialGroupList) {
+                ArrayList<Student> studentList = (ArrayList<Student>) tutGroup.getStudentList();
+                for(Student student : studentList) {
+                    if(!isInserted && tutGroup.equals(targetTutorialGroup)) {
+                        tutGroup.getStudentList().add(newStudent);
+                        isInserted = true;
+                        break;
+                    }
+                    
+                    if(!isRemoved && student.equals(oldStudent)) {
+                        studentList.remove(student);
+                        isRemoved = true;
+                        break;
+                    }
+                }
+                if(isRemoved && isInserted) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+
+        return result;
     }
 
     public int getNumberOfTutorialGroup() {

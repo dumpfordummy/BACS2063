@@ -4,10 +4,8 @@
  */
 package Boundary.TutorialGroup;
 
-import Boundary.Tutor.*;
-import ADT.Impl.ArraySetUniqueList;
-import Controller.TutorController;
-import Entity.Tutor;
+import Controller.TutorialGroupController;
+import Entity.Student;
 import javax.swing.JDialog;
 
 /**
@@ -36,14 +34,14 @@ public class ModifyDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        tutorIdField = new javax.swing.JTextField();
+        studentIdField = new javax.swing.JTextField();
         cancelBtn = new javax.swing.JButton();
         confirmBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jLabel1.setText("Enter tutor id to modify");
+        jLabel1.setText("Enter student id to modify");
 
         cancelBtn.setText("Cancel");
         cancelBtn.setMaximumSize(new java.awt.Dimension(74, 22));
@@ -70,8 +68,8 @@ public class ModifyDialog extends javax.swing.JDialog {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(tutorIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(studentIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -85,7 +83,7 @@ public class ModifyDialog extends javax.swing.JDialog {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(tutorIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(studentIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,13 +100,13 @@ public class ModifyDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
-        TutorController tutorController = TutorController.getInstance();
-        String input = tutorIdField.getText();
-        Tutor tutor;
+        TutorialGroupController tutorialGroupController = TutorialGroupController.getInstance();
+        String input = studentIdField.getText();
+        Student student;
 
-        tutor = tutorController.findTutorById(input);
+        student = tutorialGroupController.findStudentByStudentId(input);
 
-        JDialog modifyDetailsDialog = new ModifyDetailsDialog(parent, modal, tutor);
+        JDialog modifyDetailsDialog = new ModifyDetailsDialog(parent, modal, student);
         modifyDetailsDialog.setVisible(true);
     }//GEN-LAST:event_confirmBtnActionPerformed
 
@@ -162,6 +160,6 @@ public class ModifyDialog extends javax.swing.JDialog {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton confirmBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField tutorIdField;
+    private javax.swing.JTextField studentIdField;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,11 +4,10 @@
  */
 package Boundary.TutorialGroup;
 
-import Boundary.Tutor.*;
-import Controller.TutorController;
-import Entity.Tutor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import ADT.Impl.ArrayList;
+import Controller.TutorialGroupController;
+import Entity.Student;
+import Entity.TutorialGroup;
 
 /**
  *
@@ -24,45 +23,25 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         initComponents();
     }
     
-    public ModifyDetailsDialog(java.awt.Frame parent, boolean modal, Tutor tutor) {
+    public ModifyDetailsDialog(java.awt.Frame parent, boolean modal, Student student) {
         super(parent, modal);
+        tutorialGroupController = TutorialGroupController.getInstance();
         initComponents();
-        oldTutor = tutor;
+        oldStudent = student;
         initializeData();
     }
-
+    
     private void initializeData() {
-        tutorIdField.setText(oldTutor.getTutorId());
-        nameField.setText(oldTutor.getName());
-        contactField.setText(oldTutor.getContact());
-        genderField.setSelectedItem(oldTutor.getGender());
-        qualificationField.setSelectedItem(oldTutor.getQualification());
-        ageField.setValue(oldTutor.getAge());
+        nameField.setText(oldStudent.getFullName());
+        studentIdField.setText(oldStudent.getStudID());
+        emailField.setText(oldStudent.getEmail());
     }
     
-    private void initializeGenderField() {
-        Field[] fields = Tutor.Genders.class.getDeclaredFields();
-        for (Field field : fields) {
-            if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
-                try {
-                    genderField.addItem((String) field.get(null));
-                } catch (IllegalAccessException ex) {
-                    resultMessage.setText("Failed to initialize gender options");
-                }
-            }
-        }
-    }
+    private void initializeTutorialGroupField() {
+        ArrayList<TutorialGroup> tutorialGroupList = tutorialGroupController.getTutorialGroupList();
 
-    private void initializeQualificationField() {
-        Field[] fields = Tutor.Qualifications.class.getDeclaredFields();
-        for (Field field : fields) {
-            if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
-                try {
-                    qualificationField.addItem((String) field.get(null));
-                } catch (IllegalAccessException ex) {
-                    resultMessage.setText("Failed to initialize gender options");
-                }
-            }
+        for (TutorialGroup group : tutorialGroupList) {
+            tutorialGroupField.addItem(Integer.toString(group.getGroupNumber()));
         }
     }
     
@@ -75,40 +54,23 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tutorIdField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JButton();
         confirmModifyBtn = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        resultMessage = new javax.swing.JLabel();
+        emailField = new javax.swing.JTextField();
+        studentIdField = new javax.swing.JTextField();
         nameField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        genderField = new javax.swing.JComboBox<>();
-        initializeGenderField();
-        ageField = new javax.swing.JSpinner();
-        qualificationField = new javax.swing.JComboBox<>();
-        initializeQualificationField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        contactField = new javax.swing.JTextField();
-        resultMessage = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        tutorialGroupField = new javax.swing.JComboBox<>();
+        initializeTutorialGroupField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(372, 362));
         setMinimumSize(new java.awt.Dimension(372, 362));
         setResizable(false);
-
-        tutorIdField.setEnabled(false);
-        tutorIdField.setMaximumSize(new java.awt.Dimension(122, 22));
-        tutorIdField.setMinimumSize(new java.awt.Dimension(122, 22));
-        tutorIdField.setPreferredSize(new java.awt.Dimension(122, 22));
-        tutorIdField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tutorIdFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Tutor Id");
 
         cancelBtn.setText("Cancel");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,91 +89,82 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel5.setText("Contact");
-
-        jLabel4.setText("Gender");
+        resultMessage.setForeground(new java.awt.Color(255, 51, 51));
 
         jLabel3.setText("Name");
 
-        jLabel7.setText("Age");
+        jLabel5.setText("Student Id");
 
-        jLabel6.setText("Qualification");
+        jLabel8.setText("Email");
 
-        resultMessage.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel2.setText("Tutorial Group");
+
+        jLabel1.setText("Modify Details");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(resultMessage)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(44, 44, 44)
-                            .addComponent(tutorIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel6))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(113, 113, 113))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addComponent(qualificationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(53, 53, 53)
-                            .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4))
-                            .addGap(43, 43, 43)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(35, 35, 35)
-                            .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(confirmModifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(72, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(resultMessage)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(74, 74, 74)
+                                .addComponent(confirmModifyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(43, 43, 43)
+                                            .addComponent(studentIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGap(31, 31, 31)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel1)
+                                                .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(tutorialGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tutorIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(studentIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8)
+                    .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(qualificationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(tutorialGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(resultMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -224,41 +177,37 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tutorIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorIdFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tutorIdFieldActionPerformed
-
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void confirmModifyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmModifyBtnActionPerformed
-        Tutor newTutor = new Tutor();
-        TutorController tutorController = TutorController.getInstance();
-
         if (nameField.getText().equals("")) {
             resultMessage.setText("Name cannot be empty");
             return;
         }
-        if (contactField.getText().equals("")) {
-            resultMessage.setText("Contact cannot be empty");
+        if (studentIdField.getText().equals("")) {
+            resultMessage.setText("Student Id cannot be empty");
             return;
         }
-        if (((int) ageField.getValue()) < 18 || ((int) ageField.getValue()) > 120) {
-            resultMessage.setText("Invalid Age");
+        if (emailField.getText().equals("")) {
+            resultMessage.setText("Email cannot be empty");
             return;
         }
-
-        newTutor.setTutorId(tutorIdField.getText());
-        newTutor.setName(nameField.getText());
-        newTutor.setContact(contactField.getText());
-        newTutor.setGender((String) genderField.getSelectedItem());
-        newTutor.setQualification((String) qualificationField.getSelectedItem());
-        newTutor.setAge((int) ageField.getValue());
+        
+        int selectedTutorialGroupNumber = Integer.parseInt((String)tutorialGroupField.getSelectedItem());
+        
+        Student student = new Student(nameField.getText(), studentIdField.getText(), emailField.getText());
+        
+        TutorialGroup targetTutorialGroup = tutorialGroupController.findTutorialGroupByGroupNumber(selectedTutorialGroupNumber);
+        
+        tutorialGroupController.findStudentByStudentId(student.getStudID());
+        
+        
         
         try {
-            if(tutorController.replaceTutor(oldTutor, newTutor) != null) {
-                resultMessage.setText("Tutor " + oldTutor.getTutorId() + " modified successfully!");
+            if(tutorialGroupController.replaceStudent(oldStudent, student, targetTutorialGroup)) {
+                resultMessage.setText("Student " + oldStudent.getStudID()+ " modified successfully!");
             } else {
                 resultMessage.setText("Modify failed");
             }
@@ -270,12 +219,9 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_confirmModifyBtnActionPerformed
 
     private void clearInputField() {
-        tutorIdField.setText("");
         nameField.setText("");
-        contactField.setText("");
-        genderField.setSelectedIndex(0);
-        qualificationField.setSelectedIndex(0);
-        ageField.setValue(0);
+        studentIdField.setText("");
+        emailField.setText("");
     }
     
     /**
@@ -321,23 +267,21 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         });
     }
     
-    private Tutor oldTutor;
-
+    private Student oldStudent;
+    private TutorialGroupController tutorialGroupController;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner ageField;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton confirmModifyBtn;
-    private javax.swing.JTextField contactField;
-    private javax.swing.JComboBox<String> genderField;
+    private javax.swing.JTextField emailField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField nameField;
-    private javax.swing.JComboBox<String> qualificationField;
     private javax.swing.JLabel resultMessage;
-    private javax.swing.JTextField tutorIdField;
+    private javax.swing.JTextField studentIdField;
+    private javax.swing.JComboBox<String> tutorialGroupField;
     // End of variables declaration//GEN-END:variables
 }

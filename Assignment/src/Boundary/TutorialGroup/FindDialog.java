@@ -4,10 +4,9 @@
  */
 package Boundary.TutorialGroup;
 
-import Boundary.Tutor.*;
-import ADT.Impl.ArraySetUniqueList;
-import Controller.TutorController;
-import Entity.Tutor;
+import ADT.Impl.ArrayList;
+import Controller.TutorialGroupController;
+import Entity.Student;
 import javax.swing.JDialog;
 
 /**
@@ -21,6 +20,7 @@ public class FindDialog extends javax.swing.JDialog {
      */
     public FindDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        tutorialGroupController = TutorialGroupController.getInstance();
         this.parent = parent;
         this.modal = modal;
         initComponents();
@@ -124,21 +124,24 @@ public class FindDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_findModeComboBoxActionPerformed
 
     private void findBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBtnActionPerformed
-        TutorController tutorController = TutorController.getInstance();
         String input = findInputField.getText();
-        ArraySetUniqueList<Tutor> tutorList = new ArraySetUniqueList<>();
-        
-        if(findModeComboBox.getSelectedIndex() == FIND_BY_TUTORID) {
-            tutorList.add(tutorController.findTutorById(input));
+        ArrayList<Student> studentList = null;
+
+        if (findModeComboBox.getSelectedIndex() == FIND_BY_STUDENTID) {
+            Student student = tutorialGroupController.findStudentByStudentId(input);
+            if (student != null) {
+                studentList = new ArrayList<>();
+                studentList.add(student);
+            }
         } else {
-            tutorList = tutorController.findTutorsByName(input);
+            studentList = tutorialGroupController.findStudentsByStudentName(input);
         }
-        
-        JDialog findResultDialog = new FindResultDialog(parent, modal, tutorList);
+
+        JDialog findResultDialog = new FindResultDialog(parent, modal, studentList);
         findResultDialog.setVisible(true);
     }//GEN-LAST:event_findBtnActionPerformed
 
-    
+
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
@@ -191,9 +194,11 @@ public class FindDialog extends javax.swing.JDialog {
     java.awt.Frame parent;
     boolean modal;
 
-    private final static int FIND_BY_TUTORID = 0; 
-    private final static int FIND_BY_TUTORNAME = 1; 
-    
+    private final static int FIND_BY_STUDENTID = 0;
+    private final static int FIND_BY_STUDENTNAME = 1;
+
+    private TutorialGroupController tutorialGroupController;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton findBtn;

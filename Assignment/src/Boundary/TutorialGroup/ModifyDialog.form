@@ -28,8 +28,8 @@
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="tutorIdField" min="-2" pref="131" max="-2" attributes="0"/>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <Component id="studentIdField" min="-2" pref="131" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -46,7 +46,7 @@
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tutorIdField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="studentIdField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="33" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -61,10 +61,10 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Enter tutor id to modify"/>
+        <Property name="text" type="java.lang.String" value="Enter student id to modify"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tutorIdField">
+    <Component class="javax.swing.JTextField" name="studentIdField">
     </Component>
     <Component class="javax.swing.JButton" name="cancelBtn">
       <Properties>

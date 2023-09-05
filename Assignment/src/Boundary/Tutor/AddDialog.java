@@ -8,8 +8,6 @@ import Controller.TutorController;
 import Entity.Tutor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

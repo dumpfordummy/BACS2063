@@ -5,15 +5,10 @@
 package Boundary.TutorialGroup;
 
 import ADT.Impl.ArrayList;
-import Boundary.Tutor.*;
-import ADT.Impl.ArraySetUniqueList;
-import Controller.TutorController;
 import Controller.TutorialGroupController;
 import Entity.Student;
-import Entity.Tutor;
 import Entity.TutorialGroup;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.JList;
 
 /**
