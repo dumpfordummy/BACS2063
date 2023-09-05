@@ -4,6 +4,7 @@
  */
 package Boundary.TutorialGroup;
 
+import Boundary.MainFrame;
 import javax.swing.JDialog;
 
 
@@ -29,52 +30,67 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addTutorialGroupBtn = new javax.swing.JButton();
-        removeTutorialGroupBtn = new javax.swing.JButton();
-        findTutorialGroupBtn = new javax.swing.JButton();
-        modifyTutorialGroupBtn = new javax.swing.JButton();
-        viewTutorialGroupsBtn = new javax.swing.JButton();
+        addStudentBtn = new javax.swing.JButton();
+        removeStudentBtn = new javax.swing.JButton();
+        findStudentsBtn = new javax.swing.JButton();
+        modifyStudentsBtn = new javax.swing.JButton();
+        viewStudentsBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        viewTutorialGroupsBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        addTutorialGroupBtn.setText("Add Tutorial Group");
-        addTutorialGroupBtn.setMaximumSize(new java.awt.Dimension(104, 22));
-        addTutorialGroupBtn.setMinimumSize(new java.awt.Dimension(104, 22));
-        addTutorialGroupBtn.setPreferredSize(new java.awt.Dimension(104, 22));
-        addTutorialGroupBtn.addActionListener(new java.awt.event.ActionListener() {
+        addStudentBtn.setText("Add Student");
+        addStudentBtn.setMaximumSize(new java.awt.Dimension(104, 22));
+        addStudentBtn.setMinimumSize(new java.awt.Dimension(104, 22));
+        addStudentBtn.setPreferredSize(new java.awt.Dimension(104, 22));
+        addStudentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addTutorialGroupBtnActionPerformed(evt);
+                addStudentBtnActionPerformed(evt);
             }
         });
 
-        removeTutorialGroupBtn.setText("Remove Tutorial Group");
-        removeTutorialGroupBtn.addActionListener(new java.awt.event.ActionListener() {
+        removeStudentBtn.setText("Remove Student");
+        removeStudentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeTutorialGroupBtnActionPerformed(evt);
+                removeStudentBtnActionPerformed(evt);
             }
         });
 
-        findTutorialGroupBtn.setText("Find Tutorial Group");
-        findTutorialGroupBtn.setMaximumSize(new java.awt.Dimension(104, 22));
-        findTutorialGroupBtn.setMinimumSize(new java.awt.Dimension(104, 22));
-        findTutorialGroupBtn.setPreferredSize(new java.awt.Dimension(104, 22));
-        findTutorialGroupBtn.addActionListener(new java.awt.event.ActionListener() {
+        findStudentsBtn.setText("Find Students");
+        findStudentsBtn.setMaximumSize(new java.awt.Dimension(104, 22));
+        findStudentsBtn.setMinimumSize(new java.awt.Dimension(104, 22));
+        findStudentsBtn.setPreferredSize(new java.awt.Dimension(104, 22));
+        findStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                findTutorialGroupBtnActionPerformed(evt);
+                findStudentsBtnActionPerformed(evt);
             }
         });
 
-        modifyTutorialGroupBtn.setText("Modify Tutorial Group");
-        modifyTutorialGroupBtn.setMaximumSize(new java.awt.Dimension(104, 22));
-        modifyTutorialGroupBtn.setMinimumSize(new java.awt.Dimension(104, 22));
-        modifyTutorialGroupBtn.setPreferredSize(new java.awt.Dimension(104, 22));
-        modifyTutorialGroupBtn.addActionListener(new java.awt.event.ActionListener() {
+        modifyStudentsBtn.setText("Modify Students");
+        modifyStudentsBtn.setMaximumSize(new java.awt.Dimension(104, 22));
+        modifyStudentsBtn.setMinimumSize(new java.awt.Dimension(104, 22));
+        modifyStudentsBtn.setPreferredSize(new java.awt.Dimension(104, 22));
+        modifyStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyTutorialGroupBtnActionPerformed(evt);
+                modifyStudentsBtnActionPerformed(evt);
             }
         });
+
+        viewStudentsBtn.setText("View Students");
+        viewStudentsBtn.setMaximumSize(new java.awt.Dimension(104, 22));
+        viewStudentsBtn.setMinimumSize(new java.awt.Dimension(104, 22));
+        viewStudentsBtn.setPreferredSize(new java.awt.Dimension(104, 22));
+        viewStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStudentsBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Tutorial Group Management");
 
         viewTutorialGroupsBtn.setText("View Tutorial Groups");
         viewTutorialGroupsBtn.setMaximumSize(new java.awt.Dimension(104, 22));
@@ -86,8 +102,15 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Tutorial Group Management");
+        backBtn.setText("Back");
+        backBtn.setMaximumSize(new java.awt.Dimension(104, 22));
+        backBtn.setMinimumSize(new java.awt.Dimension(104, 22));
+        backBtn.setPreferredSize(new java.awt.Dimension(104, 22));
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,11 +124,13 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
                         .addGap(73, 73, 73))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(removeTutorialGroupBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addTutorialGroupBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(findTutorialGroupBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(modifyTutorialGroupBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(viewTutorialGroupsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(removeStudentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addStudentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(findStudentsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(modifyStudentsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewStudentsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(viewTutorialGroupsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(119, 119, 119))))
         );
         layout.setVerticalGroup(
@@ -114,46 +139,61 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
-                .addComponent(addTutorialGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addStudentBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
-                .addComponent(removeTutorialGroupBtn)
+                .addComponent(removeStudentBtn)
                 .addGap(17, 17, 17)
-                .addComponent(findTutorialGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(findStudentsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
-                .addComponent(modifyTutorialGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(modifyStudentsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(viewStudentsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addComponent(viewTutorialGroupsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addTutorialGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTutorialGroupBtnActionPerformed
+    private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
         JDialog addDialog = new AddDialog(this, true);
         addDialog.setVisible(true);
-    }//GEN-LAST:event_addTutorialGroupBtnActionPerformed
+    }//GEN-LAST:event_addStudentBtnActionPerformed
 
-    private void removeTutorialGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTutorialGroupBtnActionPerformed
+    private void removeStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStudentBtnActionPerformed
         JDialog removeDialog = new RemoveDialog(this, true);
         removeDialog.setVisible(true);
-    }//GEN-LAST:event_removeTutorialGroupBtnActionPerformed
+    }//GEN-LAST:event_removeStudentBtnActionPerformed
 
-    private void findTutorialGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findTutorialGroupBtnActionPerformed
+    private void findStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findStudentsBtnActionPerformed
         JDialog findDialog = new FindDialog(this, true);
         findDialog.setVisible(true);
-    }//GEN-LAST:event_findTutorialGroupBtnActionPerformed
+    }//GEN-LAST:event_findStudentsBtnActionPerformed
 
-    private void modifyTutorialGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTutorialGroupBtnActionPerformed
+    private void modifyStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyStudentsBtnActionPerformed
         JDialog modifyDialog = new ModifyDialog(this, true);
         modifyDialog.setVisible(true);
-    }//GEN-LAST:event_modifyTutorialGroupBtnActionPerformed
+    }//GEN-LAST:event_modifyStudentsBtnActionPerformed
 
-    private void viewTutorialGroupsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTutorialGroupsBtnActionPerformed
+    private void viewStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStudentsBtnActionPerformed
         JDialog viewDialog = new ViewDialog(this, true);
         viewDialog.setVisible(true);
+    }//GEN-LAST:event_viewStudentsBtnActionPerformed
+
+    private void viewTutorialGroupsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTutorialGroupsBtnActionPerformed
+        JDialog viewTutorialGroupDialog = new ViewTutorialGroupDialog(this, true);
+        viewTutorialGroupDialog.setVisible(true);
     }//GEN-LAST:event_viewTutorialGroupsBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        this.dispose();
+        MainFrame main = new MainFrame();
+        main.setVisible(true);
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,11 +238,13 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addTutorialGroupBtn;
-    private javax.swing.JButton findTutorialGroupBtn;
+    private javax.swing.JButton addStudentBtn;
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton findStudentsBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton modifyTutorialGroupBtn;
-    private javax.swing.JButton removeTutorialGroupBtn;
+    private javax.swing.JButton modifyStudentsBtn;
+    private javax.swing.JButton removeStudentBtn;
+    private javax.swing.JButton viewStudentsBtn;
     private javax.swing.JButton viewTutorialGroupsBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,7 +10,6 @@ import Entity.Tutor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.function.BiFunction;
-import java.util.function.Predicate;
 import javax.swing.DefaultListModel;
 
 /**
@@ -105,25 +104,19 @@ public class ViewDialog extends javax.swing.JDialog {
     private ArraySetUniqueList<Tutor> sortTutor(ArraySetUniqueList<Tutor> tutorList, BiFunction<Tutor, Tutor, Boolean> compareFunction) {
         int n = tutorList.size();
         ArraySetUniqueList<Tutor> sortedList = new ArraySetUniqueList<>(n);
-
         sortedList.add(tutorList.get(0));
-
-        boolean shouldInsertLast = true;
 
         for (int scanIndex = 1; scanIndex < n; scanIndex++) {
             Tutor tutor1 = tutorList.get(scanIndex);
-            shouldInsertLast = true;
             for (int insertIndex = 0; insertIndex < sortedList.size(); insertIndex++) {
                 Tutor tutor2 = sortedList.get(insertIndex);
-
                 if (compareFunction.apply(tutor1, tutor2)) {
                     sortedList.add(0, tutor1);
-                    shouldInsertLast = false;
                     break;
                 }
             }
 
-            if (shouldInsertLast) {
+            if (!sortedList.contains(tutor1)) {
                 sortedList.add(tutor1);
             }
         }
@@ -168,7 +161,6 @@ public class ViewDialog extends javax.swing.JDialog {
             }
         });
 
-        tutorField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tutor Id Asc", "Tutor Id Desc", "Tutor Name Asc", "Tutor Name Desc", "Tutor Age Asc", "Tutor Age Desc" }));
         tutorField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tutorFieldActionPerformed(evt);
@@ -272,12 +264,10 @@ public class ViewDialog extends javax.swing.JDialog {
         });
     }
 
-    private DefaultListModel<String> dlm = new DefaultListModel<>();
-
-    private static final String TUTORID_ASC = "Tutor Id Asc";
-    private static final String TUTORID_DESC = "Tutor Id Desc";
-    private static final String TUTORNAME_ASC = "Tutor Name Asc";
-    private static final String TUTORNAME_DESC = "Tutor Name Desc";
+    private static final String TUTORID_ASC = "Tutor Id ASC";
+    private static final String TUTORID_DESC = "Tutor Id DESC";
+    private static final String TUTORNAME_ASC = "Tutor Name ASC";
+    private static final String TUTORNAME_DESC = "Tutor Name DESC";
     private static final String TUTORAGE_ASC = "Tutor Age Asc";
     private static final String TUTORAGE_DESC = "Tutor Age Desc";
 

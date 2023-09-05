@@ -210,7 +210,7 @@ public class ViewDialog extends javax.swing.JDialog {
     }
 
     private DefaultListModel<String> dlm = new DefaultListModel<>();
-    TutorialGroupController tutorialGroupController;
+    private TutorialGroupController tutorialGroupController;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;

@@ -33,11 +33,13 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="removeTutorialGroupBtn" max="32767" attributes="0"/>
-                          <Component id="addTutorialGroupBtn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="findTutorialGroupBtn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="modifyTutorialGroupBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="removeStudentBtn" max="32767" attributes="0"/>
+                          <Component id="addStudentBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="findStudentsBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="modifyStudentsBtn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="viewStudentsBtn" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
                           <Component id="viewTutorialGroupsBtn" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="backBtn" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                   </Group>
@@ -51,24 +53,28 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="addTutorialGroupBtn" min="-2" max="-2" attributes="0"/>
+              <Component id="addStudentBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Component id="removeTutorialGroupBtn" min="-2" max="-2" attributes="0"/>
+              <Component id="removeStudentBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Component id="findTutorialGroupBtn" min="-2" max="-2" attributes="0"/>
+              <Component id="findStudentsBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-              <Component id="modifyTutorialGroupBtn" min="-2" max="-2" attributes="0"/>
+              <Component id="modifyStudentsBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Component id="viewStudentsBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Component id="viewTutorialGroupsBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Component id="backBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="addTutorialGroupBtn">
+    <Component class="javax.swing.JButton" name="addStudentBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Tutorial Group"/>
+        <Property name="text" type="java.lang.String" value="Add Student"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[104, 22]"/>
         </Property>
@@ -80,20 +86,20 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addTutorialGroupBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addStudentBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="removeTutorialGroupBtn">
+    <Component class="javax.swing.JButton" name="removeStudentBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Remove Tutorial Group"/>
+        <Property name="text" type="java.lang.String" value="Remove Student"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeTutorialGroupBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeStudentBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="findTutorialGroupBtn">
+    <Component class="javax.swing.JButton" name="findStudentsBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Find Tutorial Group"/>
+        <Property name="text" type="java.lang.String" value="Find Students"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[104, 22]"/>
         </Property>
@@ -105,12 +111,12 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="findTutorialGroupBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="findStudentsBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="modifyTutorialGroupBtn">
+    <Component class="javax.swing.JButton" name="modifyStudentsBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Modify Tutorial Group"/>
+        <Property name="text" type="java.lang.String" value="Modify Students"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[104, 22]"/>
         </Property>
@@ -122,8 +128,33 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyTutorialGroupBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyStudentsBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="viewStudentsBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Students"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[104, 22]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[104, 22]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[104, 22]"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewStudentsBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tutorial Group Management"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="viewTutorialGroupsBtn">
       <Properties>
@@ -142,13 +173,22 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewTutorialGroupsBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JButton" name="backBtn">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
+        <Property name="text" type="java.lang.String" value="Back"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[104, 22]"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tutorial Group Management"/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[104, 22]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[104, 22]"/>
+        </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
