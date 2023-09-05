@@ -37,6 +37,7 @@ public class TutorManagementFrame extends javax.swing.JFrame {
         viewTutorsBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        reportBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -98,6 +99,16 @@ public class TutorManagementFrame extends javax.swing.JFrame {
             }
         });
 
+        reportBtn.setText("Tutor Reports");
+        reportBtn.setMaximumSize(new java.awt.Dimension(104, 22));
+        reportBtn.setMinimumSize(new java.awt.Dimension(104, 22));
+        reportBtn.setPreferredSize(new java.awt.Dimension(104, 22));
+        reportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,7 +126,8 @@ public class TutorManagementFrame extends javax.swing.JFrame {
                             .addComponent(modifyTutorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(viewTutorsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addTutorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(122, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -134,8 +146,10 @@ public class TutorManagementFrame extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(viewTutorsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
+                .addComponent(reportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addComponent(backBtn)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,6 +186,11 @@ public class TutorManagementFrame extends javax.swing.JFrame {
         MainFrame main = new MainFrame();
         main.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void reportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportBtnActionPerformed
+        JDialog viewDialog = new ReportDialog(this, true);
+        viewDialog.setVisible(true);
+    }//GEN-LAST:event_reportBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +237,7 @@ public class TutorManagementFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton modifyTutorBtn;
     private javax.swing.JButton removeTutorBtn;
+    private javax.swing.JButton reportBtn;
     private javax.swing.JButton viewTutorsBtn;
     // End of variables declaration//GEN-END:variables
 }

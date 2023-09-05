@@ -14,38 +14,40 @@ import java.util.Objects;
  */
 public class Tutor {
 
-    
-    
     public static class Qualifications {
+
         public final static String BACHELOR = "Bachelor degree";
         public final static String MASTERS = "Master's degree";
         public final static String DOCTORATE = "Doctoral degree";
     }
-    
+
     public static class Genders {
+
         public final static String MALE = "Male";
         public final static String FEMALE = "Female";
     }
-    
+
     private String tutorId;
     private String name;
     private String gender;
     private String qualification;
     private String contact;
+    private Float salary;
     private Integer age;
 
     public Tutor() {
     }
 
-    public Tutor(String tutorId, String name, String gender, String qualification, String contact, Integer age) {
+    public Tutor(String tutorId, String name, String gender, String qualification, String contact, Float salary, Integer age) {
         this.tutorId = tutorId;
         this.name = name;
         this.gender = gender;
         this.qualification = qualification;
         this.contact = contact;
+        this.salary = salary;
         this.age = age;
     }
-    
+
     public String getTutorId() {
         return tutorId;
     }
@@ -86,6 +88,14 @@ public class Tutor {
         this.contact = contact;
     }
 
+    public Float getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Float salary) {
+        this.salary = salary;
+    }
+    
     public Integer getAge() {
         return age;
     }
@@ -102,6 +112,7 @@ public class Tutor {
         hash = 53 * hash + Objects.hashCode(this.gender);
         hash = 53 * hash + Objects.hashCode(this.qualification);
         hash = 53 * hash + Objects.hashCode(this.contact);
+        hash = 53 * hash + Objects.hashCode(this.salary);
         hash = 53 * hash + this.age;
         return hash;
     }
@@ -130,10 +141,12 @@ public class Tutor {
         if (!this.qualification.equals(other.qualification)) {
             return false;
         }
+        
+        if (!this.salary.equals(other.salary)) {
+            return false;
+        }
 
         return this.contact.equals(other.contact);
     }
-    
-    
 
 }

@@ -12,17 +12,17 @@ import Entity.Tutor;
  *
  * @author CY
  */
-public class FindResultDialog extends javax.swing.JDialog {
+public class ResultDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form FindResultDialog
      */
-    public FindResultDialog(java.awt.Frame parent, boolean modal) {
+    public ResultDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public FindResultDialog(java.awt.Frame parent, boolean modal, ArraySetUniqueList<Tutor> tutorList) {
+    public ResultDialog(java.awt.Frame parent, boolean modal, ArraySetUniqueList<Tutor> tutorList) {
         super(parent, modal);
         initComponents();
         displayTutorList(tutorList);
@@ -40,6 +40,7 @@ public class FindResultDialog extends javax.swing.JDialog {
             String contact = tutor.getContact();
             String gender = tutor.getGender();
             String qualification = tutor.getQualification();
+            Float salary = tutor.getSalary();
             int age = tutor.getAge();
 
             tutorResultTextArea.append("===================================\n");
@@ -49,6 +50,7 @@ public class FindResultDialog extends javax.swing.JDialog {
             tutorResultTextArea.append(String.format(" %-15s: %s\n", "Contact", contact));
             tutorResultTextArea.append(String.format(" %-15s: %s\n", "Gender", gender));
             tutorResultTextArea.append(String.format(" %-15s: %s\n", "Qualification", qualification));
+            tutorResultTextArea.append(String.format(" %-15s: %.2f\n", "Salary", salary));
             tutorResultTextArea.append(String.format(" %-15s: %d\n", "Age", age));
             i++;
         }
@@ -148,20 +150,21 @@ public class FindResultDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FindResultDialog dialog = new FindResultDialog(new javax.swing.JFrame(), true);
+                ResultDialog dialog = new ResultDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

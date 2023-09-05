@@ -30,15 +30,21 @@ public class TutorController {
     }
 
     private void seedData() {
-        Tutor tutor1 = new Tutor("p1024", "Hoo Chun Yuan", Tutor.Genders.MALE, Tutor.Qualifications.BACHELOR, "0192009289", 20);
-        Tutor tutor2 = new Tutor("p2048", "Hoh Jenn Wen", Tutor.Genders.FEMALE, Tutor.Qualifications.DOCTORATE, "0192820169", 21);
-        Tutor tutor3 = new Tutor("p4096", "Leong Wai Loc", Tutor.Genders.MALE, Tutor.Qualifications.MASTERS, "01110947209", 22);
-        Tutor tutor4 = new Tutor("p8192", "Low Hau Shien", Tutor.Genders.FEMALE, Tutor.Qualifications.BACHELOR, "01162656570", 23);
+        Tutor tutor1 = new Tutor("p1024", "Hoo Chun Yuan", Tutor.Genders.MALE, Tutor.Qualifications.BACHELOR, "0192009289", 1000.10f, 20);
+        Tutor tutor2 = new Tutor("p2048", "Hoh Jenn Wen", Tutor.Genders.FEMALE, Tutor.Qualifications.DOCTORATE, "0192820169", 2000.20f, 21);
+        Tutor tutor3 = new Tutor("p4096", "Leong Wai Loc", Tutor.Genders.MALE, Tutor.Qualifications.MASTERS, "01110947209", 3000.30f, 22);
+        Tutor tutor4 = new Tutor("p8192", "Low Hau Shien", Tutor.Genders.FEMALE, Tutor.Qualifications.BACHELOR, "01162656570", 4000.40f, 23);
+        Tutor tutor5 = new Tutor("p8321", "Leong Ah Wee", Tutor.Genders.MALE, Tutor.Qualifications.BACHELOR, "01362352370", 5000.50f, 24);
+        Tutor tutor6 = new Tutor("p8772", "Tan Ah Wen", Tutor.Genders.FEMALE, Tutor.Qualifications.DOCTORATE, "01322650120", 6000.60f, 25);
+        Tutor tutor7 = new Tutor("p9012", "Lim Yen Wen", Tutor.Genders.MALE, Tutor.Qualifications.BACHELOR, "0122019374", 7000.70f, 26);
 
         tutorList.add(tutor1);
         tutorList.add(tutor2);
         tutorList.add(tutor3);
         tutorList.add(tutor4);
+        tutorList.add(tutor5);
+        tutorList.add(tutor6);
+        tutorList.add(tutor7);
     }
 
     public static final TutorController getInstance() {
@@ -50,10 +56,9 @@ public class TutorController {
     }
 
     public String generateTutorId() {
-        int min = 1000;  // Minimum 4-digit number
-        int max = 9999;  // Maximum 4-digit number
+        int min = 1000;
+        int max = 9999;
 
-        // Generate a random number between min and max (inclusive)
         int randomNumber = (int) (Math.random() * (max - min + 1)) + min;
 
         return "p" + randomNumber;

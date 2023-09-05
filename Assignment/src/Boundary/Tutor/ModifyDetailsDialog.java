@@ -36,6 +36,7 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         contactField.setText(oldTutor.getContact());
         genderField.setSelectedItem(oldTutor.getGender());
         qualificationField.setSelectedItem(oldTutor.getQualification());
+        salaryField.setText(Float.toString(oldTutor.getSalary()));
         ageField.setValue(oldTutor.getAge());
     }
     
@@ -91,6 +92,8 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         contactField = new javax.swing.JTextField();
         resultMessage = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        salaryField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(372, 362));
@@ -138,6 +141,8 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
 
         resultMessage.setForeground(new java.awt.Color(255, 51, 51));
 
+        jLabel8.setText("Salary");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,11 +176,13 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel5)
-                                .addComponent(jLabel4))
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel8))
                             .addGap(43, 43, 43)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(salaryField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(35, 35, 35)
                             .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,6 +205,10 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(salaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -243,6 +254,10 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
             resultMessage.setText("Contact cannot be empty");
             return;
         }
+        if (!isNumeric(salaryField.getText())) {
+            resultMessage.setText("Salary cannot be empty");
+            return;
+        }
         if (((int) ageField.getValue()) < 18 || ((int) ageField.getValue()) > 120) {
             resultMessage.setText("Invalid Age");
             return;
@@ -253,6 +268,7 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         newTutor.setContact(contactField.getText());
         newTutor.setGender((String) genderField.getSelectedItem());
         newTutor.setQualification((String) qualificationField.getSelectedItem());
+        newTutor.setSalary(Float.valueOf(salaryField.getText()));
         newTutor.setAge((int) ageField.getValue());
         
         try {
@@ -268,12 +284,25 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_confirmModifyBtnActionPerformed
 
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Float.parseFloat(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+    
     private void clearInputField() {
         tutorIdField.setText("");
         nameField.setText("");
         contactField.setText("");
         genderField.setSelectedIndex(0);
         qualificationField.setSelectedIndex(0);
+        salaryField.setText("");
         ageField.setValue(0);
     }
     
@@ -333,9 +362,11 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField nameField;
     private javax.swing.JComboBox<String> qualificationField;
     private javax.swing.JLabel resultMessage;
+    private javax.swing.JTextField salaryField;
     private javax.swing.JTextField tutorIdField;
     // End of variables declaration//GEN-END:variables
 }

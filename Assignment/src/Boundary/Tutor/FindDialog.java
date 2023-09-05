@@ -133,7 +133,7 @@ public class FindDialog extends javax.swing.JDialog {
             tutorList = tutorController.findTutorsByName(input);
         }
         
-        JDialog findResultDialog = new FindResultDialog(parent, modal, tutorList);
+        JDialog findResultDialog = new ResultDialog(parent, modal, tutorList);
         findResultDialog.setVisible(true);
     }//GEN-LAST:event_findBtnActionPerformed
 

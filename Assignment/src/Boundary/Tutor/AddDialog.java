@@ -48,7 +48,7 @@ public class AddDialog extends javax.swing.JDialog {
             }
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,9 +74,10 @@ public class AddDialog extends javax.swing.JDialog {
         initializeGenderField();
         qualificationField = new javax.swing.JComboBox<>();
         initializeQualificationField();
+        salaryField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(306, 324));
         setMinimumSize(new java.awt.Dimension(306, 324));
         setResizable(false);
 
@@ -112,6 +113,8 @@ public class AddDialog extends javax.swing.JDialog {
 
         resultMessage.setForeground(new java.awt.Color(255, 51, 51));
 
+        jLabel8.setText("Salary");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,11 +146,13 @@ public class AddDialog extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8))
                                 .addGap(43, 43, 43)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(salaryField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
@@ -174,6 +179,10 @@ public class AddDialog extends javax.swing.JDialog {
                     .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(salaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(genderField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -185,7 +194,7 @@ public class AddDialog extends javax.swing.JDialog {
                     .addComponent(jLabel7)
                     .addComponent(ageField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addComponent(resultMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 4, Short.MAX_VALUE)
+                .addComponent(resultMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn)
@@ -209,6 +218,10 @@ public class AddDialog extends javax.swing.JDialog {
             resultMessage.setText("Contact cannot be empty");
             return;
         }
+        if (!isNumeric(salaryField.getText())) {
+            resultMessage.setText("Salary cannot be empty");
+            return;
+        }
         if (((int) ageField.getValue()) < 18 || ((int) ageField.getValue()) > 120) {
             resultMessage.setText("Invalid Age");
             return;
@@ -220,6 +233,7 @@ public class AddDialog extends javax.swing.JDialog {
         tutor.setGender((String) genderField.getSelectedItem());
         tutor.setContact(contactField.getText());
         tutor.setQualification((String) qualificationField.getSelectedItem());
+        tutor.setSalary(Float.valueOf(salaryField.getText()));
         tutor.setAge((int) ageField.getValue());
 
         try {
@@ -236,11 +250,24 @@ public class AddDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_addBtnActionPerformed
 
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Float.parseFloat(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
     private void clearInputField() {
         nameField.setText("");
         contactField.setText("");
         genderField.setSelectedIndex(0);
         qualificationField.setSelectedIndex(0);
+        salaryField.setText("");
         ageField.setValue(0);
     }
 
@@ -290,7 +317,6 @@ public class AddDialog extends javax.swing.JDialog {
         });
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
@@ -304,8 +330,10 @@ public class AddDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField nameField;
     private javax.swing.JComboBox<String> qualificationField;
     private javax.swing.JLabel resultMessage;
+    private javax.swing.JTextField salaryField;
     // End of variables declaration//GEN-END:variables
 }

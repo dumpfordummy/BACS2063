@@ -7,6 +7,7 @@ package Boundary.Tutor;
 import ADT.Impl.ArraySetUniqueList;
 import Controller.TutorController;
 import Entity.Tutor;
+import Utility.TutorUtil;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.function.BiFunction;
@@ -55,6 +56,7 @@ public class ViewDialog extends javax.swing.JDialog {
             String contact = tutor.getContact();
             String gender = tutor.getGender();
             String qualification = tutor.getQualification();
+            Float salary = tutor.getSalary();
             int age = tutor.getAge();
 
             tutorResultTextArea.append("===================================\n");
@@ -64,6 +66,7 @@ public class ViewDialog extends javax.swing.JDialog {
             tutorResultTextArea.append(String.format(" %-15s: %s\n", "Contact", contact));
             tutorResultTextArea.append(String.format(" %-15s: %s\n", "Gender", gender));
             tutorResultTextArea.append(String.format(" %-15s: %s\n", "Qualification", qualification));
+            tutorResultTextArea.append(String.format(" %-15s: %.2f\n", "Salary", salary));
             tutorResultTextArea.append(String.format(" %-15s: %d\n", "Age", age));
             i++;
         }
@@ -76,51 +79,36 @@ public class ViewDialog extends javax.swing.JDialog {
 
     private ArraySetUniqueList<Tutor> getSortedTutorList() {
         TutorController tutorController = TutorController.getInstance();
-        ArraySetUniqueList<Tutor> result = tutorController.getTutorList();
+        ArraySetUniqueList<Tutor> tutorList = tutorController.getTutorList();
         BiFunction<Tutor, Tutor, Boolean> tutorSortCriteriaFunction;
 
-        if (((String) tutorField.getSelectedItem()).equals(TUTORID_ASC)) {
-            tutorSortCriteriaFunction = (a, b) -> a.getTutorId().compareTo(b.getTutorId()) < 0;
-
-        } else if (((String) tutorField.getSelectedItem()).equals(TUTORID_DESC)) {
-            tutorSortCriteriaFunction = (a, b) -> a.getTutorId().compareTo(b.getTutorId()) > 0;
-
-        } else if (((String) tutorField.getSelectedItem()).equals(TUTORNAME_ASC)) {
-            tutorSortCriteriaFunction = (a, b) -> a.getName().compareTo(b.getName()) < 0;
-
-        } else if (((String) tutorField.getSelectedItem()).equals(TUTORNAME_DESC)) {
-            tutorSortCriteriaFunction = (a, b) -> a.getName().compareTo(b.getName()) > 0;
-
-        } else if (((String) tutorField.getSelectedItem()).equals(TUTORAGE_ASC)) {
-            tutorSortCriteriaFunction = (a, b) -> a.getAge().compareTo(b.getAge()) < 0;
-
-        } else {
-            tutorSortCriteriaFunction = (a, b) -> a.getAge().compareTo(b.getAge()) > 0;
-
+        switch ((String) tutorField.getSelectedItem()) {
+            case TUTORID_ASC:
+                tutorSortCriteriaFunction = (a, b) -> a.getTutorId().compareTo(b.getTutorId()) < 0;
+                break;
+            case TUTORID_DESC:
+                tutorSortCriteriaFunction = (a, b) -> a.getTutorId().compareTo(b.getTutorId()) > 0;
+                break;
+            case TUTORNAME_ASC:
+                tutorSortCriteriaFunction = (a, b) -> a.getName().compareTo(b.getName()) < 0;
+                break;
+            case TUTORNAME_DESC:
+                tutorSortCriteriaFunction = (a, b) -> a.getName().compareTo(b.getName()) > 0;
+                break;
+            case TUTORAGE_ASC:
+                tutorSortCriteriaFunction = (a, b) -> a.getAge().compareTo(b.getAge()) < 0;
+                break;
+            case TUTORAGE_DESC:
+                tutorSortCriteriaFunction = (a, b) -> a.getAge().compareTo(b.getAge()) > 0;
+                break;
+            case TUTORSALARY_ASC:
+                tutorSortCriteriaFunction = (a, b) -> a.getSalary().compareTo(b.getSalary()) < 0;
+                break;
+            default:
+                tutorSortCriteriaFunction = (a, b) -> a.getSalary().compareTo(b.getSalary()) > 0;
+                break;
         }
-        return sortTutor(result, tutorSortCriteriaFunction);
-    }
-
-    private ArraySetUniqueList<Tutor> sortTutor(ArraySetUniqueList<Tutor> tutorList, BiFunction<Tutor, Tutor, Boolean> compareFunction) {
-        int n = tutorList.size();
-        ArraySetUniqueList<Tutor> sortedList = new ArraySetUniqueList<>(n);
-        sortedList.add(tutorList.get(0));
-
-        for (int scanIndex = 1; scanIndex < n; scanIndex++) {
-            Tutor tutor1 = tutorList.get(scanIndex);
-            for (int insertIndex = 0; insertIndex < sortedList.size(); insertIndex++) {
-                Tutor tutor2 = sortedList.get(insertIndex);
-                if (compareFunction.apply(tutor1, tutor2)) {
-                    sortedList.add(0, tutor1);
-                    break;
-                }
-            }
-
-            if (!sortedList.contains(tutor1)) {
-                sortedList.add(tutor1);
-            }
-        }
-        return sortedList;
+        return TutorUtil.sortTutor(tutorList, tutorSortCriteriaFunction);
     }
 
     /**
@@ -268,8 +256,10 @@ public class ViewDialog extends javax.swing.JDialog {
     private static final String TUTORID_DESC = "Tutor Id DESC";
     private static final String TUTORNAME_ASC = "Tutor Name ASC";
     private static final String TUTORNAME_DESC = "Tutor Name DESC";
-    private static final String TUTORAGE_ASC = "Tutor Age Asc";
-    private static final String TUTORAGE_DESC = "Tutor Age Desc";
+    private static final String TUTORAGE_ASC = "Tutor Age ASC";
+    private static final String TUTORAGE_DESC = "Tutor Age DESC";
+    private static final String TUTORSALARY_ASC = "Tutor Salary ASC";
+    private static final String TUTORSALARY_DESC = "Tutor Salary DESC";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
