@@ -27,33 +27,92 @@ public class ViewCourse extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        CourseTitle = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JButton();
+        courseComboField = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tutorResultTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        CourseTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        CourseTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CourseTitle.setText("View ALL Course");
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        courseComboField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Course Code", "Course Name" }));
+        courseComboField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                courseComboFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Sort by");
+
+        jLabel1.setText("Course List:");
+
+        tutorResultTextArea.setColumns(20);
+        tutorResultTextArea.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        tutorResultTextArea.setForeground(new java.awt.Color(0, 0, 0));
+        tutorResultTextArea.setLineWrap(true);
+        tutorResultTextArea.setRows(5);
+        tutorResultTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        tutorResultTextArea.setEnabled(false);
+        jScrollPane1.setViewportView(tutorResultTextArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(CourseTitle)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addGap(230, 230, 230)
+                .addComponent(cancelBtn)
+                .addContainerGap(245, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(courseComboField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(CourseTitle)
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(courseComboField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cancelBtn)
+                .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void courseComboFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseComboFieldActionPerformed
+        // TODO add your handling code here:
+        String itemName = (String) courseComboField.getSelectedItem();
+        int itemIndex = courseComboField.getSelectedIndex();
+    }//GEN-LAST:event_courseComboFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,6 +150,11 @@ public class ViewCourse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel CourseTitle;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JComboBox<String> courseComboField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea tutorResultTextArea;
     // End of variables declaration//GEN-END:variables
 }
