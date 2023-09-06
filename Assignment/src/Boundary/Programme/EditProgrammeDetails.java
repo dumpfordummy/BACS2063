@@ -10,17 +10,23 @@ import java.awt.Color;
 
 /**
  *
- * @author Wai Loc
+ * @author ASUS
  */
-public class AddProgramme extends javax.swing.JFrame {
+public class EditProgrammeDetails extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddProgramme
+     * Creates new form EditProgrammeDetails
      */
-    public AddProgramme() {
+    public EditProgrammeDetails() {
         initComponents();
     }
 
+    public EditProgrammeDetails(Programme p, String index){
+        initComponents();
+        selectedIndexLabel.setText(selectedIndexLabel.getText() + index);
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,36 +36,60 @@ public class AddProgramme extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        progNameLabel = new javax.swing.JLabel();
-        progIDLabel = new javax.swing.JLabel();
-        durationLabel = new javax.swing.JLabel();
-        totalSemLabel = new javax.swing.JLabel();
         feesLabel = new javax.swing.JLabel();
         progNameTxtField = new javax.swing.JTextField();
         progIDTxtField = new javax.swing.JTextField();
         durationTxtField = new javax.swing.JTextField();
         feesTxtField = new javax.swing.JTextField();
         totalSemTxtField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
+        progNameLabel = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JButton();
+        progIDLabel = new javax.swing.JLabel();
         feedbackMsgLabel = new javax.swing.JLabel();
+        durationLabel = new javax.swing.JLabel();
+        totalSemLabel = new javax.swing.JLabel();
+        selectedIndexLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        feesLabel.setText("Fees (RM):");
+        feesLabel.setMaximumSize(new java.awt.Dimension(110, 20));
+        feesLabel.setMinimumSize(new java.awt.Dimension(110, 20));
+        feesLabel.setPreferredSize(new java.awt.Dimension(110, 20));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Add Programme");
+        jLabel1.setText("Edit Programme Details");
+
+        addBtn.setText("Add");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
         progNameLabel.setText("Programme Name:");
         progNameLabel.setMaximumSize(new java.awt.Dimension(110, 20));
         progNameLabel.setMinimumSize(new java.awt.Dimension(110, 20));
         progNameLabel.setPreferredSize(new java.awt.Dimension(110, 20));
 
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
         progIDLabel.setText("Programme ID:");
         progIDLabel.setMaximumSize(new java.awt.Dimension(110, 20));
         progIDLabel.setMinimumSize(new java.awt.Dimension(110, 20));
         progIDLabel.setPreferredSize(new java.awt.Dimension(110, 20));
+
+        feedbackMsgLabel.setMaximumSize(new java.awt.Dimension(40, 20));
+        feedbackMsgLabel.setMinimumSize(new java.awt.Dimension(40, 20));
+        feedbackMsgLabel.setPreferredSize(new java.awt.Dimension(40, 20));
 
         durationLabel.setText("Duration (years):");
         durationLabel.setMaximumSize(new java.awt.Dimension(110, 20));
@@ -71,69 +101,53 @@ public class AddProgramme extends javax.swing.JFrame {
         totalSemLabel.setMinimumSize(new java.awt.Dimension(110, 20));
         totalSemLabel.setPreferredSize(new java.awt.Dimension(110, 20));
 
-        feesLabel.setText("Fees (RM):");
-        feesLabel.setMaximumSize(new java.awt.Dimension(110, 20));
-        feesLabel.setMinimumSize(new java.awt.Dimension(110, 20));
-        feesLabel.setPreferredSize(new java.awt.Dimension(110, 20));
-
-        addBtn.setText("Add");
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBtnActionPerformed(evt);
-            }
-        });
-
-        cancelBtn.setText("Cancel");
-        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBtnActionPerformed(evt);
-            }
-        });
-
-        feedbackMsgLabel.setMaximumSize(new java.awt.Dimension(40, 20));
-        feedbackMsgLabel.setMinimumSize(new java.awt.Dimension(40, 20));
-        feedbackMsgLabel.setPreferredSize(new java.awt.Dimension(40, 20));
+        selectedIndexLabel.setText("Selected index: ");
+        selectedIndexLabel.setMaximumSize(new java.awt.Dimension(90, 20));
+        selectedIndexLabel.setMinimumSize(new java.awt.Dimension(90, 20));
+        selectedIndexLabel.setPreferredSize(new java.awt.Dimension(90, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+                .addContainerGap(132, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(177, 177, 177))
+                        .addGap(165, 165, 165))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(feedbackMsgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(progNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(progIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(durationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(totalSemLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(feesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(63, 63, 63)
+                                .addComponent(addBtn)
+                                .addGap(19, 19, 19)
+                                .addComponent(cancelBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(selectedIndexLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(progNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(progIDLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(durationLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(totalSemLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(feesLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(progNameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(progIDTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(durationTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(feesTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(totalSemTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(feedbackMsgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(130, 130, 130))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(193, 193, 193)
-                .addComponent(addBtn)
-                .addGap(19, 19, 19)
-                .addComponent(cancelBtn)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(totalSemTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(128, 128, 128))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(selectedIndexLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(progNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +174,7 @@ public class AddProgramme extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
                     .addComponent(cancelBtn))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -168,13 +182,13 @@ public class AddProgramme extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         ProgrammeController progController = new ProgrammeController();
-        
+
         String programmeName = progNameTxtField.getText();
         String programmeID = progIDTxtField.getText();
         String duration = durationTxtField.getText();
         double feesInTotal = Double.parseDouble(feesTxtField.getText());
         int totalSemesters = Integer.parseInt(totalSemTxtField.getText());
-        
+
         if (progController.addProgramme(new Programme(programmeName, programmeID, duration, feesInTotal, totalSemesters))){
             feedbackMsgLabel.setText("Programme is added successfully!");
             feedbackMsgLabel.setForeground(new Color(56,118,29));
@@ -205,20 +219,20 @@ public class AddProgramme extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddProgramme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditProgrammeDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddProgramme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditProgrammeDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddProgramme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditProgrammeDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddProgramme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditProgrammeDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddProgramme().setVisible(true);
+                new EditProgrammeDetails().setVisible(true);
             }
         });
     }
@@ -236,6 +250,7 @@ public class AddProgramme extends javax.swing.JFrame {
     private javax.swing.JTextField progIDTxtField;
     private javax.swing.JLabel progNameLabel;
     private javax.swing.JTextField progNameTxtField;
+    private javax.swing.JLabel selectedIndexLabel;
     private javax.swing.JLabel totalSemLabel;
     private javax.swing.JTextField totalSemTxtField;
     // End of variables declaration//GEN-END:variables
