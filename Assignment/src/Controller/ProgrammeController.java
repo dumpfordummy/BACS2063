@@ -94,8 +94,9 @@ public class ProgrammeController {
                 + String.format(" %-15s\t: %s\n", "Duration (Years)", tempProgramme.getDuration())
                 + String.format(" %-15s\t: %s\n", "Total Fees (RM)", tempProgramme.getFeesInTotal())
                 + String.format(" %-15s\t: %s\n", "Total Semesters", tempProgramme.getTotalSemesters())
-                + String.format(" %-15s\t: %s\n", "Tutorial Group", tutorialGroupNameList)
+                + String.format(" %-15s\t\t: %s\n", "Tutorial Group", tutorialGroupNameList)
                 + "\n===================================\n";
+                tutorialGroupNameList = "";
         }
         
         return output;
