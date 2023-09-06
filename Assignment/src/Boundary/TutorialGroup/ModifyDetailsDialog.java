@@ -8,6 +8,7 @@ import ADT.Impl.ArrayList;
 import Controller.TutorialGroupController;
 import Entity.Student;
 import Entity.TutorialGroup;
+import Utility.TutorialGroupUtil;
 
 /**
  *
@@ -201,7 +202,7 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         
         TutorialGroup targetTutorialGroup = tutorialGroupController.findTutorialGroupByGroupNumber(selectedTutorialGroupNumber);
         
-        tutorialGroupController.findStudentByStudentId(student.getStudID());
+        TutorialGroupUtil.findStudentByStudentId(student.getStudID());
         
         
         

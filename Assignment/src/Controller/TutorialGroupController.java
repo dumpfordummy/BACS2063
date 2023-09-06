@@ -99,28 +99,6 @@ public class TutorialGroupController {
         }
     }
 
-    public Student findStudentByStudentId(String studentId) {
-        for (TutorialGroup tutGroup : tutorialGroupList) {
-            for (Student student : tutGroup.getStudentList()) {
-                if (student.getStudID().equals(studentId)) {
-                    return student;
-                }
-            }
-        }
-        return null;
-    }
-    
-    public ArrayList<Student> findStudentsByStudentName(String studentName) {
-        ArrayList<Student> result = new ArrayList<>();
-        for (TutorialGroup tutGroup : tutorialGroupList) {
-            for (Student student : tutGroup.getStudentList()) {
-                if (student.getFullName().toUpperCase().equals(studentName.toUpperCase())) {
-                    result.add(student);
-                }
-            }
-        }
-        return result.isEmpty() ? null : result;
-    }
 
     public TutorialGroup findTutorialGroupByGroupNumber(int groupNumber) {
         for (TutorialGroup tutorialGroup : tutorialGroupList) {

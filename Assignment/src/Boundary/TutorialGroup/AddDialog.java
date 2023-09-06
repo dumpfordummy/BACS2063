@@ -186,9 +186,13 @@ public class AddDialog extends javax.swing.JDialog {
         
         tutGroup.getStudentList().add(student);
         
+        tutGroup.incrementNoOfStudents();
+        
         resultMessage.setText("Successfully added " + student.getStudID() + " to tutorial group " + tutGroup.getGroupNumber());
         
         clearInputField();
+        
+        
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void clearInputField() {

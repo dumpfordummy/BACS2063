@@ -6,6 +6,7 @@ package Boundary.TutorialGroup;
 
 import Controller.TutorialGroupController;
 import Entity.Student;
+import Utility.TutorialGroupUtil;
 import javax.swing.JDialog;
 
 /**
@@ -104,7 +105,7 @@ public class ModifyDialog extends javax.swing.JDialog {
         String input = studentIdField.getText();
         Student student;
 
-        student = tutorialGroupController.findStudentByStudentId(input);
+        student = TutorialGroupUtil.findStudentByStudentId(input);
 
         JDialog modifyDetailsDialog = new ModifyDetailsDialog(parent, modal, student);
         modifyDetailsDialog.setVisible(true);

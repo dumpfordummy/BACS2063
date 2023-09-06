@@ -186,6 +186,7 @@ public class RemoveDialog extends javax.swing.JDialog {
             for(Student student : studentList) {
                 if(student.getStudID().equals(inputStudentId)) {
                     studentList.remove(student);
+                    currentTutorialGroup.decrementNoOfStudents();
                     break;
                 }
             }

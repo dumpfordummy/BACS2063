@@ -38,6 +38,7 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         viewTutorialGroupsBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        viewReportsBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -80,9 +81,6 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
         });
 
         viewStudentsBtn.setText("View Students");
-        viewStudentsBtn.setMaximumSize(new java.awt.Dimension(104, 22));
-        viewStudentsBtn.setMinimumSize(new java.awt.Dimension(104, 22));
-        viewStudentsBtn.setPreferredSize(new java.awt.Dimension(104, 22));
         viewStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewStudentsBtnActionPerformed(evt);
@@ -112,6 +110,16 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
             }
         });
 
+        viewReportsBtn.setText("View Reports");
+        viewReportsBtn.setMaximumSize(new java.awt.Dimension(104, 22));
+        viewReportsBtn.setMinimumSize(new java.awt.Dimension(104, 22));
+        viewReportsBtn.setPreferredSize(new java.awt.Dimension(104, 22));
+        viewReportsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReportsBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +138,8 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
                             .addComponent(modifyStudentsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(viewStudentsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(viewTutorialGroupsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(viewReportsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(119, 119, 119))))
         );
         layout.setVerticalGroup(
@@ -147,12 +156,14 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(modifyStudentsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
-                .addComponent(viewStudentsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewStudentsBtn)
                 .addGap(17, 17, 17)
                 .addComponent(viewTutorialGroupsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
+                .addComponent(viewReportsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,6 +205,11 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
         MainFrame main = new MainFrame();
         main.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void viewReportsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReportsBtnActionPerformed
+        JDialog reportDialog = new ReportDialog(this, true);
+        reportDialog.setVisible(true);
+    }//GEN-LAST:event_viewReportsBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,6 +260,7 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton modifyStudentsBtn;
     private javax.swing.JButton removeStudentBtn;
+    private javax.swing.JButton viewReportsBtn;
     private javax.swing.JButton viewStudentsBtn;
     private javax.swing.JButton viewTutorialGroupsBtn;
     // End of variables declaration//GEN-END:variables

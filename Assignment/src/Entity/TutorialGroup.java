@@ -26,6 +26,7 @@ public class TutorialGroup {
     public TutorialGroup(ListInterface<Student> studentList){
         this();
         this.studentList = studentList;
+        this.noOfStudents = studentList.size();
     }    
 
     public int getGroupNumber() {
@@ -44,6 +45,14 @@ public class TutorialGroup {
         this.noOfStudents = noOfStudents;
     }
 
+    public void incrementNoOfStudents() {
+        noOfStudents++;
+    }
+
+    public void decrementNoOfStudents() {
+        noOfStudents--;
+    }
+    
     public ListInterface<Student> getStudentList() {
         return studentList;
     }

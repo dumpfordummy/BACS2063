@@ -11,6 +11,7 @@ import Controller.TutorialGroupController;
 import Entity.Student;
 import Entity.Tutor;
 import Entity.TutorialGroup;
+import Utility.TutorialGroupUtil;
 import javax.swing.DefaultListModel;
 
 /**
@@ -45,13 +46,13 @@ public class ViewTutorialGroupDialog extends javax.swing.JDialog {
         int selectedSortModeIndex = sortModeField.getSelectedIndex();
 
         if (selectedTutGroupIndex == 0 && selectedSortModeIndex == 0) {
-            tutGroupList = getTutorialGroupAscendingByGroupNo();
+            tutGroupList = TutorialGroupUtil.getTutorialGroupAscendingByGroupNo();
         } else if (selectedTutGroupIndex == 0 && selectedSortModeIndex == 1) {
-            tutGroupList = getTutorialGroupDescendingByGroupNo();
+            tutGroupList = TutorialGroupUtil.getTutorialGroupDescendingByGroupNo();
         } else if (selectedTutGroupIndex == 1 && selectedSortModeIndex == 0) {
-            tutGroupList = getTutorialGroupAscendingByStudentNo();
+            tutGroupList = TutorialGroupUtil.getTutorialGroupAscendingByStudentNo();
         } else {
-            tutGroupList = getTutorialGroupDescendingByStudentNo();
+            tutGroupList = TutorialGroupUtil.getTutorialGroupDescendingByStudentNo();
         }
 
         for (TutorialGroup tutGroup : tutGroupList) {
@@ -71,111 +72,6 @@ public class ViewTutorialGroupDialog extends javax.swing.JDialog {
         }
     }
 
-    private ArrayList<TutorialGroup> getTutorialGroupAscendingByGroupNo() {
-        ArrayList<TutorialGroup> tutGroupList = tutorialGroupController.getTutorialGroupList();
-        ArrayList<TutorialGroup> result = new ArrayList<>();
-        result.add(tutGroupList.get(0));
-        boolean shouldInsertLast = true;
-
-        for (int i = 1; i < tutGroupList.size(); i++) {
-            TutorialGroup tutGroup1 = tutGroupList.get(i);
-            shouldInsertLast = true;
-            for (int j = 0; j < result.size(); j++) {
-                TutorialGroup tutGroup2 = tutGroupList.get(j);
-                if (tutGroup1.getGroupNumber() < tutGroup2.getGroupNumber()) {
-                    result.add(0, tutGroup1);
-                    shouldInsertLast = false;
-                    break;
-                }
-            }
-
-            if (shouldInsertLast) {
-                result.add(tutGroup1);
-            }
-        }
-        return result;
-    }
-
-    private ArrayList<TutorialGroup> getTutorialGroupDescendingByGroupNo() {
-        ArrayList<TutorialGroup> tutGroupList = tutorialGroupController.getTutorialGroupList();
-        ArrayList<TutorialGroup> result = new ArrayList<>();
-        result.add(tutGroupList.get(0));
-        boolean shouldInsertLast = true;
-
-        for (int i = 1; i < tutGroupList.size(); i++) {
-            TutorialGroup tutGroup1 = tutGroupList.get(i);
-            shouldInsertLast = true;
-            for (int j = 0; j < result.size(); j++) {
-                TutorialGroup tutGroup2 = tutGroupList.get(j);
-
-                if (tutGroup1.getGroupNumber() > tutGroup2.getGroupNumber()) {
-                    result.add(0, tutGroup1);
-                    shouldInsertLast = false;
-                    break;
-                }
-
-            }
-
-            if (shouldInsertLast) {
-                result.add(tutGroup1);
-            }
-        }
-        return result;
-    }
-
-    private ArrayList<TutorialGroup> getTutorialGroupAscendingByStudentNo() {
-        ArrayList<TutorialGroup> tutGroupList = tutorialGroupController.getTutorialGroupList();
-        ArrayList<TutorialGroup> result = new ArrayList<>();
-        result.add(tutGroupList.get(0));
-        boolean shouldInsertLast = true;
-
-        for (int i = 1; i < tutGroupList.size(); i++) {
-            TutorialGroup tutGroup1 = tutGroupList.get(i);
-            shouldInsertLast = true;
-            for (int j = 0; j < result.size(); j++) {
-                TutorialGroup tutGroup2 = tutGroupList.get(j);
-
-                if (tutGroup1.getNoOfStudents() < tutGroup2.getNoOfStudents()) {
-                    result.add(0, tutGroup1);
-                    shouldInsertLast = false;
-                    break;
-                }
-
-            }
-
-            if (shouldInsertLast) {
-                result.add(tutGroup1);
-            }
-        }
-        return result;
-    }
-
-    private ArrayList<TutorialGroup> getTutorialGroupDescendingByStudentNo() {
-        ArrayList<TutorialGroup> tutGroupList = tutorialGroupController.getTutorialGroupList();
-        ArrayList<TutorialGroup> result = new ArrayList<>();
-        result.add(tutGroupList.get(0));
-        boolean shouldInsertLast = true;
-
-        for (int i = 1; i < tutGroupList.size(); i++) {
-            TutorialGroup tutGroup1 = tutGroupList.get(i);
-            shouldInsertLast = true;
-            for (int j = 0; j < result.size(); j++) {
-                TutorialGroup tutGroup2 = tutGroupList.get(j);
-
-                if (tutGroup1.getNoOfStudents() > tutGroup2.getNoOfStudents()) {
-                    result.add(0, tutGroup1);
-                    shouldInsertLast = false;
-                    break;
-                }
-
-            }
-
-            if (shouldInsertLast) {
-                result.add(tutGroup1);
-            }
-        }
-        return result;
-    }
 
     private void clearTextArea() {
         tutorialGroupResultTextArea.setText("");
@@ -262,12 +158,12 @@ public class ViewTutorialGroupDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tutorialGroupField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)
-                        .addComponent(sortModeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sortModeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

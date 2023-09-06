@@ -7,6 +7,7 @@ package Boundary.TutorialGroup;
 import ADT.Impl.ArrayList;
 import Controller.TutorialGroupController;
 import Entity.Student;
+import Utility.TutorialGroupUtil;
 import javax.swing.JDialog;
 
 /**
@@ -128,16 +129,16 @@ public class FindDialog extends javax.swing.JDialog {
         ArrayList<Student> studentList = null;
 
         if (findModeComboBox.getSelectedIndex() == FIND_BY_STUDENTID) {
-            Student student = tutorialGroupController.findStudentByStudentId(input);
+            Student student = TutorialGroupUtil.findStudentByStudentId(input);
             if (student != null) {
                 studentList = new ArrayList<>();
                 studentList.add(student);
             }
         } else {
-            studentList = tutorialGroupController.findStudentsByStudentName(input);
+            studentList = TutorialGroupUtil.findStudentsByStudentName(input);
         }
 
-        JDialog findResultDialog = new FindResultDialog(parent, modal, studentList);
+        JDialog findResultDialog = new StudentResultDialog(parent, modal, studentList);
         findResultDialog.setVisible(true);
     }//GEN-LAST:event_findBtnActionPerformed
 

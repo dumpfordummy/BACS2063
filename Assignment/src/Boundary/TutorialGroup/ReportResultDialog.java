@@ -6,45 +6,40 @@ package Boundary.TutorialGroup;
 
 import ADT.Impl.ArrayList;
 import Entity.Student;
+import Entity.TutorialGroup;
+import Utility.TutorialGroupUtil;
 
 /**
  *
  * @author CY
  */
-public class FindResultDialog extends javax.swing.JDialog {
+public class ReportResultDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form FindResultDialog
      */
-    public FindResultDialog(java.awt.Frame parent, boolean modal) {
+    public ReportResultDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-
-    public FindResultDialog(java.awt.Frame parent, boolean modal, ArrayList<Student> tutorList) {
+    
+    public ReportResultDialog(java.awt.Frame parent, boolean modal, ArrayList<TutorialGroup> tutorialGroupList) {
         super(parent, modal);
         initComponents();
-        displayStudentList(tutorList);
+        displayTutorialGroupList(tutorialGroupList);
     }
 
-    private void displayStudentList(ArrayList<Student> studentList) {
+    private void displayTutorialGroupList(ArrayList<TutorialGroup> tutGroupList) {
         int i = 1;
-        
-        if(studentList == null || studentList.isEmpty()) {
-            tutorialGroupResultTextArea.append("No entries found!\n");
-            return;
-        }
-        
-        for (Student student : studentList) {
-            String studentName = student.getFullName();
-            String studentId = student.getStudID();
-            String studentEmail = student.getEmail();
+
+        for (TutorialGroup tutGroup : tutGroupList) {
+            int groupNumber = tutGroup.getGroupNumber();
+            int noOfStudents = tutGroup.getNoOfStudents();
 
             tutorialGroupResultTextArea.append("===================================\n");
             tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
-            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Id", studentId));
-            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Name", studentName));
-            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Email", studentEmail));
+            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Group Number", groupNumber));
+            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Number", noOfStudents));
             i++;
         }
         if (i != 1) {
@@ -139,21 +134,51 @@ public class FindResultDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FindResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FindResultDialog dialog = new FindResultDialog(new javax.swing.JFrame(), true);
+                ReportResultDialog dialog = new ReportResultDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
