@@ -19,7 +19,7 @@ public class Programme {
     private String duration;
     private double feesInTotal;
     private int totalSemesters;
-    private SetUniqueListInterface<TutorialGroup> tutorialList = new LinkedSetUniqueList<>();
+    private ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();
     
 
     public Programme() {
@@ -73,22 +73,28 @@ public class Programme {
         this.programmeID = programmeID;
     }
 
-    public SetUniqueListInterface<TutorialGroup> getTutorialGroupList() {
-        return tutorialList;
+    public ListInterface<TutorialGroup> getTutorialGroupList() {
+        return tutorialGroupList;
     }
 
-    public void setTutorialGroupList(SetUniqueListInterface<TutorialGroup> tutorialList) {
-        this.tutorialList = tutorialList;
+    public void setTutorialGroupList(ListInterface<TutorialGroup> tutorialGroupList) {
+        this.tutorialGroupList = tutorialGroupList;
     }   
 
     @Override
     public String toString() {
+        String tutorialGroupNameList = "";
+        for (TutorialGroup tg : tutorialGroupList){
+            tutorialGroupNameList += Integer.toString(tg.getGroupNumber());
+        }
+        
         return "===================================\n"
                 + String.format(" %-15s\t: %s\n", "Programme Name", programmeName)
                 + String.format(" %-15s\t: %s\n", "Programme ID", programmeID)
                 + String.format(" %-15s\t: %s\n", "Duration (Years)", duration)
                 + String.format(" %-15s\t: %s\n", "Total Fees (RM)", feesInTotal)
-                + String.format(" %-15s\t: %s\n", "Total Semesters", totalSemesters);
+                + String.format(" %-15s\t: %s\n", "Total Semesters", totalSemesters)
+                + String.format(" %-15s\t: %s\n", "Tutorial Group", tutorialGroupNameList);
     }
     
 }

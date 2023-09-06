@@ -124,11 +124,10 @@ public class EditProgramme extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(feedbackMsgLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(feedbackMsgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(inputLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(editInputTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(23, 23, 23))))
                     .addGroup(layout.createSequentialGroup()
@@ -177,14 +176,20 @@ public class EditProgramme extends javax.swing.JFrame {
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         ProgrammeController progController = new ProgrammeController();
         String progID = editInputTField.getText();
-            Programme foundProg = progController.findProgrammeByID(progID);
+        try{
+            Programme foundProg = progController.findProgrammeByIndex(Integer.parseInt(progID) - 1);
             if (foundProg != null) {
                 EditProgrammeDetails editProgrammeDetails = new EditProgrammeDetails(foundProg, progID);
                 editProgrammeDetails.setVisible(true);
+                this.setVisible(false);
             } else {
                 feedbackMsgLabel.setForeground(Color.red);
                 feedbackMsgLabel.setText("Programme not found!");
             }
+        } catch (NullPointerException ex){
+            feedbackMsgLabel.setForeground(Color.red);
+            feedbackMsgLabel.setText("Index is out of bounds! Please enter numbers starting from 1 to " + ProgrammeController.getProgrammeList().size());
+        }
     }//GEN-LAST:event_editBtnActionPerformed
 
     /**

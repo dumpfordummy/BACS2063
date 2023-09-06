@@ -33,6 +33,9 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
         findProgrammeBtn = new javax.swing.JButton();
         editProgrammeBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        addTutorialGroupBtn = new javax.swing.JButton();
+        removeTutorialGroupBtn = new javax.swing.JButton();
+        listTGBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,12 +94,42 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
         });
 
         backBtn.setText("Back");
-        backBtn.setMaximumSize(new java.awt.Dimension(134, 30));
-        backBtn.setMinimumSize(new java.awt.Dimension(134, 30));
-        backBtn.setPreferredSize(new java.awt.Dimension(134, 30));
+        backBtn.setMaximumSize(new java.awt.Dimension(134, 25));
+        backBtn.setMinimumSize(new java.awt.Dimension(134, 25));
+        backBtn.setPreferredSize(new java.awt.Dimension(134, 25));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
+            }
+        });
+
+        addTutorialGroupBtn.setText("Add Tutorial Group");
+        addTutorialGroupBtn.setMaximumSize(new java.awt.Dimension(165, 30));
+        addTutorialGroupBtn.setMinimumSize(new java.awt.Dimension(165, 30));
+        addTutorialGroupBtn.setPreferredSize(new java.awt.Dimension(165, 30));
+        addTutorialGroupBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTutorialGroupBtnActionPerformed(evt);
+            }
+        });
+
+        removeTutorialGroupBtn.setText("Remove Tutorial Group");
+        removeTutorialGroupBtn.setMaximumSize(new java.awt.Dimension(165, 30));
+        removeTutorialGroupBtn.setMinimumSize(new java.awt.Dimension(165, 30));
+        removeTutorialGroupBtn.setPreferredSize(new java.awt.Dimension(165, 30));
+        removeTutorialGroupBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeTutorialGroupBtnActionPerformed(evt);
+            }
+        });
+
+        listTGBtn.setText("List Tutorial Group");
+        listTGBtn.setMaximumSize(new java.awt.Dimension(165, 30));
+        listTGBtn.setMinimumSize(new java.awt.Dimension(165, 30));
+        listTGBtn.setPreferredSize(new java.awt.Dimension(165, 30));
+        listTGBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listTGBtnActionPerformed(evt);
             }
         });
 
@@ -108,21 +141,24 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(163, 163, 163)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(removeProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(viewProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(findProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(editProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(36, 36, 36))
-                            .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(167, 167, 167))
+                        .addGap(243, 243, 243)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(removeProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(viewProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(findProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(removeTutorialGroupBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addTutorialGroupBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(listTGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,14 +168,21 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(addProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(viewProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addTutorialGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addComponent(findProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(editProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(removeProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(findProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeTutorialGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(listTGBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(editProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(removeProgrammeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -175,6 +218,21 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void addTutorialGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTutorialGroupBtnActionPerformed
+        AddTutorialGroup addTutorialGroup = new AddTutorialGroup();
+        addTutorialGroup.setVisible(true);
+    }//GEN-LAST:event_addTutorialGroupBtnActionPerformed
+
+    private void removeTutorialGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTutorialGroupBtnActionPerformed
+        RemoveTutorialGroup removeTutorialGroup = new RemoveTutorialGroup();
+        removeTutorialGroup.setVisible(true);
+    }//GEN-LAST:event_removeTutorialGroupBtnActionPerformed
+
+    private void listTGBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listTGBtnActionPerformed
+        ListTutorialGroup listTutorialGroup = new ListTutorialGroup();
+        listTutorialGroup.setVisible(true);
+    }//GEN-LAST:event_listTGBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,11 +272,14 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProgrammeBtn;
+    private javax.swing.JButton addTutorialGroupBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton editProgrammeBtn;
     private javax.swing.JButton findProgrammeBtn;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton listTGBtn;
     private javax.swing.JButton removeProgrammeBtn;
+    private javax.swing.JButton removeTutorialGroupBtn;
     private javax.swing.JButton viewProgrammeBtn;
     // End of variables declaration//GEN-END:variables
 }

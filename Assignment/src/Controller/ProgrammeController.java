@@ -42,11 +42,18 @@ public class ProgrammeController {
     }
     
     public boolean removeProgramme(int index){
+        if (index < 0){
+            throw new NullPointerException();
+        }
         return programmeList.remove(index) != null;
     }
     
     public boolean removeProgramme(Programme programme){
         return programmeList.remove(programme);
+    }
+    
+    public boolean replaceProgramme(int index, Programme programme){
+        return programmeList.replace(index, programme) != null;
     }
     
     public Programme findProgrammeByID(String ID){
@@ -69,16 +76,25 @@ public class ProgrammeController {
         return null;
     }
     
+    public Programme findProgrammeByIndex(int index){
+        return programmeList.get(index);
+    }
+    
     public String displayProgrammeList(LinkedSetUniqueList<Programme> tempList){
+        String tutorialGroupNameList = "";
         String output = "===================================\n";
         for (int i = 0; i < tempList.size(); i++){
             Programme tempProgramme = tempList.get(i);
+            for (TutorialGroup tg : tempProgramme.getTutorialGroupList()){
+                tutorialGroupNameList += Integer.toString(tg.getGroupNumber());
+            }
                 output += (i + 1) + ". \n"
                 + String.format(" %-15s\t: %s\n", "Programme Name", tempProgramme.getProgrammeName())
                 + String.format(" %-15s\t: %s\n", "Programme ID", tempProgramme.getProgrammeID())
                 + String.format(" %-15s\t: %s\n", "Duration (Years)", tempProgramme.getDuration())
                 + String.format(" %-15s\t: %s\n", "Total Fees (RM)", tempProgramme.getFeesInTotal())
                 + String.format(" %-15s\t: %s\n", "Total Semesters", tempProgramme.getTotalSemesters())
+                + String.format(" %-15s\t: %s\n", "Tutorial Group", tutorialGroupNameList)
                 + "\n===================================\n";
         }
         

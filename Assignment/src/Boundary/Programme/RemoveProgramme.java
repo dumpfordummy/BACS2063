@@ -225,7 +225,7 @@ public class RemoveProgramme extends javax.swing.JFrame {
             }
         } catch (NullPointerException ex){
             feedbackMsg.setForeground(Color.red);
-            feedbackMsg.setText("Index out of bounds!");
+            feedbackMsg.setText("Index is out of bounds! Please enter numbers starting from 1 to " + ProgrammeController.getProgrammeList().size());
         }
     }//GEN-LAST:event_removeBtnActionPerformed
 
