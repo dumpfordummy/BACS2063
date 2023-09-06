@@ -5,6 +5,8 @@
 package Boundary.Programme;
 
 import Controller.ProgrammeController;
+import Entity.Programme;
+import java.awt.Color;
 
 /**
  *
@@ -45,6 +47,7 @@ public class EditProgramme extends javax.swing.JFrame {
         inputLabel = new javax.swing.JLabel();
         editBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
+        feedbackMsgLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,14 +95,18 @@ public class EditProgramme extends javax.swing.JFrame {
             }
         });
 
+        feedbackMsgLabel.setMaximumSize(new java.awt.Dimension(40, 20));
+        feedbackMsgLabel.setMinimumSize(new java.awt.Dimension(40, 20));
+        feedbackMsgLabel.setPreferredSize(new java.awt.Dimension(40, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
+                .addContainerGap(257, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,20 +115,22 @@ public class EditProgramme extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(textLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(editBtn)
+                                        .addGap(51, 51, 51)
+                                        .addComponent(cancelBtn))
+                                    .addComponent(textLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(inputLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(editInputTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editBtn)
-                                .addGap(51, 51, 51)
-                                .addComponent(cancelBtn)
-                                .addGap(61, 61, 61))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(feedbackMsgLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(inputLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(editInputTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(23, 23, 23))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(progListLabel)
                         .addContainerGap())))
@@ -145,7 +154,9 @@ public class EditProgramme extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(inputLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(editInputTField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(95, 95, 95)
+                        .addGap(18, 18, 18)
+                        .addComponent(feedbackMsgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(editBtn)
                             .addComponent(cancelBtn))
@@ -160,11 +171,20 @@ public class EditProgramme extends javax.swing.JFrame {
     }//GEN-LAST:event_editInputTFieldActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
-        // TODO add your handling code here:
+        ProgrammeController progController = new ProgrammeController();
+        String progID = editInputTField.getText();
+            Programme foundProg = progController.findProgrammeByID(progID);
+            if (foundProg != null) {
+                EditProgrammeDetails editProgrammeDetails = new EditProgrammeDetails(foundProg, progID);
+                editProgrammeDetails.setVisible(true);
+            } else {
+                feedbackMsgLabel.setForeground(Color.red);
+                feedbackMsgLabel.setText("Programme not found!");
+            }
     }//GEN-LAST:event_editBtnActionPerformed
 
     /**
@@ -206,6 +226,7 @@ public class EditProgramme extends javax.swing.JFrame {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JTextField editInputTField;
+    private javax.swing.JLabel feedbackMsgLabel;
     private javax.swing.JLabel inputLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -24,6 +24,11 @@ public class EditProgrammeDetails extends javax.swing.JFrame {
     public EditProgrammeDetails(Programme p, String index){
         initComponents();
         selectedIndexLabel.setText(selectedIndexLabel.getText() + index);
+        progNameTxtField.setText(p.getProgrammeName());
+        progIDTxtField.setText(p.getProgrammeID());
+        durationTxtField.setText(p.getDuration());
+        feesTxtField.setText(String.valueOf(p.getFeesInTotal()));
+        totalSemTxtField.setText(String.valueOf(p.getTotalSemesters()));
         
     }
     
