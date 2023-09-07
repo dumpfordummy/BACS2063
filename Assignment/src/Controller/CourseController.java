@@ -98,6 +98,17 @@ public class CourseController {
         return courseList.size();
     }
     
-
     
+
+    public String ListAllCourse(LinkedList<Course> listCourse) {
+        String result = "----------------------------------------------\n";
+        for (Course course : listCourse) {
+            result += "Course Code: " + course.getCourseCode() + "\n"
+                    + "Course Name: " + course.getCourseName() + "\n"
+                    + "Credit Hours: " + course.getCreditHours() + "\n"
+                    + "----------------------------------------------\n";
+        }
+        return result;
+    }
+
 }

@@ -5,7 +5,9 @@
  */
 package Boundary.Course;
 
+import ADT.Impl.LinkedList;
 import Controller.CourseController;
+import Entity.Course;
 
 /**
  *
@@ -18,7 +20,9 @@ public class ViewCourse extends javax.swing.JFrame {
      */
     public ViewCourse() {
         initComponents();
-        CourseController courseController = new CourseController();
+        CourseController courseController = CourseController.getInstance();
+        String listAll = courseController.ListAllCourse(courseController.getcourseList());
+        viewCourseTextArea.setText(listAll);
 
     }
 
@@ -32,21 +36,18 @@ public class ViewCourse extends javax.swing.JFrame {
     private void initComponents() {
 
         cancelBtn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         viewCourseTextArea = new javax.swing.JTextArea();
-        courseHourRadioBtn = new javax.swing.JRadioButton();
+        CourseTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cancelBtn.setText("Cancel");
+        cancelBtn.setText("Back");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Sort by");
 
         viewCourseTextArea.setColumns(20);
         viewCourseTextArea.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
@@ -57,40 +58,38 @@ public class ViewCourse extends javax.swing.JFrame {
         viewCourseTextArea.setEnabled(false);
         jScrollPane1.setViewportView(viewCourseTextArea);
 
-        courseHourRadioBtn.setText("Course Hour");
+        CourseTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CourseTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CourseTitle.setText("View All Course ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(230, 230, 230)
-                .addComponent(cancelBtn)
-                .addContainerGap(245, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(courseHourRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CourseTitle)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(14, 14, 14))))
+                        .addGap(225, 225, 225)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2)
+                .addContainerGap()
+                .addComponent(CourseTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(courseHourRadioBtn)
-                .addGap(8, 8, 8)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cancelBtn)
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,9 +135,8 @@ public class ViewCourse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CourseTitle;
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JRadioButton courseHourRadioBtn;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea viewCourseTextArea;
     // End of variables declaration//GEN-END:variables
