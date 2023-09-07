@@ -5,12 +5,11 @@
 package Boundary.Tutor;
 
 import ADT.Impl.ArraySetUniqueList;
-import Controller.TutorController;
 import Entity.Tutor;
 
 /**
  *
- * @author CY
+ * @author Hoo Chun Yuan
  */
 public class ResultDialog extends javax.swing.JDialog {
 

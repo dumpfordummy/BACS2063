@@ -11,11 +11,10 @@ import Utility.TutorUtil;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.function.BiFunction;
-import javax.swing.DefaultListModel;
 
 /**
  *
- * @author CY
+ * @author Hoo Chun Yuan
  */
 public class ViewDialog extends javax.swing.JDialog {
 

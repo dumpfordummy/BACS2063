@@ -11,7 +11,7 @@ import Boundary.TutorialGroup.TutorialGroupManagementFrame;
 
 /**
  *
- * @author CY
+ * @author Hoo Chun Yuan
  */
 public class MainFrame extends javax.swing.JFrame {
 

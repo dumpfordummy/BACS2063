@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ADT.Impl;
 
 import ADT.Interface.SetUniqueListInterface;
@@ -11,7 +7,7 @@ import java.util.function.Consumer;
 
 /**
  *
- * @author CY
+ * @author Hoo Chun Yuan
  */
 public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterable<T> {
 
@@ -148,7 +144,7 @@ public class ArraySetUniqueList<T> implements SetUniqueListInterface<T>, Iterabl
         T result = null;
         existingIndexCheck(index);
         result = (T) items[index];
-        if (index != size - 1) { // if not remove last element
+        if (index != size - 1) {
             leftShift(index + 1);
         }
         items[size - 1] = null;

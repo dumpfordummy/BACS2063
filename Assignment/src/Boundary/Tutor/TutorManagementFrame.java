@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 
 /**
  *
- * @author CY
+ * @author Hoo Chun Yuan
  */
 public class TutorManagementFrame extends javax.swing.JFrame {
 

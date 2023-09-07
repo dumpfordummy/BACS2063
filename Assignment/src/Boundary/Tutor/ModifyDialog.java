@@ -4,14 +4,13 @@
  */
 package Boundary.Tutor;
 
-import ADT.Impl.ArraySetUniqueList;
 import Controller.TutorController;
 import Entity.Tutor;
 import javax.swing.JDialog;
 
 /**
  *
- * @author CY
+ * @author Hoo Chun Yuan
  */
 public class ModifyDialog extends javax.swing.JDialog {
 

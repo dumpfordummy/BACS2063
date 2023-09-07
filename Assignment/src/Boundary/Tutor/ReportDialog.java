@@ -13,7 +13,7 @@ import javax.swing.JDialog;
 
 /**
  *
- * @author CY
+ * @author Hoo Chun Yuan
  */
 public class ReportDialog extends javax.swing.JDialog {
 

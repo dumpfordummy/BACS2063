@@ -11,7 +11,7 @@ import java.lang.reflect.Modifier;
 
 /**
  *
- * @author CY
+ * @author Hoo Chun Yuan
  */
 public class ModifyDetailsDialog extends javax.swing.JDialog {
 

@@ -8,12 +8,11 @@ import ADT.Impl.ArraySetUniqueList;
 import Controller.TutorController;
 import Entity.Tutor;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.JList;
 
 /**
  *
- * @author CY
+ * @author Hoo Chun Yuan
  */
 public class RemoveDialog extends javax.swing.JDialog {
 
