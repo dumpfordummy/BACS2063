@@ -35,9 +35,18 @@ public class CourseController {
 //        course.getProgrammeList().add(programme2);
 //        course.getProgrammeList().add(programme3);
 //        course.getProgrammeList().add(programme4);
-
+        Course course = new Course();
         Course course1 = new Course("Data Structure and Algorithm","BACS2020",20);
+        Course course2 = new Course("Database", "AAMS2001", 12);
+        Course course3 = new Course("Advanced Calculus", "AMMS2080", 10);
+
         courseList.add(course1);
+        courseList.add(course2);
+        courseList.add(course3);
+    }
+    
+    public static final CourseController getInstance() {
+        return CourseControllerHolder.INSTANCE;
     }
     
     public LinkedList<Course> getcourseList(){
@@ -89,5 +98,6 @@ public class CourseController {
         return courseList.size();
     }
     
+
     
 }

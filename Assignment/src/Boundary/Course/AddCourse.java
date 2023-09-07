@@ -5,6 +5,7 @@
  */
 package Boundary.Course;
 
+import ADT.Impl.LinkedList;
 import Boundary.Programme.ProgrammeManagementFrame;
 import Controller.CourseController;
 import Entity.Course;
@@ -139,8 +140,9 @@ public class AddCourse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        CourseController courseController = new CourseController();
-        
+        Course course = new Course();
+        CourseController courseController =  CourseController.getInstance();
+           
         String courseCode = courseCodeTxtField.getText();
         String courseName = courseNameTxtField.getText();
         double courseHour = Double.parseDouble(totalCreditHourTxtField.getText());
@@ -149,20 +151,19 @@ public class AddCourse extends javax.swing.JFrame {
         
         boolean isDuplicate = false;
 
-        // Check for duplicates
         for (Course existingCourse : courseController.getcourseList()) {
-            if (existingCourse.equals(newCourse)) {
-                isDuplicate = true;
-                break;
+           if (existingCourse.equals(newCourse)) {
+               isDuplicate = true;
+               break;
             }
-        }
+       }
 
         if (!isDuplicate) {
             courseController.addCourse(newCourse);
-            JOptionPane.showMessageDialog(null, "Successful Added a New Course into the system. \nCourse Code : " +courseCode + "\nCourse Name : " + courseName + "\nCourse Hour : "+courseHour);
+            JOptionPane.showMessageDialog(null, "Successful Added a New Course into the system. \nCourse Code : " +courseCode + "\nCourse Name : " + courseName + "\nCourse Hour : "+String.format("%.0f", courseHour));
         } else {
-            JOptionPane.showMessageDialog(null, "There is an Duplication with the existing Course.");
-        }
+           JOptionPane.showMessageDialog(null, "There is an Duplication with the existing Course.");
+       }
 
     }//GEN-LAST:event_addBtnActionPerformed
 

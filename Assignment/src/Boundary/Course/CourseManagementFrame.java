@@ -155,7 +155,9 @@ public class CourseManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_viewCourseBtnActionPerformed
 
     private void findCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findCourseBtnActionPerformed
-        // TODO add your handling code here:
+        FindCourse findCourse = new FindCourse();
+        findCourse.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_findCourseBtnActionPerformed
 
     private void amendCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amendCourseBtnActionPerformed
@@ -167,12 +169,10 @@ public class CourseManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_removeCourseBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
