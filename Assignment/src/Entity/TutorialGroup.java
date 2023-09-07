@@ -63,4 +63,11 @@ public class TutorialGroup {
             this.noOfStudents++;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Tutorial Group\n==============\n" + "groupNumber: " + groupNumber + "\nNo Of Students: " + noOfStudents + "\nStudent List: " + studentList.toString() + '\n';
+    }
+    
+    
 }

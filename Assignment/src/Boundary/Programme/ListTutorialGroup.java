@@ -4,6 +4,15 @@
  */
 package Boundary.Programme;
 
+import ADT.Impl.ArrayList;
+import ADT.Impl.LinkedSetUniqueList;
+import ADT.Interface.ListInterface;
+import Controller.ProgrammeController;
+import Controller.TutorialGroupController;
+import Entity.Programme;
+import Entity.TutorialGroup;
+import java.awt.Color;
+
 /**
  *
  * @author ASUS
@@ -26,21 +35,111 @@ public class ListTutorialGroup extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        progListTxtArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        programmeSelectList = new javax.swing.JComboBox<>();
+        initializeProgrammeField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TGListTxtArea = new javax.swing.JTextArea();
+
+        progListTxtArea.setEditable(false);
+        progListTxtArea.setColumns(20);
+        progListTxtArea.setRows(5);
+        jScrollPane1.setViewportView(progListTxtArea);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("List of Tutorial Group in Programme");
+
+        jLabel3.setText("Programme:");
+        jLabel3.setMaximumSize(new java.awt.Dimension(80, 25));
+        jLabel3.setMinimumSize(new java.awt.Dimension(80, 25));
+        jLabel3.setPreferredSize(new java.awt.Dimension(80, 25));
+
+        programmeSelectList.setMaximumSize(new java.awt.Dimension(230, 25));
+        programmeSelectList.setMinimumSize(new java.awt.Dimension(230, 25));
+        programmeSelectList.setPreferredSize(new java.awt.Dimension(230, 25));
+        programmeSelectList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                programmeSelectListItemStateChanged(evt);
+            }
+        });
+
+        TGListTxtArea.setEditable(false);
+        TGListTxtArea.setColumns(20);
+        TGListTxtArea.setRows(5);
+        jScrollPane2.setViewportView(TGListTxtArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2)
+                .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void initializeProgrammeField(){
+        LinkedSetUniqueList<Programme> programmeList = ProgrammeController.getProgrammeList();
+        
+        for (Programme programme : programmeList){
+            programmeSelectList.addItem(programme.getProgrammeName());
+        }
+    }
+    
+    private void programmeSelectListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_programmeSelectListItemStateChanged
+        String selectedProgramme = programmeSelectList.getSelectedItem().toString();
+        try{
+            String output = "";
+            ProgrammeController programmeController = new ProgrammeController();
+            Programme programme = programmeController.findProgrammeByName(selectedProgramme);
+
+            ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+            //TutorialGroupController tgController = TutorialGroupController.getInstance();
+            for (TutorialGroup tg : tutorialGroupList){
+                output += tg.toString();
+            }
+            
+            if (output.equals("")){
+                TGListTxtArea.setText("No tutorial groups found!");
+            } else {
+                TGListTxtArea.setText(output);
+            }
+            
+        } catch (IndexOutOfBoundsException ex){
+            TGListTxtArea.setText("No tutorial groups found!");
+        }
+    }//GEN-LAST:event_programmeSelectListItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -78,5 +177,12 @@ public class ListTutorialGroup extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea TGListTxtArea;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea progListTxtArea;
+    private javax.swing.JComboBox<String> programmeSelectList;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,7 +32,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="332" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="324" max="32767" attributes="0"/>
                           <Component id="feedbackMsg" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -45,13 +45,13 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="inputLabel" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                                  <Component id="inputLabel" min="-2" pref="128" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" pref="136" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="removeInputTField" max="32767" attributes="0"/>
-                                  <Component id="progRemoveBy" min="-2" max="-2" attributes="0"/>
+                                  <Component id="progRemoveBy" min="-2" pref="106" max="-2" attributes="0"/>
+                                  <Component id="removeInputTField" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>

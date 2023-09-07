@@ -60,9 +60,6 @@ public class Student {
         final Student other = (Student) obj;
 
         return this.studID.equals(other.studID);
-    }
-
-    
-    
+    }    
     
 }
