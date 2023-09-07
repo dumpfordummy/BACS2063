@@ -4,6 +4,8 @@
  */
 package Boundary.Programme;
 
+import Boundary.MainFrame;
+
 /**
  *
  * @author Wai Loc
@@ -217,6 +219,8 @@ public class ProgrammeManagementFrame extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
+        MainFrame main = new MainFrame();
+        main.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addTutorialGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTutorialGroupBtnActionPerformed
