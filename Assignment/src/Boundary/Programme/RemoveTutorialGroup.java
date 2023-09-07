@@ -27,7 +27,7 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
 
     private void initializeProgrammeField(){
         LinkedSetUniqueList<Programme> programmeList = ProgrammeController.getProgrammeList();
-        //programmeSelectList.addItem("--");
+        programmeSelectList.addItem("--");
         
         for (Programme programme : programmeList){
             programmeSelectList.addItem(programme.getProgrammeName());
@@ -35,14 +35,33 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
     }
     
     private void initializeTutorialGroupField(Programme programme) {
+        tutorialSelectList.removeAllItems();
         ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+        ArrayList<TutorialGroup> result = new ArrayList<>();
+        result.add(tutorialGroupList.get(0));
+        boolean shouldInsertLast = true;
+        for (int i = 1; i < tutorialGroupList.size(); i++) {
+            TutorialGroup tutGroup1 = tutorialGroupList.get(i);
+            shouldInsertLast = true;
+            for (int j = 0; j < result.size(); j++) {
+                TutorialGroup tutGroup2 = tutorialGroupList.get(j);
+                if (tutGroup1.getGroupNumber() < tutGroup2.getGroupNumber()) {
+                    result.add(0, tutGroup1);
+                    shouldInsertLast = false;
+                    break;
+                }
+            }
+            if (shouldInsertLast) {
+                result.add(tutGroup1);
+            }
+        }
         
-        if(tutorialGroupList.isEmpty()){
+        if (result.isEmpty()){
             tutorialSelectList.addItem("--");
             return;
         }
         
-        for(TutorialGroup group : tutorialGroupList) {
+        for (TutorialGroup group : result) {
             tutorialSelectList.addItem(Integer.toString(group.getGroupNumber()));
         }
     }
@@ -61,7 +80,6 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
             initializeTutorialGroupField(programme);
 
             ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
-            //TutorialGroupController tgController = TutorialGroupController.getInstance();
             for (TutorialGroup tg : tutorialGroupList){
                 output += tg.toString();
             }
@@ -232,7 +250,6 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
             initializeTutorialGroupField(programme);
 
             ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
-            //TutorialGroupController tgController = TutorialGroupController.getInstance();
             for (TutorialGroup tg : tutorialGroupList){
                 output += tg.toString();
             }

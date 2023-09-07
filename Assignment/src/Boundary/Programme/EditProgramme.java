@@ -175,11 +175,11 @@ public class EditProgramme extends javax.swing.JFrame {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         ProgrammeController progController = new ProgrammeController();
-        String progID = editInputTField.getText();
+        String index = editInputTField.getText();
         try{
-            Programme foundProg = progController.findProgrammeByIndex(Integer.parseInt(progID) - 1);
+            Programme foundProg = progController.findProgrammeByIndex(Integer.parseInt(index) - 1);
             if (foundProg != null) {
-                EditProgrammeDetails editProgrammeDetails = new EditProgrammeDetails(foundProg, progID);
+                EditProgrammeDetails editProgrammeDetails = new EditProgrammeDetails(foundProg, index);
                 editProgrammeDetails.setVisible(true);
                 this.setVisible(false);
             } else {

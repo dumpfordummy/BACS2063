@@ -102,4 +102,45 @@ public class ProgrammeController {
         return output;
     }
 
+    public String reportProgrammeByFees(){
+        LinkedSetUniqueList<Programme> sortedProgrammeByFeesList = programmeList;
+        for (int n = 0; n < sortedProgrammeByFeesList.size(); n++){
+            for (int i = 0; i < sortedProgrammeByFeesList.size() - 1; i++) {
+                if (sortedProgrammeByFeesList.get(i).getFeesInTotal() < sortedProgrammeByFeesList.get(i+1).getFeesInTotal()) {
+                    Programme tempProgramme = sortedProgrammeByFeesList.get(i);
+                    sortedProgrammeByFeesList.replace(i+1, sortedProgrammeByFeesList.get(i+1));
+                    sortedProgrammeByFeesList.replace(i+1+1, tempProgramme);
+                }
+            }
+        }
+        
+        String output = String.format("%-70s\t%-15s\t%-20s\n", "Programme Name", "Total Fees", "Number of Semesters");
+        output += "================================================================================\n";
+        for (Programme p : sortedProgrammeByFeesList){
+            output += String.format("%-70s\t%-15s\t%-20s\n", p.getProgrammeName(), p.getFeesInTotal(), p.getTotalSemesters());          
+        }
+        
+        return output;
+    }
+    
+    public String reportProgrammeByTotalGroups(){
+        LinkedSetUniqueList<Programme> sortedProgrammeByTotalGroupsList = programmeList;
+        for (int n = 0; n < sortedProgrammeByTotalGroupsList.size(); n++){
+            for (int i = 0; i < sortedProgrammeByTotalGroupsList.size() - 1; i++) {
+                if (sortedProgrammeByTotalGroupsList.get(i).getTutorialGroupList().size() < sortedProgrammeByTotalGroupsList.get(i+1).getTutorialGroupList().size()) {
+                    Programme tempProgramme = sortedProgrammeByTotalGroupsList.get(i);
+                    sortedProgrammeByTotalGroupsList.replace(i+1, sortedProgrammeByTotalGroupsList.get(i+1));
+                    sortedProgrammeByTotalGroupsList.replace(i+1+1, tempProgramme);
+                }
+            }
+        }
+        
+        String output = String.format("%-70s\t%-25s\n", "Programme Name", "Total Tutorial Groups");
+        output += "===================================================================\n";
+        for (Programme p : sortedProgrammeByTotalGroupsList){
+            output += String.format("%-70s\t%-25s\n", p.getProgrammeName(), p.getTutorialGroupList().size());          
+        }
+        
+        return output;
+    }
 }

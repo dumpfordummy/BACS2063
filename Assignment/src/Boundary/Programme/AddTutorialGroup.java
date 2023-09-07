@@ -78,12 +78,10 @@ public class AddTutorialGroup extends javax.swing.JFrame {
         jLabel3.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel3.setPreferredSize(new java.awt.Dimension(80, 25));
 
-        tutorialSelectList.setSelectedIndex(-1);
         tutorialSelectList.setMaximumSize(new java.awt.Dimension(230, 25));
         tutorialSelectList.setMinimumSize(new java.awt.Dimension(230, 25));
         tutorialSelectList.setPreferredSize(new java.awt.Dimension(230, 25));
 
-        programmeSelectList.setSelectedIndex(-1);
         programmeSelectList.setMaximumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setMinimumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setPreferredSize(new java.awt.Dimension(230, 25));
@@ -115,7 +113,7 @@ public class AddTutorialGroup extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(addBtn)
-                        .addGap(18, 18, 18)
+                        .addGap(35, 35, 35)
                         .addComponent(cancelBtn))
                     .addComponent(jLabel1))
                 .addGap(160, 160, 160))
