@@ -35,7 +35,7 @@
                           <Component id="viewCourseBtn" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="addCourseBtn" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="findCourseBtn" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Component id="modifyCourseBtn" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="amendCourseBtn" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="removeCourseBtn" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="backBtn" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
@@ -57,7 +57,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="findCourseBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="modifyCourseBtn" min="-2" max="-2" attributes="0"/>
+              <Component id="amendCourseBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="removeCourseBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -128,9 +128,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="findCourseBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="modifyCourseBtn">
+    <Component class="javax.swing.JButton" name="amendCourseBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Modify Course"/>
+        <Property name="text" type="java.lang.String" value="Amend Course"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[134, 22]"/>
         </Property>
@@ -142,7 +142,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyCourseBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="amendCourseBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="removeCourseBtn">

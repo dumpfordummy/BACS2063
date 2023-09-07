@@ -31,7 +31,7 @@ public class CourseManagementFrame extends javax.swing.JFrame {
         addCourseBtn = new javax.swing.JButton();
         viewCourseBtn = new javax.swing.JButton();
         findCourseBtn = new javax.swing.JButton();
-        modifyCourseBtn = new javax.swing.JButton();
+        amendCourseBtn = new javax.swing.JButton();
         removeCourseBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
@@ -71,13 +71,13 @@ public class CourseManagementFrame extends javax.swing.JFrame {
             }
         });
 
-        modifyCourseBtn.setText("Modify Course");
-        modifyCourseBtn.setMaximumSize(new java.awt.Dimension(134, 22));
-        modifyCourseBtn.setMinimumSize(new java.awt.Dimension(134, 22));
-        modifyCourseBtn.setPreferredSize(new java.awt.Dimension(134, 22));
-        modifyCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+        amendCourseBtn.setText("Amend Course");
+        amendCourseBtn.setMaximumSize(new java.awt.Dimension(134, 22));
+        amendCourseBtn.setMinimumSize(new java.awt.Dimension(134, 22));
+        amendCourseBtn.setPreferredSize(new java.awt.Dimension(134, 22));
+        amendCourseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyCourseBtnActionPerformed(evt);
+                amendCourseBtnActionPerformed(evt);
             }
         });
 
@@ -116,7 +116,7 @@ public class CourseManagementFrame extends javax.swing.JFrame {
                             .addComponent(viewCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(findCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modifyCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(amendCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(removeCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(160, Short.MAX_VALUE))
@@ -133,7 +133,7 @@ public class CourseManagementFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(findCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(modifyCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(amendCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(removeCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -158,9 +158,9 @@ public class CourseManagementFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_findCourseBtnActionPerformed
 
-    private void modifyCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyCourseBtnActionPerformed
+    private void amendCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amendCourseBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_modifyCourseBtnActionPerformed
+    }//GEN-LAST:event_amendCourseBtnActionPerformed
 
     private void removeCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCourseBtnActionPerformed
         // TODO add your handling code here:
@@ -208,9 +208,9 @@ public class CourseManagementFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CourseTitle;
     private javax.swing.JButton addCourseBtn;
+    private javax.swing.JButton amendCourseBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton findCourseBtn;
-    private javax.swing.JButton modifyCourseBtn;
     private javax.swing.JButton removeCourseBtn;
     private javax.swing.JButton viewCourseBtn;
     // End of variables declaration//GEN-END:variables

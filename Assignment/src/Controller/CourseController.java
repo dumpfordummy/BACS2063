@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controller;
 
 import ADT.Impl.LinkedList;
@@ -14,6 +10,7 @@ import Entity.TutorialGroup;
  * @author Jenn Wen
  */
 public class CourseController {
+    
     private static class CourseControllerHolder {
 
         private static final CourseController INSTANCE = new CourseController();
@@ -21,7 +18,8 @@ public class CourseController {
 
     private final LinkedList<Course> courseList;
 
-    private CourseController() {
+   
+    public CourseController() {
         courseList = new LinkedList<>();
         seedData();
     }
@@ -37,5 +35,59 @@ public class CourseController {
 //        course.getProgrammeList().add(programme2);
 //        course.getProgrammeList().add(programme3);
 //        course.getProgrammeList().add(programme4);
+
+        Course course1 = new Course("Data Structure and Algorithm","BACS2020",20);
+        courseList.add(course1);
     }
+    
+    public LinkedList<Course> getcourseList(){
+        return courseList;
+    }
+    
+    public void addCourse(Course course) { 
+        courseList.add(course);
+    }
+    
+    public void addCourseAtIndex(int index,Course course) { 
+        courseList.add(index,course);
+    }
+        
+    public boolean removeCourse(int index) throws NullPointerException{
+        if(index < 0){
+            throw new NullPointerException();
+        }
+        return courseList.remove(index) != null;
+    }
+    
+    public boolean removeCourse(Course course){
+        return courseList.remove(course);
+    }
+    
+    public boolean replaceCourse(int index, Course course){
+        return courseList.replace(index, course) != null;
+    }
+    
+    public Course findCourseCode(String Code){
+        for(Course course : courseList){
+            if(course.getCourseCode().equals(Code)){
+                return course;
+            }
+        }
+        return null;
+    }
+    
+    public Course findCourseName(String Name){
+        for (Course course : courseList) {
+            if (course.getCourseName().equals(Name)) {
+                return course;
+            }
+        }
+        return null;
+    }
+    
+    public int totalCourse(){
+        return courseList.size();
+    }
+    
+    
 }

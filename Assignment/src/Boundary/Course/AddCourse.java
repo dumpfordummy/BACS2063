@@ -6,6 +6,9 @@
 package Boundary.Course;
 
 import Boundary.Programme.ProgrammeManagementFrame;
+import Controller.CourseController;
+import Entity.Course;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -136,7 +139,31 @@ public class AddCourse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        CourseController courseController = new CourseController();
+        
+        String courseCode = courseCodeTxtField.getText();
+        String courseName = courseNameTxtField.getText();
+        double courseHour = Double.parseDouble(totalCreditHourTxtField.getText());
+        
+        Course newCourse = new Course(courseCode, courseName, courseHour);
+        
+        boolean isDuplicate = false;
+
+        // Check for duplicates
+        for (Course existingCourse : courseController.getcourseList()) {
+            if (existingCourse.equals(newCourse)) {
+                isDuplicate = true;
+                break;
+            }
+        }
+
+        if (!isDuplicate) {
+            courseController.addCourse(newCourse);
+            JOptionPane.showMessageDialog(null, "Successful Added a New Course into the system. \nCourse Code : " +courseCode + "\nCourse Name : " + courseName + "\nCourse Hour : "+courseHour);
+        } else {
+            JOptionPane.showMessageDialog(null, "There is an Duplication with the existing Course.");
+        }
+
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -150,9 +177,7 @@ public class AddCourse extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_courseNameTxtFieldActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
