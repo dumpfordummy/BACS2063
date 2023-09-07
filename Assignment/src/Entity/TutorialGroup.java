@@ -68,13 +68,13 @@ public class TutorialGroup {
     public String toString() {
         String studentListString = "";
         for (Student student : studentList){
-            studentListString += student.getFullName() + " \n";
+            studentListString +=  student.getFullName() + " \n\t\t";
         }
-        return "Tutorial Group\n==============\n" 
-                + "groupNumber: " + groupNumber 
-                + "\nNo Of Students: " + noOfStudents 
-                + "\nStudent List: " + studentListString 
-                + '\n';
+        return "Tutorial Group\n==============" 
+                + "\ngroupNumber: \t" + groupNumber 
+                + "\nNo Of Students: \t" + noOfStudents 
+                + "\nStudent List: \t\t" + studentListString 
+                + "\n";
     }
     
     

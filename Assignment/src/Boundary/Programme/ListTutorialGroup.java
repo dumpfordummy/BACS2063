@@ -37,10 +37,10 @@ public class ListTutorialGroup extends javax.swing.JFrame {
         progListTxtArea = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        programmeSelectList = new javax.swing.JComboBox<>();
-        initializeProgrammeField();
         jScrollPane2 = new javax.swing.JScrollPane();
         TGListTxtArea = new javax.swing.JTextArea();
+        programmeSelectList = new javax.swing.JComboBox<>();
+        initializeProgrammeField();
 
         progListTxtArea.setEditable(false);
         progListTxtArea.setColumns(20);
@@ -58,6 +58,11 @@ public class ListTutorialGroup extends javax.swing.JFrame {
         jLabel3.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel3.setPreferredSize(new java.awt.Dimension(80, 25));
 
+        TGListTxtArea.setEditable(false);
+        TGListTxtArea.setColumns(20);
+        TGListTxtArea.setRows(5);
+        jScrollPane2.setViewportView(TGListTxtArea);
+
         programmeSelectList.setMaximumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setMinimumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setPreferredSize(new java.awt.Dimension(230, 25));
@@ -67,11 +72,6 @@ public class ListTutorialGroup extends javax.swing.JFrame {
             }
         });
 
-        TGListTxtArea.setEditable(false);
-        TGListTxtArea.setColumns(20);
-        TGListTxtArea.setRows(5);
-        jScrollPane2.setViewportView(TGListTxtArea);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,15 +79,16 @@ public class ListTutorialGroup extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(63, 63, 63))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
@@ -95,29 +96,26 @@ public class ListTutorialGroup extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2)
-                .addGap(19, 19, 19))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void initializeProgrammeField(){
-        LinkedSetUniqueList<Programme> programmeList = ProgrammeController.getProgrammeList();
-        
-        for (Programme programme : programmeList){
-            programmeSelectList.addItem(programme.getProgrammeName());
-        }
-    }
-    
     private void programmeSelectListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_programmeSelectListItemStateChanged
         String selectedProgramme = programmeSelectList.getSelectedItem().toString();
         try{
+            if (selectedProgramme.equals("--")){
+                TGListTxtArea.setText("");
+                return;
+            }
+            
             String output = "";
             ProgrammeController programmeController = new ProgrammeController();
             Programme programme = programmeController.findProgrammeByName(selectedProgramme);
@@ -139,6 +137,15 @@ public class ListTutorialGroup extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_programmeSelectListItemStateChanged
 
+    private void initializeProgrammeField(){
+        LinkedSetUniqueList<Programme> programmeList = ProgrammeController.getProgrammeList();
+        programmeSelectList.addItem("--");
+        
+        for (Programme programme : programmeList){
+            programmeSelectList.addItem(programme.getProgrammeName());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

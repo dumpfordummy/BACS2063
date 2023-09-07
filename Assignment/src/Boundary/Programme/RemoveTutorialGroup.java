@@ -4,6 +4,14 @@
  */
 package Boundary.Programme;
 
+import ADT.Impl.ArrayList;
+import ADT.Impl.LinkedSetUniqueList;
+import ADT.Interface.ListInterface;
+import Controller.ProgrammeController;
+import Controller.TutorialGroupController;
+import Entity.*;
+import java.awt.Color;
+
 /**
  *
  * @author ASUS
@@ -17,6 +25,58 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
         initComponents();
     }
 
+    private void initializeProgrammeField(){
+        LinkedSetUniqueList<Programme> programmeList = ProgrammeController.getProgrammeList();
+        //programmeSelectList.addItem("--");
+        
+        for (Programme programme : programmeList){
+            programmeSelectList.addItem(programme.getProgrammeName());
+        }
+    }
+    
+    private void initializeTutorialGroupField(Programme programme) {
+        ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+        
+        if(tutorialGroupList.isEmpty()){
+            tutorialSelectList.addItem("--");
+            return;
+        }
+        
+        for(TutorialGroup group : tutorialGroupList) {
+            tutorialSelectList.addItem(Integer.toString(group.getGroupNumber()));
+        }
+    }
+    
+    public void displayTutorialGroupListSidebar(){
+        String selectedProgramme = programmeSelectList.getSelectedItem().toString();
+        try{
+            if (selectedProgramme.equals("--")){
+                TGListTxtArea.setText("");
+                return;
+            }
+
+            String output = "";
+            ProgrammeController programmeController = new ProgrammeController();
+            Programme programme = programmeController.findProgrammeByName(selectedProgramme);
+            initializeTutorialGroupField(programme);
+
+            ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+            //TutorialGroupController tgController = TutorialGroupController.getInstance();
+            for (TutorialGroup tg : tutorialGroupList){
+                output += tg.toString();
+            }
+
+            if (output.equals("")){
+                TGListTxtArea.setText("No tutorial groups found!");
+            } else {
+                TGListTxtArea.setText(output);
+            }
+
+        } catch (IndexOutOfBoundsException ex){
+            TGListTxtArea.setText("No tutorial groups found!");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,21 +86,195 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TGListTxtArea = new javax.swing.JTextArea();
+        programmeSelectList = new javax.swing.JComboBox<>();
+        initializeProgrammeField();
+        feedbackMsg = new javax.swing.JLabel();
+        removeBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        tutorialSelectList = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Remove Tutorial Group in Programme");
+
+        jLabel3.setText("Programme:");
+        jLabel3.setMaximumSize(new java.awt.Dimension(80, 25));
+        jLabel3.setMinimumSize(new java.awt.Dimension(80, 25));
+        jLabel3.setPreferredSize(new java.awt.Dimension(80, 25));
+
+        TGListTxtArea.setEditable(false);
+        TGListTxtArea.setColumns(20);
+        TGListTxtArea.setRows(5);
+        jScrollPane2.setViewportView(TGListTxtArea);
+
+        programmeSelectList.setMaximumSize(new java.awt.Dimension(230, 25));
+        programmeSelectList.setMinimumSize(new java.awt.Dimension(230, 25));
+        programmeSelectList.setPreferredSize(new java.awt.Dimension(230, 25));
+        programmeSelectList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                programmeSelectListItemStateChanged(evt);
+            }
+        });
+
+        removeBtn.setText("Remove");
+        removeBtn.setMaximumSize(new java.awt.Dimension(80, 25));
+        removeBtn.setMinimumSize(new java.awt.Dimension(80, 25));
+        removeBtn.setPreferredSize(new java.awt.Dimension(80, 25));
+        removeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBtnActionPerformed(evt);
+            }
+        });
+
+        cancelBtn.setText("Cancel");
+        cancelBtn.setMaximumSize(new java.awt.Dimension(80, 25));
+        cancelBtn.setMinimumSize(new java.awt.Dimension(80, 25));
+        cancelBtn.setPreferredSize(new java.awt.Dimension(80, 25));
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Remove tutorial group:");
+        jLabel2.setMaximumSize(new java.awt.Dimension(128, 30));
+        jLabel2.setMinimumSize(new java.awt.Dimension(128, 30));
+        jLabel2.setPreferredSize(new java.awt.Dimension(128, 30));
+
+        tutorialSelectList.setMaximumSize(new java.awt.Dimension(110, 30));
+        tutorialSelectList.setMinimumSize(new java.awt.Dimension(110, 30));
+        tutorialSelectList.setName(""); // NOI18N
+        tutorialSelectList.setPreferredSize(new java.awt.Dimension(110, 30));
+        tutorialSelectList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tutorialSelectListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(161, 161, 161))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(feedbackMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tutorialSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tutorialSelectList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(71, 71, 71)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 31, Short.MAX_VALUE)
+                .addComponent(feedbackMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void programmeSelectListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_programmeSelectListItemStateChanged
+        String selectedProgramme = programmeSelectList.getSelectedItem().toString();
+        try{
+            if (selectedProgramme.equals("--")){
+                TGListTxtArea.setText("");
+                return;
+            }
+
+            String output = "";
+            ProgrammeController programmeController = new ProgrammeController();
+            Programme programme = programmeController.findProgrammeByName(selectedProgramme);
+            initializeTutorialGroupField(programme);
+
+            ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+            //TutorialGroupController tgController = TutorialGroupController.getInstance();
+            for (TutorialGroup tg : tutorialGroupList){
+                output += tg.toString();
+            }
+
+            if (output.equals("")){
+                TGListTxtArea.setText("No tutorial groups found!");
+            } else {
+                TGListTxtArea.setText(output);
+            }
+
+        } catch (IndexOutOfBoundsException ex){
+            TGListTxtArea.setText("No tutorial groups found!");
+        }
+    }//GEN-LAST:event_programmeSelectListItemStateChanged
+
+    private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
+        ProgrammeController progController = new ProgrammeController();
+        boolean result = false;
+        
+        TutorialGroupController tgController = TutorialGroupController.getInstance();
+        Programme programme = progController.findProgrammeByName(programmeSelectList.getSelectedItem().toString());
+        TutorialGroup tutorialGroup = tgController.findTutorialGroupByGroupNumber(Integer.parseInt(tutorialSelectList.getSelectedItem().toString()));
+        result = programme.getTutorialGroupList().remove(tutorialGroup);
+        
+        if (result){
+            displayTutorialGroupListSidebar();
+            feedbackMsg.setForeground(new Color(56,118,29));
+            feedbackMsg.setText("Tutorial group is successfully removed from programme!");
+        } else {
+            displayTutorialGroupListSidebar();
+            feedbackMsg.setForeground(Color.red);
+            feedbackMsg.setText("Failed to remove tutorial group!");
+        }
+    }//GEN-LAST:event_removeBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void tutorialSelectListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialSelectListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tutorialSelectListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +312,15 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea TGListTxtArea;
+    private javax.swing.JButton cancelBtn;
+    private javax.swing.JLabel feedbackMsg;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox<String> programmeSelectList;
+    private javax.swing.JButton removeBtn;
+    private javax.swing.JComboBox<String> tutorialSelectList;
     // End of variables declaration//GEN-END:variables
 }
