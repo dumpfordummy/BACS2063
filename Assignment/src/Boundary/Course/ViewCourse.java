@@ -5,6 +5,10 @@
  */
 package Boundary.Course;
 
+import ADT.Impl.LinkedList;
+import Controller.CourseController;
+import Entity.Course;
+
 /**
  *
  * @author jennw
@@ -16,6 +20,10 @@ public class ViewCourse extends javax.swing.JFrame {
      */
     public ViewCourse() {
         initComponents();
+        CourseController courseController = CourseController.getInstance();
+        String listAll = courseController.ListAllCourse(courseController.getcourseList());
+        viewCourseTextArea.setText(listAll);
+
     }
 
     /**
@@ -28,77 +36,60 @@ public class ViewCourse extends javax.swing.JFrame {
     private void initComponents() {
 
         cancelBtn = new javax.swing.JButton();
-        courseComboField = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tutorResultTextArea = new javax.swing.JTextArea();
+        viewCourseTextArea = new javax.swing.JTextArea();
+        CourseTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cancelBtn.setText("Cancel");
+        cancelBtn.setText("Back");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
             }
         });
 
-        courseComboField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Course Code", "Course Name" }));
-        courseComboField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                courseComboFieldActionPerformed(evt);
-            }
-        });
+        viewCourseTextArea.setColumns(20);
+        viewCourseTextArea.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        viewCourseTextArea.setForeground(new java.awt.Color(0, 0, 0));
+        viewCourseTextArea.setLineWrap(true);
+        viewCourseTextArea.setRows(5);
+        viewCourseTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        viewCourseTextArea.setEnabled(false);
+        jScrollPane1.setViewportView(viewCourseTextArea);
 
-        jLabel2.setText("Sort by");
-
-        jLabel1.setText("Course List:");
-
-        tutorResultTextArea.setColumns(20);
-        tutorResultTextArea.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        tutorResultTextArea.setForeground(new java.awt.Color(0, 0, 0));
-        tutorResultTextArea.setLineWrap(true);
-        tutorResultTextArea.setRows(5);
-        tutorResultTextArea.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        tutorResultTextArea.setEnabled(false);
-        jScrollPane1.setViewportView(tutorResultTextArea);
+        CourseTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CourseTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CourseTitle.setText("View All Course ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(230, 230, 230)
-                .addComponent(cancelBtn)
-                .addContainerGap(245, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CourseTitle)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(courseComboField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14))
+                        .addGap(225, 225, 225)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(courseComboField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)))
+                .addComponent(CourseTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cancelBtn)
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -107,12 +98,6 @@ public class ViewCourse extends javax.swing.JFrame {
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
-
-    private void courseComboFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseComboFieldActionPerformed
-        // TODO add your handling code here:
-        String itemName = (String) courseComboField.getSelectedItem();
-        int itemIndex = courseComboField.getSelectedIndex();
-    }//GEN-LAST:event_courseComboFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,11 +135,9 @@ public class ViewCourse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CourseTitle;
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JComboBox<String> courseComboField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea tutorResultTextArea;
+    private javax.swing.JTextArea viewCourseTextArea;
     // End of variables declaration//GEN-END:variables
 }

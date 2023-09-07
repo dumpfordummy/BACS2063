@@ -168,23 +168,20 @@ public class FindCourse extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_findBtnActionPerformed
 
-    private void displayFoundCourses(LinkedList<Course> courses) {
-    if (courses.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "No courses found.");
-        return;
+
+    private void displayFoundCourses(LinkedList<Course> courseList) {
+        if (courseList.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No courses found.");
+        } else {
+            // Use the toString method of the Course entity to display the courses
+            String result = courseList.toString();
+
+            JOptionPane.showMessageDialog(null, "Found Courses:\n\n" + result);
+        }
     }
 
-    StringBuilder message = new StringBuilder("Found Courses:\n");
 
-    for (Course course : courses) {
-        message.append("Course Code: ").append(course.getCourseCode()).append("\n");
-        message.append("Course Name: ").append(course.getCourseName()).append("\n");
-        message.append("Total Credit Hour: ").append(course.getCreditHours()).append("\n");
-        message.append("\n");
-    }
-
-    JOptionPane.showMessageDialog(null, message.toString());
-}
+    
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
         
