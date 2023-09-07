@@ -66,7 +66,15 @@ public class TutorialGroup {
 
     @Override
     public String toString() {
-        return "Tutorial Group\n==============\n" + "groupNumber: " + groupNumber + "\nNo Of Students: " + noOfStudents + "\nStudent List: " + studentList.toString() + '\n';
+        String studentListString = "";
+        for (Student student : studentList){
+            studentListString += student.getFullName() + " \n";
+        }
+        return "Tutorial Group\n==============\n" 
+                + "groupNumber: " + groupNumber 
+                + "\nNo Of Students: " + noOfStudents 
+                + "\nStudent List: " + studentListString 
+                + '\n';
     }
     
     
