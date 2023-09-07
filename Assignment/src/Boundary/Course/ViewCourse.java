@@ -97,6 +97,8 @@ public class ViewCourse extends javax.swing.JFrame {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
+        CourseManagementFrame courseManagementFrame = new CourseManagementFrame();
+        courseManagementFrame.setVisible(true);
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     /**
