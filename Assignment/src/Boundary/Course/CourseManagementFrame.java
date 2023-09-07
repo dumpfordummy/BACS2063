@@ -163,11 +163,15 @@ public class CourseManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_findCourseBtnActionPerformed
 
     private void amendCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amendCourseBtnActionPerformed
-        // TODO add your handling code here:
+        AmendCourse amendCourse = new AmendCourse();
+        amendCourse.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_amendCourseBtnActionPerformed
 
     private void removeCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCourseBtnActionPerformed
-        // TODO add your handling code here:
+        RemoveCourse removeCourse = new RemoveCourse();
+        removeCourse.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_removeCourseBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

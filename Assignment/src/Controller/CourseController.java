@@ -97,9 +97,9 @@ public class CourseController {
     public int totalCourse(){
         return courseList.size();
     }
-    
-    
 
+
+    
     public String ListAllCourse(LinkedList<Course> listCourse) {
         String result = "----------------------------------------------\n";
         for (Course course : listCourse) {
