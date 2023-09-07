@@ -4,6 +4,7 @@
  */
 package Boundary;
 
+import Boundary.Course.CourseManagementFrame;
 import Boundary.Tutor.TutorManagementFrame;
 import Boundary.Programme.*;
 import Boundary.TutorialGroup.TutorialGroupManagementFrame;
@@ -138,7 +139,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tutorBtnActionPerformed
 
     private void courseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseBtnActionPerformed
-        // TODO add your handling code here:
+        CourseManagementFrame courseManagement = new CourseManagementFrame();
+        courseManagement.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_courseBtnActionPerformed
 
     /**

@@ -7,6 +7,7 @@ package Entity;
 import ADT.Impl.ArraySetUniqueList;
 import ADT.Impl.LinkedList;
 import ADT.Interface.SetUniqueListInterface;
+import java.util.Objects;
 
 /**
  *
@@ -58,5 +59,33 @@ public class Course {
     public void setProgrammeList(LinkedList<Programme> programmeList) {
         this.programmeList = programmeList;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.courseName);
+        hash = 23 * hash + Objects.hashCode(this.courseCode);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Course other = (Course) obj;
+        if (!Objects.equals(this.courseName, other.courseName)) {
+            return false;
+        }
+        return Objects.equals(this.courseCode, other.courseCode);
+    }
+    
+    
     
 }
