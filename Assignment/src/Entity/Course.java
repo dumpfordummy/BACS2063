@@ -11,7 +11,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Wai Loc
+ * @author Jenn Wen
  */
 public class Course {
     private String courseName;
@@ -86,6 +86,21 @@ public class Course {
         return Objects.equals(this.courseCode, other.courseCode);
     }
     
+    public boolean matchesCode(String code) {
+        return this.courseCode.equals(code);
+    }
+
+    public boolean matchesName(String name) {
+        return this.courseName.equalsIgnoreCase(name);
+    }   
     
+    @Override
+    public String toString() {
+        return "Course Code: " + courseCode + "\n"
+             + "Course Name: " + courseName + "\n"
+             + "Credit Hours: " + creditHours + "\n";
+    }
+
+ 
     
 }

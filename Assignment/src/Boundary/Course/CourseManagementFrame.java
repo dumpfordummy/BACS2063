@@ -151,7 +151,9 @@ public class CourseManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addCourseBtnActionPerformed
 
     private void viewCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCourseBtnActionPerformed
-        // TODO add your handling code here:
+        ViewCourse viewCourse = new ViewCourse();
+        viewCourse.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_viewCourseBtnActionPerformed
 
     private void findCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findCourseBtnActionPerformed
