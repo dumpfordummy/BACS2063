@@ -11,7 +11,7 @@ import javax.swing.JDialog;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class ModifyDialog extends javax.swing.JDialog {
 

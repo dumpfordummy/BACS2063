@@ -15,7 +15,7 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class ViewDialog extends javax.swing.JDialog {
 

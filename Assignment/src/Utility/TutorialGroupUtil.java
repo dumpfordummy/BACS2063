@@ -13,7 +13,7 @@ import Entity.TutorialGroup;
 
 /**
  *
- * @author jennw
+ * @author Low Hau Shien
  */
 public class TutorialGroupUtil {
     private static TutorialGroupController tutorialGroupController = TutorialGroupController.getInstance();

@@ -9,7 +9,7 @@ import ADT.Interface.ListInterface;
 
 /**
  *
- * @author Wai Loc
+ * @author Low Hau Shien
  */
 public class TutorialGroup {
     private static int currentGroupNumber = 1;

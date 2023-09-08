@@ -9,7 +9,7 @@ import Entity.Student;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class StudentResultDialog extends javax.swing.JDialog {
 

@@ -11,14 +11,11 @@ import java.util.function.Consumer;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class ArrayList<T> implements ListInterface<T>, Iterable<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
-
-    // -8 to prevent some jvm throws oom even though there is enough heap memory;
-    private static final int ARRAY_MAXLENGTH = Integer.MAX_VALUE - 8;
 
     private T[] items;
 
@@ -39,9 +36,6 @@ public class ArrayList<T> implements ListInterface<T>, Iterable<T> {
     private void grow() {
         int newCapacity = size == 0 ? DEFAULT_CAPACITY : size + (size / 2);
 
-        if (newCapacity > ARRAY_MAXLENGTH) {
-            newCapacity = ARRAY_MAXLENGTH;
-        }
 
         T[] tempArr = (T[]) new Object[newCapacity];
 
@@ -219,17 +213,6 @@ public class ArrayList<T> implements ListInterface<T>, Iterable<T> {
     }
 
     @Override
-    public void forEach(Consumer<? super T> action) {
-        if (action == null) {
-            throw new NullPointerException();
-        }
-
-        for (int i = 0; i < size; i++) {
-            action.accept(items[i]);
-        }
-    }
-
-    @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
 
@@ -277,10 +260,6 @@ public class ArrayList<T> implements ListInterface<T>, Iterable<T> {
         return new ArrayIterator();
     }
 
-    public ListIterator<T> Listiterator() {
-        return new ArrayListIterator();
-    }
-
     private class ArrayIterator implements Iterator<T> {
 
         int nextIndex;
@@ -314,52 +293,5 @@ public class ArrayList<T> implements ListInterface<T>, Iterable<T> {
             previousReturned = -1;
         }
     }
-
-    private class ArrayListIterator extends ArrayIterator implements ListIterator<T> {
-
-        @Override
-        public boolean hasPrevious() {
-            return previousReturned > 0;
-        }
-
-        @Override
-        public T previous() {
-            if (!hasPrevious()) {
-                throw new IllegalStateException();
-            }
-
-            nextIndex--;
-            T result = items[nextIndex];
-            previousReturned = nextIndex;
-            return result;
-        }
-
-        @Override
-        public int nextIndex() {
-            return nextIndex;
-        }
-
-        @Override
-        public int previousIndex() {
-            return nextIndex - 1;
-        }
-
-        @Override
-        public void set(T e) {
-            if (previousReturned < 0) {
-                throw new IllegalStateException();
-            }
-
-            ArrayList.this.replace(previousReturned, e);
-        }
-
-        @Override
-        public void add(T e) {
-            ArrayList.this.add(nextIndex, e);
-            nextIndex++;
-            previousReturned = -1;
-        }
-
-    }
-
+        
 }
