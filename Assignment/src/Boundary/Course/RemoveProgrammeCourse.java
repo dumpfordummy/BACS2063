@@ -176,6 +176,7 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
         for (Course course : courseList) {
             courseSelectList.addItem(course.getCourseCode());
         }
+        initializeProgrammeField();
     }
 
     public void initializeProgrammeField() {
