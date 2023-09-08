@@ -174,7 +174,7 @@ public class AddProgrammeCourse extends javax.swing.JFrame {
              
 
             try {
-                CourseController courseController = new CourseController();
+                CourseController courseController = CourseController.getInstance();
                 Course course = courseController.findCourseCode(selectedCourse);
 
                 ProgrammeController programmeController = new ProgrammeController();

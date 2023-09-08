@@ -143,7 +143,7 @@ public class AddCourse extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         Course course = new Course();
-        CourseController courseController =  CourseController.getInstance();
+        CourseController courseController = CourseController.getInstance();
            
         String courseCode = courseCodeTxtField.getText();
         String courseName = courseNameTxtField.getText();

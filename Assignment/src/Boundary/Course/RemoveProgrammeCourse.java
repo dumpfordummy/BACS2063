@@ -56,11 +56,6 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
         programmeSelectList.setMaximumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setMinimumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setPreferredSize(new java.awt.Dimension(230, 25));
-        programmeSelectList.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                programmeSelectListItemStateChanged(evt);
-            }
-        });
         programmeSelectList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 programmeSelectListActionPerformed(evt);
@@ -164,7 +159,10 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
                     .addContainerGap(160, Short.MAX_VALUE)))
         );
 
+        initializeProgrammeField();
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void programmeSelectListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programmeSelectListActionPerformed
@@ -180,24 +178,26 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
         }
     }
 
-    public void initializeProgrammeField(Course course) {
+    public void initializeProgrammeField() {
+        String selectedCourseCode = courseSelectList.getSelectedItem().toString();
+
+        CourseController courseController = CourseController.getInstance();
+        Course selectedCourse = courseController.findCourseCode(selectedCourseCode);
+        
         programmeSelectList.removeAllItems();
-        ListInterface<Programme> programmeList = course.getProgrammeList();
-        LinkedSetUniqueList<Programme> result = new LinkedSetUniqueList<>();
-        result.add(programmeList.get(0));
-        
-        
+        LinkedList<Programme> programmeList = selectedCourse.getProgrammeList();
+
         for (Programme programme : programmeList) {
             programmeSelectList.addItem(programme.getProgrammeName());
         }
     }
-    
+
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
 
         String selectedCourseCode = courseSelectList.getSelectedItem().toString();
         String selectedProgrammeName = programmeSelectList.getSelectedItem().toString();
 
-        CourseController courseController = new CourseController();
+        CourseController courseController = CourseController.getInstance();
         Course selectedCourse = courseController.findCourseCode(selectedCourseCode);
 
         ProgrammeController programmeController = new ProgrammeController();
@@ -216,7 +216,7 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
             feedbackMsg.setForeground(Color.red);
             feedbackMsg.setText("Selected Course or Programme not found!");
         }
-        
+
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -226,21 +226,6 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cancelBtnActionPerformed
 
-    private void programmeSelectListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_programmeSelectListItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_programmeSelectListItemStateChanged
-
-    private void courseSelectListActionPerformed(java.awt.event.ActionEvent evt) {
-        // Get the selected course code
-        String selectedCourseCode = courseSelectList.getSelectedItem().toString();
-
-        // Retrieve the Course object based on the selected code
-        CourseController courseController = new CourseController();
-        Course selectedCourse = courseController.findCourseCode(selectedCourseCode);
-
-        // Initialize the programmeSelectList based on the selected course
-        initializeProgrammeField(selectedCourse);
-    }
 
     /**
      * @param args the command line arguments

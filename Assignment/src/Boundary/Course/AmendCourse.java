@@ -96,6 +96,7 @@ public class AmendCourse extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProgrammeBtnActionPerformed
