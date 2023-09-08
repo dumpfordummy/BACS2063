@@ -149,7 +149,7 @@ public class AddCourse extends javax.swing.JFrame {
         String courseName = courseNameTxtField.getText();
         double courseHour = Double.parseDouble(totalCreditHourTxtField.getText());
         
-        Course newCourse = new Course(courseCode, courseName, courseHour);
+        Course newCourse = new Course(courseName, courseCode, courseHour);
         
         boolean isDuplicate = false;
 
