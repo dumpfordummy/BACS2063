@@ -11,7 +11,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Jenn Wen
+ * @author Hoh Jenn Wen
  */
 public class Course {
     private String courseName;

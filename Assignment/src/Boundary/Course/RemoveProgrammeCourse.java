@@ -16,7 +16,7 @@ import java.awt.Color;
 
 /**
  *
- * @author jennw
+ * @author Hoh Jenn Wen
  */
 public class RemoveProgrammeCourse extends javax.swing.JFrame {
 

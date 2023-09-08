@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author CY
+ * @author Hoh Jenn Wen
  */
 public class LinkedList<T> implements ListInterface<T> {
 
