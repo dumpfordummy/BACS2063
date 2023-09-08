@@ -24,8 +24,6 @@ public class AddProgrammeCourse extends javax.swing.JFrame {
      */
     public AddProgrammeCourse() {
         initComponents();
-        initializeCourseField();
-        initializeProgrammeField();
     }
 
     /**
@@ -41,7 +39,9 @@ public class AddProgrammeCourse extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         programmeSelectList = new javax.swing.JComboBox<>();
+        initializeProgrammeField();
         courseSelectList = new javax.swing.JComboBox<>();
+        initializeCourseField();
         addBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         feedbackMsg = new javax.swing.JLabel();
@@ -52,12 +52,12 @@ public class AddProgrammeCourse extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Add Programme in a Course");
 
-        jLabel2.setText("Programme:");
+        jLabel2.setText("Add Programme:");
         jLabel2.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel2.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel2.setPreferredSize(new java.awt.Dimension(80, 25));
 
-        jLabel3.setText("Add into:");
+        jLabel3.setText("Course");
         jLabel3.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel3.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel3.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -104,10 +104,10 @@ public class AddProgrammeCourse extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(feedbackMsg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(36, 36, 36)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(courseSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -123,21 +123,21 @@ public class AddProgrammeCourse extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(courseSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(programmeSelectList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addComponent(feedbackMsg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("");
@@ -174,16 +174,12 @@ public class AddProgrammeCourse extends javax.swing.JFrame {
              
 
             try {
-                CourseController courseController = CourseController.getInstance();
-                Course course = courseController.findCourseName(selectedCourse);
+                CourseController courseController = new CourseController();
+                Course course = courseController.findCourseCode(selectedCourse);
 
-                Programme selectedProgramme = null;
-                for (Programme programme : ProgrammeController.getProgrammeList()) {
-                    if (programme.getProgrammeID().equals(selectedProgramme)) {
-                        selectedProgramme = programme;
-                        break;
-                    }
-                }
+                ProgrammeController programmeController = new ProgrammeController();
+                Programme programme = programmeController.findProgrammeByName(selectProgramme);
+                course.getProgrammeList().add(programme);
               
                 feedbackMsg.setForeground(new Color(56, 118, 29));
                 feedbackMsg.setText("Programme added successfully!");
