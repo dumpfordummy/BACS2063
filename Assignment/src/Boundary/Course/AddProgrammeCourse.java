@@ -15,7 +15,7 @@ import java.awt.Color;
 
 /**
  *
- * @author jennw
+ * @author Hoh Jenn Wen
  */
 public class AddProgrammeCourse extends javax.swing.JFrame {
 

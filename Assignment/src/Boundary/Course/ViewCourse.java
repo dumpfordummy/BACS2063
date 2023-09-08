@@ -11,7 +11,7 @@ import Entity.Course;
 
 /**
  *
- * @author jennw
+ * @author Hoh Jenn Wen
  */
 public class ViewCourse extends javax.swing.JFrame {
 

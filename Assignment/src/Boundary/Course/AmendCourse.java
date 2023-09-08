@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author jennw
+ * @author Hoh Jenn Wen
  */
 public class AmendCourse extends javax.swing.JFrame {
 

@@ -7,7 +7,7 @@ package Boundary.Course;
 
 /**
  *
- * @author jennw
+ * @author Hoh Jenn Wen
  */
 public class CourseManagementFrame extends javax.swing.JFrame {
 

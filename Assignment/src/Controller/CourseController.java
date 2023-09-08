@@ -7,7 +7,7 @@ import Entity.TutorialGroup;
 
 /**
  *
- * @author Jenn Wen
+ * @author Hoh Jenn Wen
  */
 public class CourseController {
     

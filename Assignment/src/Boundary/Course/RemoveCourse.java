@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author jennw
+ * @author Hoh Jenn Wen
  */
 public class RemoveCourse extends javax.swing.JFrame {
 
