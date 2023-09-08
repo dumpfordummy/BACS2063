@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class TutorialGroupManagementFrame extends javax.swing.JFrame {
 
@@ -171,7 +171,7 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentBtnActionPerformed
-        JDialog addDialog = new AddDialog(this, true);
+        JDialog addDialog = new AddTutorialGroup(this, true);
         addDialog.setVisible(true);
     }//GEN-LAST:event_addStudentBtnActionPerformed
 

@@ -11,7 +11,7 @@ import Utility.TutorialGroupUtil;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class ReportResultDialog extends javax.swing.JDialog {
 

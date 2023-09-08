@@ -16,7 +16,7 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class ViewTutorialGroupDialog extends javax.swing.JDialog {
 

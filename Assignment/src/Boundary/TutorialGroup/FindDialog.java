@@ -12,7 +12,7 @@ import javax.swing.JDialog;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class FindDialog extends javax.swing.JDialog {
 

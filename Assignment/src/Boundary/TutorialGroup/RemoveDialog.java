@@ -13,7 +13,7 @@ import javax.swing.JList;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class RemoveDialog extends javax.swing.JDialog {
 

@@ -12,7 +12,7 @@ import Utility.TutorialGroupUtil;
 
 /**
  *
- * @author CY
+ * @author Low Hau Shien
  */
 public class ModifyDetailsDialog extends javax.swing.JDialog {
 
