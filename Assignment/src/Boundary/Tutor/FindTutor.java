@@ -39,6 +39,7 @@ public class FindTutor extends javax.swing.JDialog {
         findBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JButton();
+        resultMessageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -73,6 +74,8 @@ public class FindTutor extends javax.swing.JDialog {
             }
         });
 
+        resultMessageLabel.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,18 +83,21 @@ public class FindTutor extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(findModeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(findInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(cancelBtn)
                         .addGap(93, 93, 93)
-                        .addComponent(findBtn)))
+                        .addComponent(findBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(resultMessageLabel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(findModeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(findInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -103,11 +109,13 @@ public class FindTutor extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(findModeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(findInputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
+                .addComponent(resultMessageLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(findBtn)
                     .addComponent(cancelBtn))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,19 +133,35 @@ public class FindTutor extends javax.swing.JDialog {
     private void findBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findBtnActionPerformed
         TutorController tutorController = TutorController.getInstance();
         String input = findInputField.getText();
+
+        if (input == null || input.equals("")) {
+            resultMessageLabel.setText("invalid Input");
+            return;
+        }
+
         ArraySetUniqueList<Tutor> tutorList = new ArraySetUniqueList<>();
-        
-        if(findModeComboBox.getSelectedIndex() == FIND_BY_TUTORID) {
-            tutorList.add(tutorController.findTutorById(input));
+
+        if (findModeComboBox.getSelectedIndex() == FIND_BY_TUTORID) {
+            Tutor tutor = tutorController.findTutorById(input);
+            if (tutor == null) {
+                resultMessageLabel.setText("invalid tutor id");
+                return;
+            } else {
+                tutorList.add(tutor);
+            }
         } else {
             tutorList = tutorController.findTutorsByName(input);
+            if (tutorList.size() == 0) {
+                resultMessageLabel.setText("invalid tutor name");
+                return;
+            }
         }
-        
+
         JDialog findResultDialog = new TutorResults(parent, modal, tutorList);
         findResultDialog.setVisible(true);
     }//GEN-LAST:event_findBtnActionPerformed
 
-    
+
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
@@ -190,14 +214,15 @@ public class FindTutor extends javax.swing.JDialog {
     java.awt.Frame parent;
     boolean modal;
 
-    private final static int FIND_BY_TUTORID = 0; 
-    private final static int FIND_BY_TUTORNAME = 1; 
-    
+    private final static int FIND_BY_TUTORID = 0;
+    private final static int FIND_BY_TUTORNAME = 1;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton findBtn;
     private javax.swing.JTextField findInputField;
     private javax.swing.JComboBox<String> findModeComboBox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel resultMessageLabel;
     // End of variables declaration//GEN-END:variables
 }

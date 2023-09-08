@@ -52,6 +52,7 @@ public class RemoveTutor extends javax.swing.JDialog {
         removeBtn = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         totalEntryLabel = new javax.swing.JLabel();
+        resultMessageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -91,14 +92,15 @@ public class RemoveTutor extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
+                                .addGap(46, 46, 46)
                                 .addComponent(cancel)
-                                .addGap(65, 65, 65)
+                                .addGap(71, 71, 71)
                                 .addComponent(removeBtn))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(removeEntryField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(removeEntryField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(resultMessageLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,8 +110,8 @@ public class RemoveTutor extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(totalEntryLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,11 +121,13 @@ public class RemoveTutor extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(removeEntryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resultMessageLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(removeBtn)
                     .addComponent(cancel))
-                .addGap(25, 25, 25))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -133,6 +137,10 @@ public class RemoveTutor extends javax.swing.JDialog {
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         TutorController tutorController = TutorController.getInstance();
         String input = removeEntryField.getText();
+        if (input == null || input.equals("")) {
+            resultMessageLabel.setText("invalid Input");
+            return;
+        }
         ArraySetUniqueList<Integer> removeIndexList = new ArraySetUniqueList<>();
         
         processEntryInputs(input, removeIndexList);
@@ -231,6 +239,7 @@ public class RemoveTutor extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeBtn;
     private javax.swing.JTextField removeEntryField;
+    private javax.swing.JLabel resultMessageLabel;
     private javax.swing.JLabel totalEntryLabel;
     private javax.swing.JList<String> tutorList;
     // End of variables declaration//GEN-END:variables
