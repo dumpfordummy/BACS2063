@@ -4,8 +4,8 @@
  */
 package Boundary.Programme;
 
+import ADT.Impl.ArraySetUniqueList;
 import ADT.Impl.LinkedSetUniqueList;
-import ADT.Interface.ListInterface;
 import Controller.ProgrammeController;
 import Entity.Programme;
 import Entity.TutorialGroup;
@@ -13,7 +13,7 @@ import Entity.TutorialGroup;
 
 /**
  *
- * @author ASUS
+ * @author Wai Loc
  */
 public class ListTutorialGroup extends javax.swing.JFrame {
 
@@ -137,7 +137,7 @@ public class ListTutorialGroup extends javax.swing.JFrame {
             ProgrammeController programmeController = new ProgrammeController();
             Programme programme = programmeController.findProgrammeByName(selectedProgramme);
 
-            ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+            ArraySetUniqueList<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
             //TutorialGroupController tgController = TutorialGroupController.getInstance();
             for (TutorialGroup tg : tutorialGroupList){
                 output += tg.toString();

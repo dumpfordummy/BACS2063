@@ -5,6 +5,7 @@
 package Boundary.Programme;
 
 import ADT.Impl.ArrayList;
+import ADT.Impl.ArraySetUniqueList;
 import ADT.Impl.LinkedSetUniqueList;
 import Controller.ProgrammeController;
 import Controller.TutorialGroupController;
@@ -14,7 +15,7 @@ import java.awt.Color;
 
 /**
  *
- * @author ASUS
+ * @author Wai Loc
  */
 public class AddTutorialGroup extends javax.swing.JFrame {
 
@@ -81,10 +82,20 @@ public class AddTutorialGroup extends javax.swing.JFrame {
         tutorialSelectList.setMaximumSize(new java.awt.Dimension(230, 25));
         tutorialSelectList.setMinimumSize(new java.awt.Dimension(230, 25));
         tutorialSelectList.setPreferredSize(new java.awt.Dimension(230, 25));
+        tutorialSelectList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                selectListItemStateChanged(evt);
+            }
+        });
 
         programmeSelectList.setMaximumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setMinimumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setPreferredSize(new java.awt.Dimension(230, 25));
+        programmeSelectList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                selectListItemStateChanged(evt);
+            }
+        });
 
         addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -166,21 +177,31 @@ public class AddTutorialGroup extends javax.swing.JFrame {
 
             TutorialGroupController tgController = TutorialGroupController.getInstance();
             TutorialGroup tutorialGroup = tgController.findTutorialGroupByGroupNumber(tutorialGroupNumber);
-            programme.getTutorialGroupList().add(tutorialGroup);
+            ArraySetUniqueList<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+            boolean result = tutorialGroupList.add(tutorialGroup);
+            programme.setTutorialGroupList(tutorialGroupList);
             
-            feedbackMsg.setForeground(new Color(56,118,29));
-            feedbackMsg.setText("Tutorial group added successfully!");
+            if (result){
+                feedbackMsg.setForeground(new Color(56,118,29));
+                feedbackMsg.setText("Tutorial group added successfully!");
+            } else {
+                feedbackMsg.setForeground(Color.red);
+                feedbackMsg.setText("Duplicated tutorial group!");
+            }
         } catch (IndexOutOfBoundsException ex){
             feedbackMsg.setForeground(Color.red);
             feedbackMsg.setText("Failed to add tutorial group!");
         }
         
-                
     }//GEN-LAST:event_addBtnActionPerformed
-
+    
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void selectListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selectListItemStateChanged
+        feedbackMsg.setText("");
+    }//GEN-LAST:event_selectListItemStateChanged
 
     /**
      * @param args the command line arguments

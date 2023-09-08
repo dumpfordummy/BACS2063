@@ -71,7 +71,7 @@ public class TutorialGroup {
             studentListString +=  student.getFullName() + " \n\t\t";
         }
         return "Tutorial Group\n==============" 
-                + "\ngroupNumber: \t\t" + groupNumber 
+                + "\nGroup Number: \t" + groupNumber 
                 + "\nNo Of Students: \t" + noOfStudents 
                 + "\nStudent List: \t\t" + studentListString 
                 + "\n";

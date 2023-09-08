@@ -127,7 +127,10 @@ public class ProgrammeController {
         LinkedSetUniqueList<Programme> sortedProgrammeByTotalGroupsList = programmeList;
         for (int n = 0; n < sortedProgrammeByTotalGroupsList.size(); n++){
             for (int i = 0; i < sortedProgrammeByTotalGroupsList.size() - 1; i++) {
-                if (sortedProgrammeByTotalGroupsList.get(i).getTutorialGroupList().size() < sortedProgrammeByTotalGroupsList.get(i+1).getTutorialGroupList().size()) {
+                ArraySetUniqueList<TutorialGroup> firstTutorialGroupList = sortedProgrammeByTotalGroupsList.get(i).getTutorialGroupList();
+                ArraySetUniqueList<TutorialGroup> secondTutorialGroupList = sortedProgrammeByTotalGroupsList.get(i+1).getTutorialGroupList();
+                
+                if (firstTutorialGroupList.size() < secondTutorialGroupList.size()) {
                     Programme tempProgramme = sortedProgrammeByTotalGroupsList.get(i);
                     sortedProgrammeByTotalGroupsList.replace(i+1, sortedProgrammeByTotalGroupsList.get(i+1));
                     sortedProgrammeByTotalGroupsList.replace(i+1+1, tempProgramme);

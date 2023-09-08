@@ -9,7 +9,7 @@ import Entity.Programme;
 
 /**
  *
- * @author ASUS
+ * @author Wai Loc
  */
 public class FindProgramme extends javax.swing.JFrame {
 

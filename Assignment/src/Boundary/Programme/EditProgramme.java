@@ -10,7 +10,7 @@ import java.awt.Color;
 
 /**
  *
- * @author ASUS
+ * @author Wai Loc
  */
 public class EditProgramme extends javax.swing.JFrame {
 

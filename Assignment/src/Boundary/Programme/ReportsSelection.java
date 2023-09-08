@@ -93,9 +93,9 @@ public class ReportsSelection extends javax.swing.JFrame {
                 .addComponent(totalFeesReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(mostGroupsReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addComponent(cancelBtn)
-                .addGap(36, 36, 36))
+                .addGap(20, 20, 20))
         );
 
         pack();

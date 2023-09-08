@@ -4,10 +4,7 @@
  */
 package Entity;
 
-import ADT.Interface.*;
 import ADT.Impl.*;
-
-
 
 /**
  *
@@ -19,7 +16,7 @@ public class Programme {
     private String duration;
     private double feesInTotal;
     private int totalSemesters;
-    private ListInterface<TutorialGroup> tutorialGroupList = new ArrayList<>();
+    private ArraySetUniqueList<TutorialGroup> tutorialGroupList = new ArraySetUniqueList<>();
     
 
     public Programme() {
@@ -73,11 +70,11 @@ public class Programme {
         this.programmeID = programmeID;
     }
 
-    public ListInterface<TutorialGroup> getTutorialGroupList() {
+    public ArraySetUniqueList<TutorialGroup> getTutorialGroupList() {
         return tutorialGroupList;
     }
 
-    public void setTutorialGroupList(ListInterface<TutorialGroup> tutorialGroupList) {
+    public void setTutorialGroupList(ArraySetUniqueList<TutorialGroup> tutorialGroupList) {
         this.tutorialGroupList = tutorialGroupList;
     }   
 

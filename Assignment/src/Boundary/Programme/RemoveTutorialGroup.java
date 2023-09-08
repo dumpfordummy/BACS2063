@@ -5,8 +5,8 @@
 package Boundary.Programme;
 
 import ADT.Impl.ArrayList;
+import ADT.Impl.ArraySetUniqueList;
 import ADT.Impl.LinkedSetUniqueList;
-import ADT.Interface.ListInterface;
 import Controller.ProgrammeController;
 import Controller.TutorialGroupController;
 import Entity.*;
@@ -14,7 +14,7 @@ import java.awt.Color;
 
 /**
  *
- * @author ASUS
+ * @author Wai Loc
  */
 public class RemoveTutorialGroup extends javax.swing.JFrame {
 
@@ -36,7 +36,7 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
     
     private void initializeTutorialGroupField(Programme programme) {
         tutorialSelectList.removeAllItems();
-        ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+        ArraySetUniqueList<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
         ArrayList<TutorialGroup> result = new ArrayList<>();
         result.add(tutorialGroupList.get(0));
         boolean shouldInsertLast = true;
@@ -79,7 +79,7 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
             Programme programme = programmeController.findProgrammeByName(selectedProgramme);
             initializeTutorialGroupField(programme);
 
-            ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+            ArraySetUniqueList<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
             for (TutorialGroup tg : tutorialGroupList){
                 output += tg.toString();
             }
@@ -249,7 +249,7 @@ public class RemoveTutorialGroup extends javax.swing.JFrame {
             Programme programme = programmeController.findProgrammeByName(selectedProgramme);
             initializeTutorialGroupField(programme);
 
-            ListInterface<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
+            ArraySetUniqueList<TutorialGroup> tutorialGroupList = programme.getTutorialGroupList();
             for (TutorialGroup tg : tutorialGroupList){
                 output += tg.toString();
             }
