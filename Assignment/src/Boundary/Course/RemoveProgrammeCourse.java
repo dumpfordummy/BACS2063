@@ -7,6 +7,7 @@ package Boundary.Course;
 
 import ADT.Impl.LinkedList;
 import ADT.Impl.LinkedSetUniqueList;
+import ADT.Interface.ListInterface;
 import Controller.CourseController;
 import Controller.ProgrammeController;
 import Entity.Course;
@@ -24,8 +25,7 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
      */
     public RemoveProgrammeCourse() {
         initComponents();
-        initializeCourseField();
-        initializeProgrammeField();
+
     }
 
     /**
@@ -39,9 +39,11 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
 
         CourseTitle = new javax.swing.JLabel();
         programmeSelectList = new javax.swing.JComboBox<>();
+        initializeProgrammeField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         courseSelectList = new javax.swing.JComboBox<>();
+        initializeCourseField();
         removeBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         feedbackMsg = new javax.swing.JLabel();
@@ -55,6 +57,11 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
         programmeSelectList.setMaximumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setMinimumSize(new java.awt.Dimension(230, 25));
         programmeSelectList.setPreferredSize(new java.awt.Dimension(230, 25));
+        programmeSelectList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                programmeSelectListItemStateChanged(evt);
+            }
+        });
         programmeSelectList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 programmeSelectListActionPerformed(evt);
@@ -66,7 +73,7 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
         jLabel2.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel2.setPreferredSize(new java.awt.Dimension(80, 25));
 
-        jLabel3.setText("Course:");
+        jLabel3.setText("From Course:");
         jLabel3.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel3.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel3.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -174,42 +181,43 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
         }
     }
 
-    public void initializeProgrammeField() {
-        LinkedSetUniqueList<Programme> programmeList = ProgrammeController.getProgrammeList();
-
+    public void initializeProgrammeField(Course course) {
+        programmeSelectList.removeAllItems();
+        ListInterface<Programme> programmeList = course.getProgrammeList();
+        LinkedSetUniqueList<Programme> result = new LinkedSetUniqueList<>();
+        result.add(programmeList.get(0));
+        
+        
         for (Programme programme : programmeList) {
             programmeSelectList.addItem(programme.getProgrammeName());
         }
     }
     
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
-        String selectedCourse = courseSelectList.getSelectedItem().toString();
+
+        String selectedCourseCode = courseSelectList.getSelectedItem().toString();
         String selectedProgrammeName = programmeSelectList.getSelectedItem().toString();
 
-        LinkedSetUniqueList<Programme> programmeList = ProgrammeController.getProgrammeList();
+        CourseController courseController = new CourseController();
+        Course selectedCourse = courseController.findCourseCode(selectedCourseCode);
 
-        CourseController courseController = CourseController.getInstance();
-        
+        ProgrammeController programmeController = new ProgrammeController();
+        Programme selectedProgramme = programmeController.findProgrammeByName(selectedProgrammeName);
 
-        try {
-            Course course = courseController.findCourseName(selectedCourse);
-            
-            ProgrammeController programmeController = new ProgrammeController();
-            Programme programmeToRemove = programmeController.findProgrammeByName(selectedProgrammeName);
-
-
-            if (!course.getProgrammeList().contains(programmeToRemove)) {
-                feedbackMsg.setForeground(Color.red);
-                feedbackMsg.setText("The selected course does not have the selected programme.");
-            } else {
-                course.getProgrammeList().remove(programmeToRemove);
+        if (selectedCourse != null && selectedProgramme != null) {
+            // Remove the programme from the course
+            if (selectedCourse.getProgrammeList().remove(selectedProgramme)) {
                 feedbackMsg.setForeground(new Color(56, 118, 29));
                 feedbackMsg.setText("Programme removed successfully!");
+            } else {
+                feedbackMsg.setForeground(Color.red);
+                feedbackMsg.setText("Failed to remove Programme!");
             }
-        } catch (IndexOutOfBoundsException ex) {
+        } else {
             feedbackMsg.setForeground(Color.red);
-            feedbackMsg.setText("Failed to remove Programme!");
+            feedbackMsg.setText("Selected Course or Programme not found!");
         }
+        
     }//GEN-LAST:event_removeBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -218,6 +226,22 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
         amendCourse.setVisible(true);
 
     }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void programmeSelectListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_programmeSelectListItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_programmeSelectListItemStateChanged
+
+    private void courseSelectListActionPerformed(java.awt.event.ActionEvent evt) {
+        // Get the selected course code
+        String selectedCourseCode = courseSelectList.getSelectedItem().toString();
+
+        // Retrieve the Course object based on the selected code
+        CourseController courseController = new CourseController();
+        Course selectedCourse = courseController.findCourseCode(selectedCourseCode);
+
+        // Initialize the programmeSelectList based on the selected course
+        initializeProgrammeField(selectedCourse);
+    }
 
     /**
      * @param args the command line arguments
