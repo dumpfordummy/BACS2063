@@ -13,17 +13,17 @@ import java.lang.reflect.Modifier;
  *
  * @author Hoo Chun Yuan
  */
-public class ModifyDetailsDialog extends javax.swing.JDialog {
+public class ModifyTutorDetails extends javax.swing.JDialog {
 
     /**
      * Creates new form ModifyDetailsDialog
      */
-    public ModifyDetailsDialog(java.awt.Frame parent, boolean modal) {
+    public ModifyTutorDetails(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public ModifyDetailsDialog(java.awt.Frame parent, boolean modal, Tutor tutor) {
+    public ModifyTutorDetails(java.awt.Frame parent, boolean modal, Tutor tutor) {
         super(parent, modal);
         initComponents();
         oldTutor = tutor;
@@ -96,7 +96,6 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
         salaryField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(372, 362));
         setMinimumSize(new java.awt.Dimension(372, 362));
         setResizable(false);
 
@@ -323,20 +322,21 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModifyDetailsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyTutorDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModifyDetailsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyTutorDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModifyDetailsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyTutorDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModifyDetailsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyTutorDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ModifyDetailsDialog dialog = new ModifyDetailsDialog(new javax.swing.JFrame(), true);
+                ModifyTutorDetails dialog = new ModifyTutorDetails(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -15,12 +15,12 @@ import javax.swing.JDialog;
  *
  * @author Hoo Chun Yuan
  */
-public class ReportDialog extends javax.swing.JDialog {
+public class TutorReports extends javax.swing.JDialog {
 
     /**
      * Creates new form ReportDialog
      */
-    public ReportDialog(java.awt.Frame parent, boolean modal) {
+    public TutorReports(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.parent = parent;
         this.modal = modal;
@@ -142,7 +142,7 @@ public class ReportDialog extends javax.swing.JDialog {
         int i = sortedTutorList.size() < 5 ? sortedTutorList.size() - 1 : 4;
         ArraySetUniqueList<Tutor> result = (ArraySetUniqueList<Tutor>) sortedTutorList.subList(0, i);
 
-        JDialog findResultDialog = new ResultDialog(parent, modal, result);
+        JDialog findResultDialog = new TutorResults(parent, modal, result);
         findResultDialog.setVisible(true);
     }
 
@@ -163,20 +163,21 @@ public class ReportDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReportDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorReports.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReportDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorReports.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReportDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorReports.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReportDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorReports.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ReportDialog dialog = new ReportDialog(new javax.swing.JFrame(), true);
+                TutorReports dialog = new TutorReports(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

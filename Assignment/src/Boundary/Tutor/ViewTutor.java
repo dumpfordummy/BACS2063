@@ -16,19 +16,19 @@ import java.util.function.BiFunction;
  *
  * @author Hoo Chun Yuan
  */
-public class ViewDialog extends javax.swing.JDialog {
+public class ViewTutor extends javax.swing.JDialog {
 
     /**
      * Creates new form JDialog
      */
-    public ViewDialog(java.awt.Frame parent, boolean modal) {
+    public ViewTutor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         displayTutorList();
     }
 
     private void initializeTutorField() {
-        Field[] fields = ViewDialog.class.getDeclaredFields();
+        Field[] fields = ViewTutor.class.getDeclaredFields();
         for (Field field : fields) {
             if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
                 try {
@@ -79,7 +79,7 @@ public class ViewDialog extends javax.swing.JDialog {
     private ArraySetUniqueList<Tutor> getSortedTutorList() {
         TutorController tutorController = TutorController.getInstance();
         ArraySetUniqueList<Tutor> tutorList = tutorController.getTutorList();
-        BiFunction<Tutor, Tutor, Boolean> tutorSortCriteriaFunction;
+        BiFunction<Tutor, Tutor, Boolean> tutorSortCriteriaFunction = null;
 
         switch ((String) tutorField.getSelectedItem()) {
             case TUTORID_ASC:
@@ -103,8 +103,10 @@ public class ViewDialog extends javax.swing.JDialog {
             case TUTORSALARY_ASC:
                 tutorSortCriteriaFunction = (a, b) -> a.getSalary().compareTo(b.getSalary()) < 0;
                 break;
-            default:
+            case TUTORSALARY_DESC:
                 tutorSortCriteriaFunction = (a, b) -> a.getSalary().compareTo(b.getSalary()) > 0;
+                break;
+            default:
                 break;
         }
         return TutorUtil.sortTutor(tutorList, tutorSortCriteriaFunction);
@@ -225,21 +227,23 @@ public class ViewDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewTutor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewTutor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewTutor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewTutor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ViewDialog dialog = new ViewDialog(new javax.swing.JFrame(), true);
+                ViewTutor dialog = new ViewTutor(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -11,24 +11,20 @@ import Entity.Tutor;
  *
  * @author Hoo Chun Yuan
  */
-public class ResultDialog extends javax.swing.JDialog {
+public class TutorResults extends javax.swing.JDialog {
 
     /**
      * Creates new form FindResultDialog
      */
-    public ResultDialog(java.awt.Frame parent, boolean modal) {
+    public TutorResults(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public ResultDialog(java.awt.Frame parent, boolean modal, ArraySetUniqueList<Tutor> tutorList) {
+    public TutorResults(java.awt.Frame parent, boolean modal, ArraySetUniqueList<Tutor> tutorList) {
         super(parent, modal);
         initComponents();
         displayTutorList(tutorList);
-    }
-
-    private void displayEmptyData() {
-        
     }
     
     private void displayTutorList(ArraySetUniqueList<Tutor> tutorList) {
@@ -149,21 +145,23 @@ public class ResultDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ResultDialog dialog = new ResultDialog(new javax.swing.JFrame(), true);
+                TutorResults dialog = new TutorResults(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -175,8 +173,6 @@ public class ResultDialog extends javax.swing.JDialog {
         });
     }
     
-    ArraySetUniqueList<Tutor> tutorList;
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel jLabel1;
