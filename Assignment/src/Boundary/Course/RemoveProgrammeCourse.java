@@ -17,12 +17,12 @@ import java.awt.Color;
  *
  * @author jennw
  */
-public class RemoveProgramme extends javax.swing.JFrame {
+public class RemoveProgrammeCourse extends javax.swing.JFrame {
 
     /**
      * Creates new form RemoveProgramme
      */
-    public RemoveProgramme() {
+    public RemoveProgrammeCourse() {
         initComponents();
         initializeCourseField();
         initializeProgrammeField();
@@ -198,13 +198,7 @@ public class RemoveProgramme extends javax.swing.JFrame {
             Programme programmeToRemove = programmeController.findProgrammeByName(selectedProgrammeName);
 
 
-            if (course.equals("")) {
-                feedbackMsg.setForeground(Color.red);
-                feedbackMsg.setText("Course not found!");
-            } else if (programmeToRemove == null) {
-                feedbackMsg.setForeground(Color.red);
-                feedbackMsg.setText("Programme not found!");
-            } else if (!course.getProgrammeList().contains(programmeToRemove)) {
+            if (!course.getProgrammeList().contains(programmeToRemove)) {
                 feedbackMsg.setForeground(Color.red);
                 feedbackMsg.setText("The selected course does not have the selected programme.");
             } else {
@@ -242,20 +236,21 @@ public class RemoveProgramme extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RemoveProgramme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveProgrammeCourse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RemoveProgramme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveProgrammeCourse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RemoveProgramme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveProgrammeCourse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RemoveProgramme.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RemoveProgrammeCourse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RemoveProgramme().setVisible(true);
+                new RemoveProgrammeCourse().setVisible(true);
             }
         });
     }

@@ -99,13 +99,13 @@ public class AmendCourse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProgrammeBtnActionPerformed
-        AddProgramme addProgramme = new AddProgramme();
+        AddProgrammeCourse addProgramme = new AddProgrammeCourse();
         addProgramme.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AddProgrammeBtnActionPerformed
 
     private void removeProgrammeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProgrammeBtnActionPerformed
-        RemoveProgramme removeProgramme = new RemoveProgramme();
+        RemoveProgrammeCourse removeProgramme = new RemoveProgrammeCourse();
         removeProgramme.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_removeProgrammeBtnActionPerformed
