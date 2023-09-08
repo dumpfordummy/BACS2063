@@ -172,6 +172,16 @@ public class AddProgramme extends javax.swing.JFrame {
         String programmeName = progNameTxtField.getText();
         String programmeID = progIDTxtField.getText();
         String duration = durationTxtField.getText();
+        String fees = feesTxtField.getText();
+        String totalSemString = totalSemTxtField.getText();
+        
+        
+        if (programmeName.equals("") || programmeID.equals("") || duration.equals("") || fees.equals("") || totalSemString.equals("") ){
+            feedbackMsgLabel.setText("Input field(s) cannot be empty!");
+            feedbackMsgLabel.setForeground(Color.red);
+            return;
+        }
+        
         double feesInTotal = Double.parseDouble(feesTxtField.getText());
         int totalSemesters = Integer.parseInt(totalSemTxtField.getText());
         

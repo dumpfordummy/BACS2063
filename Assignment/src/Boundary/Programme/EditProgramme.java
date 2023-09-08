@@ -28,7 +28,7 @@ public class EditProgramme extends javax.swing.JFrame {
 
         progListTxtArea.setText(output);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,7 +111,7 @@ public class EditProgramme extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -176,7 +176,13 @@ public class EditProgramme extends javax.swing.JFrame {
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         ProgrammeController progController = new ProgrammeController();
         String index = editInputTField.getText();
-        try{
+        if (index.equals("")) {
+            feedbackMsgLabel.setForeground(Color.red);
+            feedbackMsgLabel.setText("Index cannot be empty!");
+            return;
+        }
+
+        try {
             Programme foundProg = progController.findProgrammeByIndex(Integer.parseInt(index) - 1);
             if (foundProg != null) {
                 EditProgrammeDetails editProgrammeDetails = new EditProgrammeDetails(foundProg, index);
@@ -186,7 +192,7 @@ public class EditProgramme extends javax.swing.JFrame {
                 feedbackMsgLabel.setForeground(Color.red);
                 feedbackMsgLabel.setText("Programme not found!");
             }
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             feedbackMsgLabel.setForeground(Color.red);
             feedbackMsgLabel.setText("Index is out of bounds! Please enter numbers starting from 1 to " + ProgrammeController.getProgrammeList().size());
         }

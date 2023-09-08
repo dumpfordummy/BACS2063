@@ -32,7 +32,7 @@ public class ReportsSelection extends javax.swing.JFrame {
         programmeReportsLabel = new javax.swing.JLabel();
         totalFeesReportBtn = new javax.swing.JButton();
         mostGroupsReportBtn = new javax.swing.JButton();
-        cancelBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,11 +60,11 @@ public class ReportsSelection extends javax.swing.JFrame {
             }
         });
 
-        cancelBtn.setText("Cancel");
-        cancelBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setText("Back");
+        backBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBtnActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -81,7 +81,7 @@ public class ReportsSelection extends javax.swing.JFrame {
                 .addGap(125, 125, 125))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cancelBtn)
+                .addComponent(backBtn)
                 .addGap(200, 200, 200))
         );
         layout.setVerticalGroup(
@@ -94,7 +94,7 @@ public class ReportsSelection extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(mostGroupsReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(cancelBtn)
+                .addComponent(backBtn)
                 .addGap(20, 20, 20))
         );
 
@@ -113,9 +113,9 @@ public class ReportsSelection extends javax.swing.JFrame {
         reportsResult.setVisible(true);
     }//GEN-LAST:event_mostGroupsReportBtnActionPerformed
 
-    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_cancelBtnActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,7 +153,7 @@ public class ReportsSelection extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancelBtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton mostGroupsReportBtn;
     private javax.swing.JLabel programmeReportsLabel;
     private javax.swing.JButton totalFeesReportBtn;
