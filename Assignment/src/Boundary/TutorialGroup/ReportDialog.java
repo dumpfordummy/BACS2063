@@ -91,13 +91,15 @@ public class ReportDialog extends javax.swing.JDialog {
 
     private void topFiveMostStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topFiveMostStudentBtnActionPerformed
         ArrayList<TutorialGroup> tutorialGroupList = TutorialGroupUtil.getTutorialGroupDescendingByStudentNo();
-        JDialog tutorialGroupDialog = new ReportResultDialog(parent, modal, (ArrayList<TutorialGroup>) tutorialGroupList.subList(0, 4));
+        int i = tutorialGroupList.size() < 5 ? tutorialGroupList.size() - 1 : 4;
+        JDialog tutorialGroupDialog = new ReportResultDialog(parent, modal, (ArrayList<TutorialGroup>) tutorialGroupList.subList(0, i));
         tutorialGroupDialog.setVisible(true);
     }//GEN-LAST:event_topFiveMostStudentBtnActionPerformed
 
     private void topFiveLeastStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topFiveLeastStudentBtnActionPerformed
         ArrayList<TutorialGroup> tutorialGroupList = TutorialGroupUtil.getTutorialGroupAscendingByStudentNo();
-        JDialog tutorialGroupDialog = new ReportResultDialog(parent, modal, (ArrayList<TutorialGroup>) tutorialGroupList.subList(0, 4));
+        int i = tutorialGroupList.size() < 5 ? tutorialGroupList.size() - 1 : 4;
+        JDialog tutorialGroupDialog = new ReportResultDialog(parent, modal, (ArrayList<TutorialGroup>) tutorialGroupList.subList(0, i));
         tutorialGroupDialog.setVisible(true);
     }//GEN-LAST:event_topFiveLeastStudentBtnActionPerformed
 

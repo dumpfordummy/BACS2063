@@ -88,14 +88,12 @@ public class ReportDialog extends javax.swing.JDialog {
                         .addGap(122, 122, 122)
                         .addComponent(topFiveHighestPayBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(topFiveHighestAgeBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(topFiveLowestPayBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(topFiveLowestAgeBtn)))
+                        .addGap(121, 121, 121)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(topFiveLowestAgeBtn)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(topFiveHighestAgeBtn)
+                                .addComponent(topFiveLowestPayBtn)))))
                 .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -105,13 +103,13 @@ public class ReportDialog extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addGap(41, 41, 41)
                 .addComponent(topFiveHighestPayBtn)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(topFiveLowestPayBtn)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(topFiveHighestAgeBtn)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(topFiveLowestAgeBtn)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,7 +139,8 @@ public class ReportDialog extends javax.swing.JDialog {
     private void proceedGenerateReport(BiFunction<Tutor, Tutor, Boolean> tutorSortCriteriaFunction) {
         TutorController tutorController = TutorController.getInstance();
         ArraySetUniqueList<Tutor> sortedTutorList = TutorUtil.sortTutor(tutorController.getTutorList(), tutorSortCriteriaFunction);
-        ArraySetUniqueList<Tutor> result = (ArraySetUniqueList<Tutor>) sortedTutorList.subList(0, 4);
+        int i = sortedTutorList.size() < 5 ? sortedTutorList.size() - 1 : 4;
+        ArraySetUniqueList<Tutor> result = (ArraySetUniqueList<Tutor>) sortedTutorList.subList(0, i);
 
         JDialog findResultDialog = new ResultDialog(parent, modal, result);
         findResultDialog.setVisible(true);
