@@ -23,7 +23,7 @@ public class TutorUtil {
             for (int insertIndex = 0; insertIndex < sortedList.size(); insertIndex++) {
                 Tutor tutor2 = sortedList.get(insertIndex);
                 if (compareFunction.apply(tutor1, tutor2)) {
-                    sortedList.add(0, tutor1);
+                    sortedList.add(insertIndex, tutor1);
                     break;
                 }
             }

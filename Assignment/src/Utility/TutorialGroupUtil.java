@@ -63,9 +63,9 @@ public class TutorialGroupUtil {
             TutorialGroup tutGroup1 = tutGroupList.get(i);
             shouldInsertLast = true;
             for (int j = 0; j < result.size(); j++) {
-                TutorialGroup tutGroup2 = tutGroupList.get(j);
+                TutorialGroup tutGroup2 = result.get(j);
                 if (tutGroup1.getGroupNumber() < tutGroup2.getGroupNumber()) {
-                    result.add(0, tutGroup1);
+                    result.add(j, tutGroup1);
                     shouldInsertLast = false;
                     break;
                 }
@@ -86,9 +86,9 @@ public class TutorialGroupUtil {
             TutorialGroup tutGroup1 = tutGroupList.get(i);
             shouldInsertLast = true;
             for (int j = 0; j < result.size(); j++) {
-                TutorialGroup tutGroup2 = tutGroupList.get(j);
+                TutorialGroup tutGroup2 = result.get(j);
                 if (tutGroup1.getGroupNumber() > tutGroup2.getGroupNumber()) {
-                    result.add(0, tutGroup1);
+                    result.add(j, tutGroup1);
                     shouldInsertLast = false;
                     break;
                 }
@@ -109,9 +109,9 @@ public class TutorialGroupUtil {
             TutorialGroup tutGroup1 = tutGroupList.get(i);
             shouldInsertLast = true;
             for (int j = 0; j < result.size(); j++) {
-                TutorialGroup tutGroup2 = tutGroupList.get(j);
+                TutorialGroup tutGroup2 = result.get(j);
                 if (tutGroup1.getNoOfStudents() < tutGroup2.getNoOfStudents()) {
-                    result.add(0, tutGroup1);
+                    result.add(j, tutGroup1);
                     shouldInsertLast = false;
                     break;
                 }
@@ -132,9 +132,9 @@ public class TutorialGroupUtil {
             TutorialGroup tutGroup1 = tutGroupList.get(i);
             shouldInsertLast = true;
             for (int j = 0; j < result.size(); j++) {
-                TutorialGroup tutGroup2 = tutGroupList.get(j);
+                TutorialGroup tutGroup2 = result.get(j);
                 if (tutGroup1.getNoOfStudents() > tutGroup2.getNoOfStudents()) {
-                    result.add(0, tutGroup1);
+                    result.add(j, tutGroup1);
                     shouldInsertLast = false;
                     break;
                 }
