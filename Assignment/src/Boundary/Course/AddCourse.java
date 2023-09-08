@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author jennw
+ * @author Hoh Jenn Wen
  */
 public class AddCourse extends javax.swing.JFrame {
 

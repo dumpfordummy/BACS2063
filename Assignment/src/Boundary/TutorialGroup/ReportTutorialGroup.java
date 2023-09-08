@@ -13,12 +13,12 @@ import javax.swing.JDialog;
  *
  * @author Low Hau Shien
  */
-public class ReportDialog extends javax.swing.JDialog {
+public class ReportTutorialGroup extends javax.swing.JDialog {
 
     /**
      * Creates new form ReportDialog
      */
-    public ReportDialog(java.awt.Frame parent, boolean modal) {
+    public ReportTutorialGroup(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.parent = parent;
         this.modal = modal;
@@ -92,14 +92,14 @@ public class ReportDialog extends javax.swing.JDialog {
     private void topFiveMostStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topFiveMostStudentBtnActionPerformed
         ArrayList<TutorialGroup> tutorialGroupList = TutorialGroupUtil.getTutorialGroupDescendingByStudentNo();
         int i = tutorialGroupList.size() < 5 ? tutorialGroupList.size() - 1 : 4;
-        JDialog tutorialGroupDialog = new ReportResultDialog(parent, modal, (ArrayList<TutorialGroup>) tutorialGroupList.subList(0, i));
+        JDialog tutorialGroupDialog = new ReportResultTutorialGroup(parent, modal, (ArrayList<TutorialGroup>) tutorialGroupList.subList(0, i));
         tutorialGroupDialog.setVisible(true);
     }//GEN-LAST:event_topFiveMostStudentBtnActionPerformed
 
     private void topFiveLeastStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topFiveLeastStudentBtnActionPerformed
         ArrayList<TutorialGroup> tutorialGroupList = TutorialGroupUtil.getTutorialGroupAscendingByStudentNo();
         int i = tutorialGroupList.size() < 5 ? tutorialGroupList.size() - 1 : 4;
-        JDialog tutorialGroupDialog = new ReportResultDialog(parent, modal, (ArrayList<TutorialGroup>) tutorialGroupList.subList(0, i));
+        JDialog tutorialGroupDialog = new ReportResultTutorialGroup(parent, modal, (ArrayList<TutorialGroup>) tutorialGroupList.subList(0, i));
         tutorialGroupDialog.setVisible(true);
     }//GEN-LAST:event_topFiveLeastStudentBtnActionPerformed
 
@@ -120,21 +120,23 @@ public class ReportDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReportDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReportDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReportDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReportDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ReportTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ReportDialog dialog = new ReportDialog(new javax.swing.JFrame(), true);
+                ReportTutorialGroup dialog = new ReportTutorialGroup(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

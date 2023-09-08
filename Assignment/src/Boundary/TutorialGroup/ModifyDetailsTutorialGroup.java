@@ -14,17 +14,17 @@ import Utility.TutorialGroupUtil;
  *
  * @author Low Hau Shien
  */
-public class ModifyDetailsDialog extends javax.swing.JDialog {
+public class ModifyDetailsTutorialGroup extends javax.swing.JDialog {
 
     /**
      * Creates new form ModifyDetailsDialog
      */
-    public ModifyDetailsDialog(java.awt.Frame parent, boolean modal) {
+    public ModifyDetailsTutorialGroup(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public ModifyDetailsDialog(java.awt.Frame parent, boolean modal, Student student) {
+    public ModifyDetailsTutorialGroup(java.awt.Frame parent, boolean modal, Student student) {
         super(parent, modal);
         tutorialGroupController = TutorialGroupController.getInstance();
         initComponents();
@@ -242,21 +242,23 @@ public class ModifyDetailsDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ModifyDetailsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyDetailsTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ModifyDetailsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyDetailsTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ModifyDetailsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyDetailsTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ModifyDetailsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModifyDetailsTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ModifyDetailsDialog dialog = new ModifyDetailsDialog(new javax.swing.JFrame(), true);
+                ModifyDetailsTutorialGroup dialog = new ModifyDetailsTutorialGroup(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
