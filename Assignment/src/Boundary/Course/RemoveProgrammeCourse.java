@@ -178,16 +178,19 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
         for (Course course : courseList) {
             courseSelectList.addItem(course.getCourseCode());
         }
+        initializeProgrammeField();
     }
 
-    public void initializeProgrammeField(Course course) {
-        programmeSelectList.removeAllItems();
-        ListInterface<Programme> programmeList = course.getProgrammeList();
-        LinkedSetUniqueList<Programme> result = new LinkedSetUniqueList<>();
-        result.add(programmeList.get(0));
+    private void initializeProgrammeField(){
+        String selectedCourseCode = courseSelectList.getSelectedItem().toString();     
+
+        CourseController courseController = new CourseController();
+        Course selectedCourse = courseController.findCourseCode(selectedCourseCode);
         
+        LinkedList<Programme> programmeList = selectedCourse.getProgrammeList();
+        programmeSelectList.addItem("--");
         
-        for (Programme programme : programmeList) {
+        for (Programme programme : programmeList){
             programmeSelectList.addItem(programme.getProgrammeName());
         }
     }
@@ -238,8 +241,7 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
         CourseController courseController = new CourseController();
         Course selectedCourse = courseController.findCourseCode(selectedCourseCode);
 
-        // Initialize the programmeSelectList based on the selected course
-        initializeProgrammeField(selectedCourse);
+
     }
 
     /**
