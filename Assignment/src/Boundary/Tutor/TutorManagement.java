@@ -12,12 +12,12 @@ import javax.swing.JDialog;
  *
  * @author Hoo Chun Yuan
  */
-public class TutorManagementFrame extends javax.swing.JFrame {
+public class TutorManagement extends javax.swing.JFrame {
 
     /**
      * Creates new form Tutor
      */
-    public TutorManagementFrame() {
+    public TutorManagement() {
         initComponents();
     }
 
@@ -157,17 +157,17 @@ public class TutorManagementFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addTutorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTutorBtnActionPerformed
-        JDialog addDialog = new AddDialog(this, true);
+        JDialog addDialog = new AddTutor(this, true);
         addDialog.setVisible(true);
     }//GEN-LAST:event_addTutorBtnActionPerformed
 
     private void removeTutorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTutorBtnActionPerformed
-        JDialog removeDialog = new RemoveDialog(this, true);
+        JDialog removeDialog = new RemoveTutor(this, true);
         removeDialog.setVisible(true);
     }//GEN-LAST:event_removeTutorBtnActionPerformed
 
     private void findTutorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findTutorBtnActionPerformed
-        JDialog findDialog = new FindDialog(this, true);
+        JDialog findDialog = new FindTutor(this, true);
         findDialog.setVisible(true);
     }//GEN-LAST:event_findTutorBtnActionPerformed
 
@@ -177,7 +177,7 @@ public class TutorManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_modifyTutorBtnActionPerformed
 
     private void viewTutorsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTutorsBtnActionPerformed
-        JDialog viewDialog = new ViewDialog(this, true);
+        JDialog viewDialog = new ViewTutor(this, true);
         viewDialog.setVisible(true);
     }//GEN-LAST:event_viewTutorsBtnActionPerformed
 
@@ -188,7 +188,7 @@ public class TutorManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void reportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportBtnActionPerformed
-        JDialog viewDialog = new ReportDialog(this, true);
+        JDialog viewDialog = new TutorReports(this, true);
         viewDialog.setVisible(true);
     }//GEN-LAST:event_reportBtnActionPerformed
 
@@ -209,14 +209,18 @@ public class TutorManagementFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TutorManagementFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TutorManagementFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TutorManagementFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TutorManagementFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TutorManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -225,7 +229,7 @@ public class TutorManagementFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TutorManagementFrame().setVisible(true);
+                new TutorManagement().setVisible(true);
             }
         });
     }

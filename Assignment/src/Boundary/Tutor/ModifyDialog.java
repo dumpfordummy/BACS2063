@@ -106,7 +106,7 @@ public class ModifyDialog extends javax.swing.JDialog {
 
         tutor = tutorController.findTutorById(input);
 
-        JDialog modifyDetailsDialog = new ModifyDetailsDialog(parent, modal, tutor);
+        JDialog modifyDetailsDialog = new ModifyTutorDetails(parent, modal, tutor);
         modifyDetailsDialog.setVisible(true);
     }//GEN-LAST:event_confirmBtnActionPerformed
 

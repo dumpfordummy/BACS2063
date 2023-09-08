@@ -5,7 +5,7 @@
 package Boundary;
 
 import Boundary.Course.CourseManagementFrame;
-import Boundary.Tutor.TutorManagementFrame;
+import Boundary.Tutor.TutorManagement;
 import Boundary.Programme.*;
 import Boundary.TutorialGroup.TutorialGroupManagementFrame;
 
@@ -133,7 +133,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tutorialGroupBtnActionPerformed
 
     private void tutorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorBtnActionPerformed
-        TutorManagementFrame tutorManagement = new TutorManagementFrame();
+        TutorManagement tutorManagement = new TutorManagement();
         tutorManagement.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_tutorBtnActionPerformed
