@@ -39,7 +39,6 @@ public class RemoveProgrammeCourse extends javax.swing.JFrame {
 
         CourseTitle = new javax.swing.JLabel();
         programmeSelectList = new javax.swing.JComboBox<>();
-        initializeProgrammeField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         courseSelectList = new javax.swing.JComboBox<>();
