@@ -18,12 +18,12 @@ import javax.swing.DefaultListModel;
  *
  * @author Low Hau Shien
  */
-public class ViewTutorialGroupDialog extends javax.swing.JDialog {
+public class ViewTutorialGroupTutorialGroup extends javax.swing.JDialog {
 
     /**
      * Creates new form JDialog
      */
-    public ViewTutorialGroupDialog(java.awt.Frame parent, boolean modal) {
+    public ViewTutorialGroupTutorialGroup(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         tutorialGroupController = TutorialGroupController.getInstance();
         initComponents();
@@ -204,14 +204,22 @@ public class ViewTutorialGroupDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewTutorialGroupDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewTutorialGroupTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewTutorialGroupDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewTutorialGroupTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewTutorialGroupDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewTutorialGroupTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewTutorialGroupDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewTutorialGroupTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -224,7 +232,7 @@ public class ViewTutorialGroupDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ViewTutorialGroupDialog dialog = new ViewTutorialGroupDialog(new javax.swing.JFrame(), true);
+                ViewTutorialGroupTutorialGroup dialog = new ViewTutorialGroupTutorialGroup(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

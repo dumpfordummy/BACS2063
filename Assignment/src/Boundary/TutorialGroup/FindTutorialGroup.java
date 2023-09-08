@@ -14,12 +14,12 @@ import javax.swing.JDialog;
  *
  * @author Low Hau Shien
  */
-public class FindDialog extends javax.swing.JDialog {
+public class FindTutorialGroup extends javax.swing.JDialog {
 
     /**
      * Creates new form FindFrame
      */
-    public FindDialog(java.awt.Frame parent, boolean modal) {
+    public FindTutorialGroup(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         tutorialGroupController = TutorialGroupController.getInstance();
         this.parent = parent;
@@ -138,7 +138,7 @@ public class FindDialog extends javax.swing.JDialog {
             studentList = TutorialGroupUtil.findStudentsByStudentName(input);
         }
 
-        JDialog findResultDialog = new StudentResultDialog(parent, modal, studentList);
+        JDialog findResultDialog = new StudentResultTutorialGroup(parent, modal, studentList);
         findResultDialog.setVisible(true);
     }//GEN-LAST:event_findBtnActionPerformed
 
@@ -164,14 +164,18 @@ public class FindDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FindDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FindTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FindDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FindTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FindDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FindTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FindDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FindTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -180,7 +184,7 @@ public class FindDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FindDialog dialog = new FindDialog(new javax.swing.JFrame(), true);
+                FindTutorialGroup dialog = new FindTutorialGroup(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

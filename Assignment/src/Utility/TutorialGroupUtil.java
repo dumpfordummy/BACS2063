@@ -6,7 +6,7 @@
 package Utility;
 
 import ADT.Impl.ArrayList;
-import Boundary.TutorialGroup.ViewTutorialGroupDialog;
+import Boundary.TutorialGroup.ViewTutorialGroupTutorialGroup;
 import Controller.TutorialGroupController;
 import Entity.Student;
 import Entity.TutorialGroup;

@@ -176,27 +176,27 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addStudentBtnActionPerformed
 
     private void removeStudentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStudentBtnActionPerformed
-        JDialog removeDialog = new RemoveDialog(this, true);
+        JDialog removeDialog = new RemoveTutorialGroup(this, true);
         removeDialog.setVisible(true);
     }//GEN-LAST:event_removeStudentBtnActionPerformed
 
     private void findStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findStudentsBtnActionPerformed
-        JDialog findDialog = new FindDialog(this, true);
+        JDialog findDialog = new FindTutorialGroup(this, true);
         findDialog.setVisible(true);
     }//GEN-LAST:event_findStudentsBtnActionPerformed
 
     private void modifyStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyStudentsBtnActionPerformed
-        JDialog modifyDialog = new ModifyDialog(this, true);
+        JDialog modifyDialog = new ModifyTutorialGroup(this, true);
         modifyDialog.setVisible(true);
     }//GEN-LAST:event_modifyStudentsBtnActionPerformed
 
     private void viewStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStudentsBtnActionPerformed
-        JDialog viewDialog = new ViewDialog(this, true);
+        JDialog viewDialog = new ViewTutorialGroup(this, true);
         viewDialog.setVisible(true);
     }//GEN-LAST:event_viewStudentsBtnActionPerformed
 
     private void viewTutorialGroupsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTutorialGroupsBtnActionPerformed
-        JDialog viewTutorialGroupDialog = new ViewTutorialGroupDialog(this, true);
+        JDialog viewTutorialGroupDialog = new ViewTutorialGroupTutorialGroup(this, true);
         viewTutorialGroupDialog.setVisible(true);
     }//GEN-LAST:event_viewTutorialGroupsBtnActionPerformed
 
@@ -207,7 +207,7 @@ public class TutorialGroupManagementFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void viewReportsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReportsBtnActionPerformed
-        JDialog reportDialog = new ReportDialog(this, true);
+        JDialog reportDialog = new ReportTutorialGroup(this, true);
         reportDialog.setVisible(true);
     }//GEN-LAST:event_viewReportsBtnActionPerformed
 

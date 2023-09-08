@@ -6,40 +6,45 @@ package Boundary.TutorialGroup;
 
 import ADT.Impl.ArrayList;
 import Entity.Student;
-import Entity.TutorialGroup;
-import Utility.TutorialGroupUtil;
 
 /**
  *
  * @author Low Hau Shien
  */
-public class ReportResultDialog extends javax.swing.JDialog {
+public class StudentResultTutorialGroup extends javax.swing.JDialog {
 
     /**
      * Creates new form FindResultDialog
      */
-    public ReportResultDialog(java.awt.Frame parent, boolean modal) {
+    public StudentResultTutorialGroup(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-    }
-    
-    public ReportResultDialog(java.awt.Frame parent, boolean modal, ArrayList<TutorialGroup> tutorialGroupList) {
-        super(parent, modal);
-        initComponents();
-        displayTutorialGroupList(tutorialGroupList);
     }
 
-    private void displayTutorialGroupList(ArrayList<TutorialGroup> tutGroupList) {
+    public StudentResultTutorialGroup(java.awt.Frame parent, boolean modal, ArrayList<Student> tutorList) {
+        super(parent, modal);
+        initComponents();
+        displayStudentList(tutorList);
+    }
+
+    private void displayStudentList(ArrayList<Student> studentList) {
         int i = 1;
-
-        for (TutorialGroup tutGroup : tutGroupList) {
-            int groupNumber = tutGroup.getGroupNumber();
-            int noOfStudents = tutGroup.getNoOfStudents();
+        
+        if(studentList == null || studentList.isEmpty()) {
+            tutorialGroupResultTextArea.append("No entries found!\n");
+            return;
+        }
+        
+        for (Student student : studentList) {
+            String studentName = student.getFullName();
+            String studentId = student.getStudID();
+            String studentEmail = student.getEmail();
 
             tutorialGroupResultTextArea.append("===================================\n");
             tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Entry no.", i));
-            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Group Number", groupNumber));
-            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Number", noOfStudents));
+            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Id", studentId));
+            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Name", studentName));
+            tutorialGroupResultTextArea.append(String.format(" %-15s: %s\n", "Student Email", studentEmail));
             i++;
         }
         if (i != 1) {
@@ -134,30 +139,14 @@ public class ReportResultDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReportResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentResultTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReportResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentResultTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReportResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentResultTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReportResultDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentResultTutorialGroup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -178,7 +167,7 @@ public class ReportResultDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ReportResultDialog dialog = new ReportResultDialog(new javax.swing.JFrame(), true);
+                StudentResultTutorialGroup dialog = new StudentResultTutorialGroup(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
