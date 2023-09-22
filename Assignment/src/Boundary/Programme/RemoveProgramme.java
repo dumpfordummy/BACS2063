@@ -195,6 +195,7 @@ public class RemoveProgramme extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     private void progRemoveByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_progRemoveByActionPerformed
