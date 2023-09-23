@@ -177,6 +177,8 @@ public class CourseManagementFrame extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
+        MainFrame main = new MainFrame();
+        main.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
 
